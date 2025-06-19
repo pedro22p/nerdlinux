@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Site Topzera DEVS!</title>
     
-    <!-- Google AdSense Script no Head -->
+    <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501" crossorigin="anonymous"></script>
     
-    <!-- AMP Script para AMP-AD (opcional, se for usar blocos AMP) -->
+    <!-- AMP Script para AMP-AD -->
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
     <!-- Favicon -->
@@ -75,9 +75,8 @@
         </nav>
     </header>
 
-    <!-- Bloco de Anúncio visível (banner 728x90) -->
+    <!-- Anúncio normal visível -->
     <div style="margin: 20px 0;">
-        <!-- site-devs -->
         <ins class="adsbygoogle"
             style="display:inline-block;width:728px;height:90px"
             data-ad-client="ca-pub-4884573718974501"
@@ -85,6 +84,18 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+    </div>
+
+    <!-- Anúncio AMP-AD (aparece só em páginas AMP reais) -->
+    <div style="margin: 20px 0;">
+        <amp-ad
+            layout="fixed"
+            width="728"
+            height="90"
+            type="adsense"
+            data-ad-client="ca-pub-4884573718974501"
+            data-ad-slot="9530211900">
+        </amp-ad>
     </div>
 
     <div id="mames" class="page active">
