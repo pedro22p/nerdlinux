@@ -6,8 +6,8 @@
     
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501" crossorigin="anonymous"></script>
-    
-    <!-- AMP Script para AMP-AD -->
+
+    <!-- AMP Script -->
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
     <!-- Favicon -->
@@ -87,9 +87,9 @@
                 <li><a onclick="showPage('mames')">Mames</a></li>
                 <li><a onclick="showPage('dicas')">Dicas de Programação</a></li>
                 <li><a onclick="showPage('jogos')">Jogos</a></li>
+                <li><a onclick="showPage('treinar')">Treinar</a></li>
                 <li><a onclick="showPage('animes')">Animes</a></li>
                 <li><a onclick="showPage('noticias')">Notícias Gamer</a></li>
-                <li><a onclick="showPage('treinar')">Treinar</a></li>
             </ul>
         </nav>
     </header>
@@ -105,7 +105,7 @@
         </script>
     </div>
 
-    <!-- Anúncio AMP-AD (aparece só em páginas AMP reais) -->
+    <!-- Anúncio AMP-AD -->
     <div style="margin: 20px 0;">
         <amp-ad
             layout="fixed"
@@ -117,11 +117,10 @@
         </amp-ad>
     </div>
 
+    <!-- Páginas do site -->
     <div id="mames" class="page active">
         <h2>Mames</h2>
-        <p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM1Qn1UjRmxKHbq6foANl-KnKcOaRUt2GL8A&s" alt="Imagem Mames" width="300">
-        </p>
+        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM1Qn1UjRmxKHbq6foANl-KnKcOaRUt2GL8A&s" alt="Imagem Mames" width="300"></p>
     </div>
 
     <div id="dicas" class="page">
@@ -134,6 +133,13 @@
         <p>Lista dos jogos mais jogados e tops da semana!</p>
     </div>
 
+    <div id="treinar" class="page">
+        <h2>Treinar e Mudar de Vida!</h2>
+        <p>Quer transformar seu corpo e mente de verdade? 🚀 Comece o melhor programa de treino agora mesmo! 💪🔥</p>
+        <p>Resultados garantidos, aprovado por especialistas. Treinos para todos os níveis e objetivos!</p>
+        <a class="botao-venda" href="https://app.monetizze.com.br/r/ACV25395145" target="_blank">👉 QUERO COMEÇAR AGORA!</a>
+    </div>
+
     <div id="animes" class="page">
         <h2>Animes</h2>
         <p>Os animes mais assistidos pela galera do momento!</p>
@@ -144,13 +150,7 @@
         <p>As notícias mais quentes do universo gamer estão aqui!</p>
     </div>
 
-    <div id="treinar" class="page">
-        <h2>Treinar e Mudar de Vida!</h2>
-        <p>Quer transformar seu corpo e mente de verdade? 🚀 Comece o melhor programa de treino agora mesmo! 💪🔥</p>
-        <p>Resultados garantidos, aprovado por especialistas. Treinos para todos os níveis e objetivos!</p>
-        <a class="botao-venda" href="https://app.monetizze.com.br/r/ACV25395145" target="_blank">👉 QUERO COMEÇAR AGORA!</a>
-    </div>
-
+    <!-- Script JS para trocar abas -->
     <script>
         function showPage(pageId) {
             var pages = document.getElementsByClassName('page');
