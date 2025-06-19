@@ -2,186 +2,83 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Site Topzera DEVS!</title>
-    
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501" crossorigin="anonymous"></script>
-    
-    <!-- AMP Script -->
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://e7.pngegg.com/pngimages/1019/619/png-clipart-blue-fire-fireball-cinnamon-whisky-computer-icons-flame-fireball-sphere-combustion.png" type="image/png">
-
+    <title>Jogo de Labirinto Topzera</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 0;
+            color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
-        }
-        header {
-            background-color: #1e1e1e;
-            padding: 20px;
-        }
-        header img {
-            width: 100px;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
             margin: 0;
+            padding: 0;
+            overflow: hidden; /* impede scroll na página */
         }
-        nav ul li {
-            display: inline-block;
-            margin: 0 15px;
+        h1 {
+            margin: 10px 0;
         }
-        nav ul li a {
-            color: #0f0;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        nav ul li a:hover {
-            color: #ff0;
-        }
-        .page {
-            display: none;
-            padding: 20px;
-        }
-        .active {
-            display: block;
-        }
-        /* Estilo do Labirinto */
         #game {
             position: relative;
             width: 400px;
             height: 400px;
             margin: 20px auto;
-            background-color: #333;
-            border: 2px solid #0f0;
+            background-color: black; /* labirinto preto */
+            border: 3px solid #0f0;
         }
         .player {
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: red;
-            top: 0;
-            left: 0;
+            background-color: red; /* cubo vermelho */
         }
         .wall {
             position: absolute;
-            background-color: #0f0;
+            background-color: #0f0; /* paredes verdes */
         }
         #pause {
             font-size: 18px;
             margin-top: 10px;
+            color: yellow;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://e7.pngegg.com/pngimages/1019/619/png-clipart-blue-fire-fireball-cinnamon-whisky-computer-icons-flame-fireball-sphere-combustion.png" alt="Logo do Site">
-        <h1>Bem-vindo ao Site Topzera DEVS!</h1>
-        <nav>
-            <ul>
-                <li><a onclick="showPage('mames')">Mames</a></li>
-                <li><a onclick="showPage('dicas')">Dicas de Programação</a></li>
-                <li><a onclick="showPage('jogos')">Jogos</a></li>
-                <li><a onclick="showPage('animes')">Animes</a></li>
-                <li><a onclick="showPage('noticias')">Notícias Gamer</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Anúncio normal visível -->
-    <div style="margin: 20px 0;">
-        <ins class="adsbygoogle"
-            style="display:inline-block;width:728px;height:90px"
-            data-ad-client="ca-pub-4884573718974501"
-            data-ad-slot="9530211900"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+    <h1>Labirinto Topzera DEVS</h1>
+    <p>Use as setas para mover o cubo vermelho. Pressione ESC para pausar/despausar.</p>
+    <div id="game">
+        <div class="player" id="player"></div>
+        
+        <!-- Paredes do labirinto -->
+        <div class="wall" style="top:0; left:0; width:400px; height:20px;"></div> <!-- Parede superior -->
+        <div class="wall" style="top:380px; left:0; width:400px; height:20px;"></div> <!-- Parede inferior -->
+        <div class="wall" style="top:0; left:0; width:20px; height:400px;"></div> <!-- Parede esquerda -->
+        <div class="wall" style="top:0; left:380px; width:20px; height:400px;"></div> <!-- Parede direita -->
+        <!-- paredes internas -->
+        <div class="wall" style="top:60px; left:60px; width:280px; height:20px;"></div>
+        <div class="wall" style="top:100px; left:60px; width:20px; height:200px;"></div>
+        <div class="wall" style="top:280px; left:60px; width:200px; height:20px;"></div>
+        <div class="wall" style="top:140px; left:240px; width:20px; height:160px;"></div>
     </div>
-
-    <div id="mames" class="page active">
-        <h2>Mames</h2>
-        <p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM1Qn1UjRmxKHbq6foANl-KnKcOaRUt2GL8A&s" alt="Imagem Mames" width="300">
-        </p>
-    </div>
-
-    <div id="dicas" class="page">
-        <h2>Dicas de Programação</h2>
-        <p>Aprenda as melhores dicas para programar como um pro!</p>
-        <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
-            <li><strong>1. Comece pelo básico:</strong> Entenda bem HTML, CSS e JavaScript antes de avançar.</li>
-            <li><strong>2. Pratique todo dia:</strong> Programar é treino diário — não pule dias.</li>
-            <li><strong>3. Leia códigos de outros:</strong> Inspire-se no GitHub e repositórios públicos.</li>
-            <li><strong>4. Comente seu código:</strong> Facilita entender o que você fez.</li>
-            <li><strong>5. Não tema erros:</strong> Eles te ensinam muito mais do que acertos.</li>
-            <li><strong>6. Crie mini projetos:</strong> To-Do list, contador, calculadora, etc.</li>
-            <li><strong>7. Use Google e Stack Overflow:</strong> Todo dev usa!</li>
-            <li><strong>8. Aprenda Git/GitHub:</strong> Versionamento é essencial.</li>
-            <li><strong>9. Treine lógica:</strong> Condições, laços e funções são a base.</li>
-            <li><strong>10. Participe de comunidades:</strong> Fóruns, Discord, cursos online ajudam muito.</li>
-        </ol>
-    </div>
-
-    <div id="jogos" class="page">
-        <h2>Jogo do Labirinto</h2>
-        <p>Use as setas para mover o cubo vermelho. Pressione ESC para pausar/despausar.</p>
-        <div id="game">
-            <div class="player" id="player"></div>
-            <!-- Paredes do labirinto -->
-            <div class="wall" style="top:0; left:0; width:400px; height:20px;"></div>
-            <div class="wall" style="top:380px; left:0; width:400px; height:20px;"></div>
-            <div class="wall" style="top:0; left:0; width:20px; height:400px;"></div>
-            <div class="wall" style="top:0; left:380px; width:20px; height:400px;"></div>
-            <div class="wall" style="top:60px; left:60px; width:280px; height:20px;"></div>
-            <div class="wall" style="top:100px; left:60px; width:20px; height:200px;"></div>
-            <div class="wall" style="top:280px; left:60px; width:200px; height:20px;"></div>
-            <div class="wall" style="top:140px; left:240px; width:20px; height:160px;"></div>
-        </div>
-        <div id="pause"></div>
-    </div>
-
-    <div id="animes" class="page">
-        <h2>Animes</h2>
-        <p>Os animes mais assistidos pela galera do momento!</p>
-    </div>
-
-    <div id="noticias" class="page">
-        <h2>Notícias do Mundo Gamer</h2>
-        <p>As notícias mais quentes do universo gamer estão aqui!</p>
-    </div>
+    <div id="pause"></div>
 
     <script>
-        function showPage(pageId) {
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        // Lógica do Jogo de Labirinto
         const player = document.getElementById('player');
         const walls = document.getElementsByClassName('wall');
         const pauseText = document.getElementById('pause');
 
-        let posX = 0;
-        let posY = 0;
+        let posX = 40; // ponto inicial dentro do labirinto
+        let posY = 40;
         let paused = false;
 
+        // posição inicial
+        player.style.left = posX + 'px';
+        player.style.top = posY + 'px';
+
         document.addEventListener('keydown', (e) => {
+            // Impede rolagem da página quando usa seta
+            if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.key) > -1) {
+                e.preventDefault();
+            }
+
             if (e.key === 'Escape') {
                 paused = !paused;
                 pauseText.textContent = paused ? 'Jogo Pausado' : '';
@@ -198,7 +95,7 @@
             if (e.key === 'ArrowLeft') newX -= 20;
             if (e.key === 'ArrowRight') newX += 20;
 
-            // Verifica colisão com paredes
+            // Verificar colisão com paredes
             let canMove = true;
             for (let i = 0; i < walls.length; i++) {
                 const wall = walls[i].getBoundingClientRect();
