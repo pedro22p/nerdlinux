@@ -7,7 +7,7 @@
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501" crossorigin="anonymous"></script>
     
-    <!-- AMP Script para AMP-AD -->
+    <!-- AMP Script -->
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
     <!-- Favicon -->
@@ -58,6 +58,31 @@
         .active {
             display: block;
         }
+        /* Estilo do Labirinto */
+        #game {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            background-color: #333;
+            border: 2px solid #0f0;
+        }
+        .player {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            top: 0;
+            left: 0;
+        }
+        .wall {
+            position: absolute;
+            background-color: #0f0;
+        }
+        #pause {
+            font-size: 18px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -86,18 +111,6 @@
         </script>
     </div>
 
-    <!-- Anúncio AMP-AD (aparece só em páginas AMP reais) -->
-    <div style="margin: 20px 0;">
-        <amp-ad
-            layout="fixed"
-            width="728"
-            height="90"
-            type="adsense"
-            data-ad-client="ca-pub-4884573718974501"
-            data-ad-slot="9530211900">
-        </amp-ad>
-    </div>
-
     <div id="mames" class="page active">
         <h2>Mames</h2>
         <p>
@@ -106,25 +119,38 @@
     </div>
 
     <div id="dicas" class="page">
-    <h2>Dicas de Programação</h2>
-    <p>Aprenda as melhores dicas para programar como um pro!</p>
-    <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
-        <li><strong>1. Comece pelo básico:</strong> Entenda bem HTML, CSS e JavaScript antes de avançar.</li>
-        <li><strong>2. Pratique todo dia:</strong> Programar é igual treino — quanto mais pratica, melhor você fica.</li>
-        <li><strong>3. Leia códigos de outros:</strong> Veja projetos de outras pessoas no GitHub para aprender novas técnicas.</li>
-        <li><strong>4. Comente seu código:</strong> Bons comentários ajudam você (e outros) a entender o que cada parte faz.</li>
-        <li><strong>5. Não tenha medo de errar:</strong> Os erros fazem parte do aprendizado. Leia as mensagens de erro com calma.</li>
-        <li><strong>6. Resolva problemas reais:</strong> Crie projetos simples que você realmente usaria, como uma lista de tarefas ou um blog.</li>
-        <li><strong>7. Use o Google (muito):</strong> Todo programador pesquisa no Google — isso é normal e essencial.</li>
-        <li><strong>8. Aprenda Git e GitHub:</strong> Salve seus códigos e compartilhe projetos no GitHub. Isso te ajuda muito no futuro.</li>
-        <li><strong>9. Não pule lógica de programação:</strong> Treine lógica (condições, laços, funções) antes de partir para frameworks.</li>
-        <li><strong>10. Participe de comunidades:</strong> Grupos no Discord, fóruns e cursos online são ótimos para trocar ideias e evoluir.</li>
-    </ol>
-</div>
+        <h2>Dicas de Programação</h2>
+        <p>Aprenda as melhores dicas para programar como um pro!</p>
+        <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li><strong>1. Comece pelo básico:</strong> Entenda bem HTML, CSS e JavaScript antes de avançar.</li>
+            <li><strong>2. Pratique todo dia:</strong> Programar é treino diário — não pule dias.</li>
+            <li><strong>3. Leia códigos de outros:</strong> Inspire-se no GitHub e repositórios públicos.</li>
+            <li><strong>4. Comente seu código:</strong> Facilita entender o que você fez.</li>
+            <li><strong>5. Não tema erros:</strong> Eles te ensinam muito mais do que acertos.</li>
+            <li><strong>6. Crie mini projetos:</strong> To-Do list, contador, calculadora, etc.</li>
+            <li><strong>7. Use Google e Stack Overflow:</strong> Todo dev usa!</li>
+            <li><strong>8. Aprenda Git/GitHub:</strong> Versionamento é essencial.</li>
+            <li><strong>9. Treine lógica:</strong> Condições, laços e funções são a base.</li>
+            <li><strong>10. Participe de comunidades:</strong> Fóruns, Discord, cursos online ajudam muito.</li>
+        </ol>
+    </div>
 
     <div id="jogos" class="page">
-        <h2>Jogos</h2>
-        <p>Lista dos jogos mais jogados e tops da semana!</p>
+        <h2>Jogo do Labirinto</h2>
+        <p>Use as setas para mover o cubo vermelho. Pressione ESC para pausar/despausar.</p>
+        <div id="game">
+            <div class="player" id="player"></div>
+            <!-- Paredes do labirinto -->
+            <div class="wall" style="top:0; left:0; width:400px; height:20px;"></div>
+            <div class="wall" style="top:380px; left:0; width:400px; height:20px;"></div>
+            <div class="wall" style="top:0; left:0; width:20px; height:400px;"></div>
+            <div class="wall" style="top:0; left:380px; width:20px; height:400px;"></div>
+            <div class="wall" style="top:60px; left:60px; width:280px; height:20px;"></div>
+            <div class="wall" style="top:100px; left:60px; width:20px; height:200px;"></div>
+            <div class="wall" style="top:280px; left:60px; width:200px; height:20px;"></div>
+            <div class="wall" style="top:140px; left:240px; width:20px; height:160px;"></div>
+        </div>
+        <div id="pause"></div>
     </div>
 
     <div id="animes" class="page">
@@ -145,6 +171,60 @@
             }
             document.getElementById(pageId).classList.add('active');
         }
+
+        // Lógica do Jogo de Labirinto
+        const player = document.getElementById('player');
+        const walls = document.getElementsByClassName('wall');
+        const pauseText = document.getElementById('pause');
+
+        let posX = 0;
+        let posY = 0;
+        let paused = false;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                paused = !paused;
+                pauseText.textContent = paused ? 'Jogo Pausado' : '';
+                return;
+            }
+
+            if (paused) return;
+
+            let newX = posX;
+            let newY = posY;
+
+            if (e.key === 'ArrowUp') newY -= 20;
+            if (e.key === 'ArrowDown') newY += 20;
+            if (e.key === 'ArrowLeft') newX -= 20;
+            if (e.key === 'ArrowRight') newX += 20;
+
+            // Verifica colisão com paredes
+            let canMove = true;
+            for (let i = 0; i < walls.length; i++) {
+                const wall = walls[i].getBoundingClientRect();
+                const playerBox = {
+                    left: newX + player.offsetParent.offsetLeft,
+                    top: newY + player.offsetParent.offsetTop,
+                    right: newX + 20 + player.offsetParent.offsetLeft,
+                    bottom: newY + 20 + player.offsetParent.offsetTop
+                };
+
+                if (!(playerBox.right < wall.left ||
+                      playerBox.left > wall.right ||
+                      playerBox.bottom < wall.top ||
+                      playerBox.top > wall.bottom)) {
+                    canMove = false;
+                    break;
+                }
+            }
+
+            if (canMove) {
+                posX = newX;
+                posY = newY;
+                player.style.left = posX + 'px';
+                player.style.top = posY + 'px';
+            }
+        });
     </script>
 </body>
 </html>
