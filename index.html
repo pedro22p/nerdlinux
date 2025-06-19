@@ -2,126 +2,330 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Labirinto Topzera</title>
     <style>
+        :root {
+            --wall-color: #00ff00;
+            --player-color: #ff0000;
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --border-color: #0f0;
+        }
+        
         body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
             text-align: center;
             margin: 0;
-            padding: 0;
-            overflow: hidden; /* impede scroll na página */
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+        
         h1 {
-            margin: 10px 0;
+            margin: 0 0 10px 0;
+            color: var(--wall-color);
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
         }
+        
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
         #game {
             position: relative;
             width: 400px;
             height: 400px;
-            margin: 20px auto;
-            background-color: black; /* labirinto preto */
-            border: 3px solid #0f0;
+            background-color: black;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
         }
+        
         .player {
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: red; /* cubo vermelho */
+            background-color: var(--player-color);
+            border-radius: 3px;
+            transition: transform 0.1s ease;
+            z-index: 10;
         }
+        
         .wall {
             position: absolute;
-            background-color: #0f0; /* paredes verdes */
+            background-color: var(--wall-color);
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
         }
+        
+        #controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
         #pause {
             font-size: 18px;
-            margin-top: 10px;
             color: yellow;
+            min-height: 27px;
+        }
+        
+        .instructions {
+            max-width: 400px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .win-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border: 2px solid var(--wall-color);
+            border-radius: 5px;
+            z-index: 100;
+            display: none;
+        }
+        
+        .win-message h2 {
+            color: var(--wall-color);
+            margin-top: 0;
+        }
+        
+        button {
+            background-color: var(--bg-color);
+            color: var(--wall-color);
+            border: 1px solid var(--wall-color);
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--wall-color);
+            color: var(--bg-color);
+        }
+        
+        @media (max-width: 480px) {
+            #game {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .player {
+                width: 15px;
+                height: 15px;
+            }
+            
+            /* Ajustar paredes para mobile */
+            .wall {
+                transform-origin: 0 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Labirinto Topzera DEVS</h1>
-    <p>Use as setas para mover o cubo vermelho. Pressione ESC para pausar/despausar.</p>
-    <div id="game">
-        <div class="player" id="player"></div>
+    <div class="game-container">
+        <h1>Labirinto Topzera DEVS</h1>
+        <p class="instructions">Use as setas do teclado para mover o cubo vermelho até a saída. Pressione ESC para pausar/despausar.</p>
         
-        <!-- Paredes do labirinto -->
-        <div class="wall" style="top:0; left:0; width:400px; height:20px;"></div> <!-- Parede superior -->
-        <div class="wall" style="top:380px; left:0; width:400px; height:20px;"></div> <!-- Parede inferior -->
-        <div class="wall" style="top:0; left:0; width:20px; height:400px;"></div> <!-- Parede esquerda -->
-        <div class="wall" style="top:0; left:380px; width:20px; height:400px;"></div> <!-- Parede direita -->
-        <!-- paredes internas -->
-        <div class="wall" style="top:60px; left:60px; width:280px; height:20px;"></div>
-        <div class="wall" style="top:100px; left:60px; width:20px; height:200px;"></div>
-        <div class="wall" style="top:280px; left:60px; width:200px; height:20px;"></div>
-        <div class="wall" style="top:140px; left:240px; width:20px; height:160px;"></div>
+        <div id="game">
+            <div class="player" id="player"></div>
+            
+            <!-- Paredes do labirinto -->
+            <div class="wall" style="top:0; left:0; width:400px; height:20px;"></div> <!-- Parede superior -->
+            <div class="wall" style="top:380px; left:0; width:400px; height:20px;"></div> <!-- Parede inferior -->
+            <div class="wall" style="top:0; left:0; width:20px; height:400px;"></div> <!-- Parede esquerda -->
+            <div class="wall" style="top:0; left:380px; width:20px; height:400px;"></div> <!-- Parede direita -->
+            
+            <!-- paredes internas -->
+            <div class="wall" style="top:60px; left:60px; width:280px; height:20px;"></div>
+            <div class="wall" style="top:100px; left:60px; width:20px; height:200px;"></div>
+            <div class="wall" style="top:280px; left:60px; width:200px; height:20px;"></div>
+            <div class="wall" style="top:140px; left:240px; width:20px; height:160px;"></div>
+            
+            <!-- Saída do labirinto -->
+            <div class="exit" style="position: absolute; top:360px; left:360px; width:20px; height:20px; border: 2px dashed gold;"></div>
+            
+            <div class="win-message" id="winMessage">
+                <h2>Parabéns!</h2>
+                <p>Você completou o labirinto!</p>
+                <button id="restartButton">Jogar Novamente</button>
+            </div>
+        </div>
+        
+        <div id="controls">
+            <div id="pause"></div>
+            <button id="mobileUp">↑</button>
+            <div>
+                <button id="mobileLeft">←</button>
+                <button id="mobileDown">↓</button>
+                <button id="mobileRight">→</button>
+            </div>
+        </div>
     </div>
-    <div id="pause"></div>
 
     <script>
         const player = document.getElementById('player');
         const walls = document.getElementsByClassName('wall');
         const pauseText = document.getElementById('pause');
+        const winMessage = document.getElementById('winMessage');
+        const restartButton = document.getElementById('restartButton');
+        const exit = document.querySelector('.exit');
+        
+        // Controles mobile
+        const mobileUp = document.getElementById('mobileUp');
+        const mobileDown = document.getElementById('mobileDown');
+        const mobileLeft = document.getElementById('mobileLeft');
+        const mobileRight = document.getElementById('mobileRight');
 
+        // Configurações do jogo
+        const cellSize = 20;
         let posX = 40; // ponto inicial dentro do labirinto
         let posY = 40;
         let paused = false;
+        let gameWon = false;
 
-        // posição inicial
-        player.style.left = posX + 'px';
-        player.style.top = posY + 'px';
+        // Posição inicial
+        updatePlayerPosition();
 
-        document.addEventListener('keydown', (e) => {
+        // Event listeners para teclado
+        document.addEventListener('keydown', handleKeyDown);
+        
+        // Event listeners para controles mobile
+        mobileUp.addEventListener('click', () => movePlayer('ArrowUp'));
+        mobileDown.addEventListener('click', () => movePlayer('ArrowDown'));
+        mobileLeft.addEventListener('click', () => movePlayer('ArrowLeft'));
+        mobileRight.addEventListener('click', () => movePlayer('ArrowRight'));
+        
+        // Botão de reiniciar
+        restartButton.addEventListener('click', resetGame);
+
+        function handleKeyDown(e) {
             // Impede rolagem da página quando usa seta
             if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.key) > -1) {
                 e.preventDefault();
             }
 
             if (e.key === 'Escape') {
-                paused = !paused;
-                pauseText.textContent = paused ? 'Jogo Pausado' : '';
+                togglePause();
                 return;
             }
 
-            if (paused) return;
+            if (!paused && !gameWon) {
+                movePlayer(e.key);
+            }
+        }
+
+        function movePlayer(direction) {
+            if (paused || gameWon) return;
 
             let newX = posX;
             let newY = posY;
 
-            if (e.key === 'ArrowUp') newY -= 20;
-            if (e.key === 'ArrowDown') newY += 20;
-            if (e.key === 'ArrowLeft') newX -= 20;
-            if (e.key === 'ArrowRight') newX += 20;
+            switch(direction) {
+                case 'ArrowUp': newY -= cellSize; break;
+                case 'ArrowDown': newY += cellSize; break;
+                case 'ArrowLeft': newX -= cellSize; break;
+                case 'ArrowRight': newX += cellSize; break;
+                default: return;
+            }
+
+            if (canMove(newX, newY)) {
+                posX = newX;
+                posY = newY;
+                updatePlayerPosition();
+                checkWinCondition();
+            } else {
+                // Efeito visual quando bate na parede
+                player.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    player.style.transform = 'scale(1)';
+                }, 100);
+            }
+        }
+
+        function canMove(newX, newY) {
+            // Verificar limites do labirinto
+            if (newX < 0 || newY < 0 || newX > 380 || newY > 380) {
+                return false;
+            }
 
             // Verificar colisão com paredes
-            let canMove = true;
-            for (let i = 0; i < walls.length; i++) {
-                const wall = walls[i].getBoundingClientRect();
-                const playerBox = {
-                    left: newX + player.offsetParent.offsetLeft,
-                    top: newY + player.offsetParent.offsetTop,
-                    right: newX + 20 + player.offsetParent.offsetLeft,
-                    bottom: newY + 20 + player.offsetParent.offsetTop
+            const playerRect = {
+                left: newX,
+                top: newY,
+                right: newX + cellSize,
+                bottom: newY + cellSize
+            };
+
+            for (let wall of walls) {
+                const wallRect = wall.getBoundingClientRect();
+                const gameRect = document.getElementById('game').getBoundingClientRect();
+                
+                const wallPos = {
+                    left: wallRect.left - gameRect.left,
+                    top: wallRect.top - gameRect.top,
+                    right: wallRect.right - gameRect.left,
+                    bottom: wallRect.bottom - gameRect.top
                 };
 
-                if (!(playerBox.right < wall.left ||
-                      playerBox.left > wall.right ||
-                      playerBox.bottom < wall.top ||
-                      playerBox.top > wall.bottom)) {
-                    canMove = false;
-                    break;
+                if (!(playerRect.right < wallPos.left ||
+                      playerRect.left > wallPos.right ||
+                      playerRect.bottom < wallPos.top ||
+                      playerRect.top > wallPos.bottom)) {
+                    return false;
                 }
             }
 
-            if (canMove) {
-                posX = newX;
-                posY = newY;
-                player.style.left = posX + 'px';
-                player.style.top = posY + 'px';
+            return true;
+        }
+
+        function updatePlayerPosition() {
+            player.style.left = posX + 'px';
+            player.style.top = posY + 'px';
+        }
+
+        function checkWinCondition() {
+            // Verifica se o jogador alcançou a saída (canto inferior direito)
+            if (posX >= 360 && posY >= 360) {
+                gameWon = true;
+                winMessage.style.display = 'block';
+                player.style.backgroundColor = 'gold';
+                player.style.boxShadow = '0 0 10px gold';
             }
-        });
+        }
+
+        function togglePause() {
+            if (gameWon) return;
+            
+            paused = !paused;
+            pauseText.textContent = paused ? 'Jogo Pausado' : '';
+            player.style.opacity = paused ? '0.5' : '1';
+        }
+
+        function resetGame() {
+            posX = 40;
+            posY = 40;
+            paused = false;
+            gameWon = false;
+            updatePlayerPosition();
+            winMessage.style.display = 'none';
+            player.style.backgroundColor = 'var(--player-color)';
+            player.style.boxShadow = 'none';
+            pauseText.textContent = '';
+            player.style.opacity = '1';
+        }
     </script>
 </body>
 </html>
