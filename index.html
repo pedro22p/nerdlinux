@@ -62,35 +62,6 @@
       border: 1px solid var(--border-color);
     }
 
-    button {
-      background: var(--primary-color);
-      cursor: pointer;
-      color: var(--text-color);
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background: var(--primary-hover);
-    }
-
-    button.secondary {
-      background: var(--nav-bg);
-      transition: background-color 0.3s ease;
-    }
-
-    button.secondary:hover {
-      background: #555;
-    }
-
-    #login {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
-    }
-
     /* Input com ícone */
     .input-group {
       position: relative;
@@ -118,6 +89,39 @@
       height: 20px;
       stroke: var(--primary-color);
       pointer-events: none;
+    }
+
+    #login {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+    }
+
+    button {
+      background: var(--primary-color);
+      cursor: pointer;
+      color: var(--text-color);
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      border: none;
+      height: 40px;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: var(--primary-hover);
+    }
+
+    button.secondary {
+      background: var(--nav-bg);
+      transition: background-color 0.3s ease;
+    }
+
+    button.secondary:hover {
+      background: #555;
     }
 
     #menu {
@@ -162,13 +166,6 @@
       text-decoration: underline;
     }
 
-    img.mem {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-
     #msg {
       color: var(--error-color);
       margin-top: 10px;
@@ -190,22 +187,6 @@
       to {
         transform: rotate(360deg);
       }
-    }
-
-    .weather-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .weather-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .weather-icon {
-      font-size: 1.5em;
     }
   </style>
 </head>
@@ -279,7 +260,6 @@
   </nav>
 
   <script>
-    // Elementos da página
     const emailEl = document.getElementById("email");
     const senhaEl = document.getElementById("senha");
     const loginDiv = document.getElementById("login");
@@ -287,7 +267,6 @@
     const conteudo = document.getElementById("conteudo");
     const msg = document.getElementById("msg");
 
-    // Função de login
     function fazerLogin() {
       const email = emailEl.value.trim();
       const senha = senhaEl.value.trim();
@@ -307,7 +286,6 @@
       }, 1000);
     }
 
-    // Função principal para mostrar conteúdo
     async function mostrar(aba) {
       conteudo.innerHTML =
         '<div style="text-align:center;"><span class="loading" style="width:40px;height:40px;"></span></div>';
@@ -320,41 +298,41 @@
             break;
           case "prog":
             html = `<h2>💻 Dicas de Programação</h2><ul>
-          <li><strong>Async/Await:</strong> Use para operações assíncronas</li>
-          <li><strong>Git:</strong> Commits atômicos com mensagens claras</li>
-          <li><strong>Debug:</strong> Use console.log apenas para debug rápido</li>
-          <li><strong>Clean Code:</strong> Código limpo e bem estruturado</li>
-        </ul>`;
+              <li><strong>Async/Await:</strong> Use para operações assíncronas</li>
+              <li><strong>Git:</strong> Commits atômicos com mensagens claras</li>
+              <li><strong>Debug:</strong> Use console.log apenas para debug rápido</li>
+              <li><strong>Clean Code:</strong> Código limpo e bem estruturado</li>
+            </ul>`;
             break;
           case "hack":
             html = `<h2>🔒 Dicas de Hacking Ético</h2><ul>
-          <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
-          <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
-          <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
-          <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
-        </ul>`;
+              <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
+              <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
+              <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
+              <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
+            </ul>`;
             break;
           case "anime":
             html = `<h2>📺 Animes Recomendados</h2><ul>
-          <li><strong>Attack on Titan</strong> - Ação e drama em um mundo pós-apocalíptico</li>
-          <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
-          <li><strong>Death Note</strong> - Thriller psicológico</li>
-          <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
-        </ul>`;
+              <li><strong>Attack on Titan</strong> - Ação e drama em um mundo pós-apocalíptico</li>
+              <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
+              <li><strong>Death Note</strong> - Thriller psicológico</li>
+              <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
+            </ul>`;
             break;
           case "memes":
             html = `<h2>😂 Memes de Programação</h2>
-          <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" loading="lazy">
-          <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" loading="lazy">
-          <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>`;
+              <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" loading="lazy">
+              <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" loading="lazy">
+              <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>`;
             break;
           case "clima":
             html = `<h2>🌦️ Clima Atual</h2>
-          <div class="weather-container">
-            <div id="wx-status">Preparando...</div>
-            <div id="wx-data"></div>
-            <button onclick="tentarNovamenteClima()" style="display:none;" id="btn-tentar-novamente">Tentar Novamente</button>
-          </div>`;
+              <div class="weather-container">
+                <div id="wx-status">Preparando...</div>
+                <div id="wx-data"></div>
+                <button onclick="tentarNovamenteClima()" style="display:none;" id="btn-tentar-novamente">Tentar Novamente</button>
+              </div>`;
             break;
           default:
             html = "<h2>Seção não encontrada</h2>";
@@ -367,45 +345,129 @@
         }
       } catch (e) {
         conteudo.innerHTML = `<div class="error">
-      <h2>Erro</h2>
-      <p>Não foi possível carregar o conteúdo: ${e.message}</p>
-    </div>`;
+          <h2>Erro</h2>
+          <p>Não foi possível carregar o conteúdo: ${e.message}</p>
+        </div>`;
       }
     }
 
-    // API de Notícias Gamer alternativa
     async function carregarNoticiasGamer() {
-      try {
-        const response = await fetch(
-          "https://www.gamerpower.com/api/giveaways"
-        );
-        const data = await response.json();
+      const noticias = [
+        {
+          titulo: 'Novo "The Legend of Zelda: Tears of the Kingdom" impressiona fãs',
+          url: 'https://www.nintendolife.com/news/2023/05/the-legend-of-zelda-tears-of-the-kingdom-impresses-fans',
+          descricao: 'Lançamento do novo Zelda traz mundo aberto inovador e jogabilidade refinada.'
+        },
+        {
+          titulo: 'FIFA 24 traz novas mecânicas e gráficos realistas',
+          url: 'https://www.ea.com/games/fifa/fifa-24',
+          descricao: 'EA Sports promete a melhor experiência para os fãs de futebol.'
+        },
+        {
+          titulo: 'Sony anuncia PlayStation VR2 com suporte para jogos AAA',
+          url: 'https://blog.playstation.com/2023/02/23/playstation-vr2-announcement/',
+          descricao: 'Novo headset VR promete imersão total para os jogadores.'
+        },
+        {
+          titulo: 'Steam Deck recebe atualização para melhorar desempenho',
+          url: 'https://www.steamdeck.com/news/update',
+          descricao: 'Melhorias no sistema otimizam jogos e bateria.'
+        },
+        {
+          titulo: 'Torneio internacional de eSports com premiação milionária começa esta semana',
+          url: 'https://www.esports.com/events/international-tournament-2023',
+          descricao: 'Times do mundo inteiro competem pelo título e dinheiro.'
+        },
+        {
+          titulo: 'Lançamento do game indie “Hollow Knight: Silksong” adiado',
+          url: 'https://www.kotaku.com/hollow-knight-silksong-delay',
+          descricao: 'Equipe promete entregar um jogo ainda melhor com mais tempo.'
+        },
+        {
+          titulo: 'GTA 6 pode ser lançado em 2025, diz rumor',
+          url: 'https://www.ign.com/articles/gta-6-release-rumor-2025',
+          descricao: 'Fãs esperam ansiosos pelo retorno de Los Santos.'
+        },
+        {
+          titulo: 'Microsoft compra estúdio de jogos renomado',
+          url: 'https://www.microsoft.com/gaming/news',
+          descricao: 'Expansão da Xbox Game Studios reforça catálogo exclusivo.'
+        },
+        {
+          titulo: 'Novos consoles de próxima geração chegam no fim do ano',
+          url: 'https://www.gamespot.com/next-gen-consoles-2023',
+          descricao: 'Sony e Microsoft disputam mercado com novidades tecnológicas.'
+        },
+        {
+          titulo: 'Atualização gratuita adiciona novos mapas em “Call of Duty: Modern Warfare II”',
+          url: 'https://www.callofduty.com/news/updates',
+          descricao: 'Jogadores recebem conteúdo extra para multiplayer.'
+        },
+        {
+          titulo: 'Mobile gaming cresce 20% em 2023 e domina mercado global',
+          url: 'https://www.statista.com/mobile-gaming-2023',
+          descricao: 'Jogos para celular ganham cada vez mais popularidade.'
+        },
+        {
+          titulo: 'Cyberpunk 2077 recebe patch com melhorias significativas',
+          url: 'https://www.cyberpunk.net/patch-notes',
+          descricao: 'Correções de bugs e otimização de performance.'
+        },
+        {
+          titulo: 'Assassins Creed: Mirage terá foco em furtividade e história',
+          url: 'https://www.ubisoft.com/assassins-creed-mirage',
+          descricao: 'Retorno às raízes da série com narrativa envolvente.'
+        },
+        {
+          titulo: 'Indie game “Hades 2” promete expandir universo do original',
+          url: 'https://www.hadesgame.com/hades-2-announcement',
+          descricao: 'Continuação do sucesso de crítica e público.'
+        },
+        {
+          titulo: 'Evento Summer Game Fest anuncia várias novidades',
+          url: 'https://www.summergamefest.com',
+          descricao: 'Lançamentos e trailers exclusivos serão revelados.'
+        },
+        {
+          titulo: 'Novos periféricos gamer com tecnologia avançada chegam ao mercado',
+          url: 'https://www.razer.com/news',
+          descricao: 'Teclados, mouses e headsets com alta performance.'
+        },
+        {
+          titulo: 'Blizzard revela expansão para World of Warcraft em 2024',
+          url: 'https://worldofwarcraft.com/news/expansion-2024',
+          descricao: 'Novas regiões e missões aguardam os jogadores.'
+        },
+        {
+          titulo: 'Jogos retrô voltam com força total em consoles modernos',
+          url: 'https://www.retrogaming.com/news',
+          descricao: 'Nostalgia e diversão garantidas para todas as idades.'
+        },
+        {
+          titulo: 'League of Legends ganha novo campeão com habilidades únicas',
+          url: 'https://www.leagueoflegends.com/new-champion',
+          descricao: 'Jogadores exploram novas estratégias no campo de batalha.'
+        },
+        {
+          titulo: 'Evento caridade gamer arrecada milhões para instituições',
+          url: 'https://www.twitch.tv/charityevent',
+          descricao: 'Comunidade unida para ajudar causas sociais.'
+        }
+      ];
 
-        let html = "<h2>🎮 Ofertas e Notícias Gamer</h2><ul>";
+      let html = "<h2>🎮 Notícias Atualizadas do Mundo Gamer</h2><ul>";
+      noticias.forEach(noticia => {
+        html += `
+          <li>
+            <a href="${noticia.url}" target="_blank" rel="noopener noreferrer">${noticia.titulo}</a>
+            <p>${noticia.descricao}</p>
+          </li>`;
+      });
+      html += "</ul>";
 
-        data.slice(0, 10).forEach((item) => {
-          html += `
-        <li>
-          <strong><a href="${item.open_giveaway_url}" target="_blank" rel="noopener noreferrer">${item.title}</a></strong>
-          <p>${item.description || "Sem descrição disponível"}</p>
-          <small>Plataforma: ${item.platforms}</small>
-        </li>`;
-        });
-
-        html += "</ul>";
-        return html;
-      } catch (e) {
-        return `<h2>🎮 Notícias Gamer</h2>
-      <p>Não foi possível carregar as notícias. Aqui estão algumas manchetes fictícias:</p>
-      <ul>
-        <li>Novo jogo da série X anunciado para 2024</li>
-        <li>Plataforma Y anuncia promoção de jogos indie</li>
-        <li>Competição Z tem recorde de participantes este ano</li>
-      </ul>`;
-      }
+      return html;
     }
 
-    // Sistema de Clima aprimorado
     async function mostrarClima() {
       const statusEl = document.getElementById("wx-status");
       const dataEl = document.getElementById("wx-data");
@@ -446,27 +508,27 @@
 
         statusEl.innerHTML = "🌦️ Clima na sua localização:";
         dataEl.innerHTML = `
-      <div class="weather-row">
-        <span class="weather-icon">🌡️</span>
-        <span>Temperatura: <strong>${data.current_weather.temperature}°C</strong></span>
-      </div>
-      <div class="weather-row">
-        <span class="weather-icon">💨</span>
-        <span>Vento: <strong>${data.current_weather.windspeed} km/h</strong></span>
-      </div>
-      <div class="weather-row">
-        <span class="weather-icon">🔄</span>
-        <span>Atualizado: ${new Date().toLocaleTimeString()}</span>
-      </div>
-    `;
+          <div class="weather-row">
+            <span class="weather-icon">🌡️</span>
+            <span>Temperatura: <strong>${data.current_weather.temperature}°C</strong></span>
+          </div>
+          <div class="weather-row">
+            <span class="weather-icon">💨</span>
+            <span>Vento: <strong>${data.current_weather.windspeed} km/h</strong></span>
+          </div>
+          <div class="weather-row">
+            <span class="weather-icon">🔄</span>
+            <span>Atualizado: ${new Date().toLocaleTimeString()}</span>
+          </div>
+        `;
 
       } catch (error) {
         console.error("Erro ao obter clima:", error);
         statusEl.innerHTML = "❌ Não foi possível obter os dados do clima";
         dataEl.innerHTML = `
-      <p>Erro: ${error.message || "Erro desconhecido"}</p>
-      <p>Verifique sua conexão ou tente novamente mais tarde.</p>
-    `;
+          <p>Erro: ${error.message || "Erro desconhecido"}</p>
+          <p>Verifique sua conexão ou tente novamente mais tarde.</p>
+        `;
         btnTentar.style.display = "block";
       }
     }
@@ -475,9 +537,7 @@
       mostrarClima();
     }
 
-    // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
-      // Verifica se já está logado (para desenvolvimento)
       if (localStorage.getItem("dev-login")) {
         loginDiv.style.display = "none";
         menu.style.display = "block";
