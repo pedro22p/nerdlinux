@@ -9,11 +9,6 @@
     href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
     type="image/png"
   />
-
-  <!-- Google AdSense script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501"
-     crossorigin="anonymous"></script>
-
   <style>
     :root {
       --primary-color: #00cc66;
@@ -25,13 +20,11 @@
       --nav-bg: #333;
       --error-color: #ff4444;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: Arial, sans-serif;
       background: var(--bg-color);
@@ -39,50 +32,30 @@
       line-height: 1.6;
       padding: 20px;
     }
-
     h1 {
       text-align: center;
       margin-bottom: 20px;
     }
-
-    input,
-    button,
-    select {
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: none;
-      width: 100%;
-    }
-
-    input,
-    select {
-      background: #444;
-      color: white;
-      border: 1px solid var(--border-color);
-    }
-
     button {
       background: var(--primary-color);
       cursor: pointer;
       color: var(--text-color);
       font-weight: bold;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px 5px 15px 0;
       transition: background-color 0.3s ease;
     }
-
     button:hover {
       background: var(--primary-hover);
     }
-
     button.secondary {
       background: var(--nav-bg);
-      transition: background-color 0.3s ease;
     }
-
     button.secondary:hover {
       background: #555;
     }
-
     #login {
       max-width: 400px;
       margin: 0 auto;
@@ -90,197 +63,79 @@
       background: var(--card-bg);
       border-radius: 10px;
     }
-
-    /* Input com ícone */
-    .input-group {
-      position: relative;
-      margin: 10px 0;
-      width: 100%;
-    }
-
-    .input-group input {
-      padding-left: 40px;
-      width: 100%;
-      background: #444;
-      color: white;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      height: 40px;
-      font-size: 1rem;
-    }
-
-    .icon-user {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      stroke: var(--primary-color);
-      pointer-events: none;
-    }
-
     #menu {
       display: none;
-      max-width: 800px;
+      max-width: 900px;
       margin: 20px auto;
     }
-
     .nav-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 10px;
       margin-bottom: 20px;
     }
-
     #conteudo {
       padding: 20px;
       border: 1px solid var(--border-color);
       border-radius: 10px;
       background: var(--card-bg);
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
+      overflow-wrap: break-word;
     }
-
     ul {
       list-style: none;
       padding-left: 20px;
     }
-
     li {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       padding: 10px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 5px;
     }
-
+    li strong {
+      color: var(--primary-color);
+    }
     a {
       color: var(--primary-color);
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
-    img.mem {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-
     #msg {
       color: var(--error-color);
       margin-top: 10px;
       text-align: center;
       min-height: 20px;
     }
-
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--primary-color);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .weather-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .weather-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .weather-icon {
-      font-size: 1.5em;
-    }
   </style>
 </head>
 <body>
   <h1>Portal Topzera</h1>
 
-  <!-- Bloco de anúncio do Google AdSense -->
-  <ins class="adsbygoogle"
-       style="display:block; text-align:center; margin-bottom: 20px;"
-       data-ad-client="ca-pub-4884573718974501"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-
   <div id="login">
-    <div class="input-group">
-      <svg
-        class="icon-user"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="12" cy="7" r="4"></circle>
-        <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
-      </svg>
-      <input type="text" id="email" placeholder="Email" required />
-    </div>
-
-    <div class="input-group">
-      <svg
-        class="icon-user"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <rect x="5" y="11" width="14" height="10" rx="2" ry="2"></rect>
-        <path d="M12 17v-4"></path>
-        <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
-      </svg>
-      <input type="password" id="senha" placeholder="Senha" required />
-    </div>
-
+    <input type="text" id="email" placeholder="Email" required />
+    <input type="password" id="senha" placeholder="Senha" required style="margin-top:10px;"/>
     <button onclick="fazerLogin()">Entrar</button>
     <div id="msg"></div>
   </div>
 
   <nav id="menu">
     <div class="nav-buttons">
-      <button class="secondary" onclick="mostrar('gamer')">
-        🎮 Notícias Gamer
-      </button>
+      <button class="secondary" onclick="mostrar('gamer')">🎮 Notícias Gamer</button>
       <button class="secondary" onclick="mostrar('prog')">💻 Programação</button>
       <button class="secondary" onclick="mostrar('hack')">🔒 Hacking</button>
       <button class="secondary" onclick="mostrar('anime')">📺 Animes</button>
       <button class="secondary" onclick="mostrar('memes')">😂 Memes</button>
       <button class="secondary" onclick="mostrar('clima')">🌦️ Clima</button>
+      <button class="secondary" onclick="mostrar('kali')">🐉 Kali Linux</button>
     </div>
 
     <div id="conteudo"></div>
   </nav>
 
   <script>
-    // Elementos da página
     const emailEl = document.getElementById("email");
     const senhaEl = document.getElementById("senha");
     const loginDiv = document.getElementById("login");
@@ -288,18 +143,14 @@
     const conteudo = document.getElementById("conteudo");
     const msg = document.getElementById("msg");
 
-    // Função de login
     function fazerLogin() {
       const email = emailEl.value.trim();
       const senha = senhaEl.value.trim();
-
       if (!email || !senha) {
         msg.textContent = "Por favor, preencha email e senha!";
         return;
       }
-
-      msg.innerHTML = 'Verificando... <span class="loading"></span>';
-
+      msg.textContent = "Logando...";
       setTimeout(() => {
         loginDiv.style.display = "none";
         menu.style.display = "block";
@@ -308,209 +159,63 @@
       }, 1000);
     }
 
-    // Função principal para mostrar conteúdo
-    async function mostrar(aba) {
-      conteudo.innerHTML =
-        '<div style="text-align:center;"><span class="loading" style="width:40px;height:40px;"></span></div>';
-
-      try {
-        let html;
-        switch (aba) {
-          case "gamer":
-            html = carregarNoticiasGamer();
-            break;
-          case "prog":
-            html = await carregarDicasProgramacao();
-            break;
-          case "hack":
-            html = `<h2>🔒 Dicas de Hacking Ético</h2><ul>
-          <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
-          <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
-          <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
-          <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
-        </ul>`;
-            break;
-          case "anime":
-            html = `<h2>📺 Animes Recomendados</h2><ul>
-          <li><strong>Attack on Titan</strong> - Ação e drama em um mundo pós-apocalíptico</li>
-          <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
-          <li><strong>Death Note</strong> - Thriller psicológico</li>
-          <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
-        </ul>`;
-            break;
-          case "memes":
-            html = `<h2>😂 Memes de Programação</h2>
-          <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" loading="lazy">
-          <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" loading="lazy">
-          <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>`;
-            break;
-          case "clima":
-            html = `<h2>🌦️ Clima Atual</h2>
-          <div class="weather-container">
-            <div id="wx-status">Preparando...</div>
-            <div id="wx-data"></div>
-            <button onclick="tentarNovamenteClima()" style="display:none;" id="btn-tentar-novamente">Tentar Novamente</button>
-          </div>`;
-            break;
-          default:
-            html = "<h2>Seção não encontrada</h2>";
-        }
-
-        conteudo.innerHTML = html;
-
-        if (aba === "clima") {
-          mostrarClima();
-        }
-      } catch (e) {
-        conteudo.innerHTML = `<div class="error">
-      <h2>Erro</h2>
-      <p>Não foi possível carregar o conteúdo: ${e.message}</p>
-    </div>`;
+    function mostrar(aba) {
+      switch (aba) {
+        case "gamer":
+          conteudo.innerHTML = carregarNoticiasGamer();
+          break;
+        case "prog":
+          carregarDicasProgramacao().then(html => conteudo.innerHTML = html);
+          break;
+        case "hack":
+          conteudo.innerHTML = `
+            <h2>🔒 Dicas de Hacking Ético</h2>
+            <ul>
+              <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
+              <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
+              <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
+              <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
+            </ul>
+          `;
+          break;
+        case "anime":
+          conteudo.innerHTML = `
+            <h2>📺 Animes Recomendados</h2>
+            <ul>
+              <li><strong>Attack on Titan</strong> - Ação e drama em mundo pós-apocalíptico</li>
+              <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
+              <li><strong>Death Note</strong> - Thriller psicológico</li>
+              <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
+            </ul>
+          `;
+          break;
+        case "memes":
+          conteudo.innerHTML = `
+            <h2>😂 Memes de Programação</h2>
+            <img src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" style="max-width:100%; border-radius:8px; margin-bottom:10px;">
+            <img src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" style="max-width:100%; border-radius:8px;">
+            <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>
+          `;
+          break;
+        case "clima":
+          conteudo.innerHTML = `
+            <h2>🌦️ Clima Atual</h2>
+            <p>Funcionalidade não implementada ainda.</p>
+          `;
+          break;
+        case "kali":
+          conteudo.innerHTML = carregarFerramentasKali();
+          break;
+        default:
+          conteudo.innerHTML = "<p>Seção não encontrada.</p>";
       }
     }
 
-    // Notícias gamer estática (sem API) com 20 notícias
     function carregarNoticiasGamer() {
-      const noticias = [
-        {
-          titulo: "Lançamento de Elden Ring: A aventura mais esperada do ano",
-          link: "https://www.example.com/elden-ring-lancamento",
-          descricao: "Elden Ring chega com um mundo aberto vasto e desafiador, conquistando fãs ao redor do mundo.",
-          plataforma: "PC, PS5, Xbox Series X"
-        },
-        {
-          titulo: "Novo DLC gratuito para Fortnite chega este mês",
-          link: "https://www.example.com/fortnite-dlc",
-          descricao: "Conteúdo novo e eventos exclusivos estão disponíveis para jogadores do Fortnite.",
-          plataforma: "PC, consoles, mobile"
-        },
-        {
-          titulo: "Cyberpunk 2077 recebe atualização massiva corrigindo bugs",
-          link: "https://www.example.com/cyberpunk-atualizacao",
-          descricao: "A CD Projekt Red lança patch que melhora desempenho e resolve problemas relatados.",
-          plataforma: "PC, PS5, Xbox"
-        },
-        {
-          titulo: "Steam anuncia descontos de verão com mais de 5 mil jogos em promoção",
-          link: "https://www.example.com/steam-descontos",
-          descricao: "Aproveite descontos incríveis em jogos indie e AAA até o final de julho.",
-          plataforma: "PC"
-        },
-        {
-          titulo: "Resident Evil Village ganha modo multiplayer cooperativo",
-          link: "https://www.example.com/resident-evil-multiplayer",
-          descricao: "Novo modo cooperativo permite que jogadores enfrentem horrores juntos.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "The Legend of Zelda: Breath of the Wild 2 confirmado para 2024",
-          link: "https://www.example.com/zelda-2-confirmado",
-          descricao: "Nintendo revela data aproximada e novidades do tão aguardado jogo.",
-          plataforma: "Nintendo Switch"
-        },
-        {
-          titulo: "GTA 6 rumores indicam lançamento em 2025",
-          link: "https://www.example.com/gta6-rumores",
-          descricao: "Fontes internas sugerem que o próximo GTA já está em fase avançada de desenvolvimento.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "Among Us lança modo solo para desafiar jogadores",
-          link: "https://www.example.com/among-us-modo-solo",
-          descricao: "Experimente jogar contra a IA neste novo modo de desafio.",
-          plataforma: "PC, mobile"
-        },
-        {
-          titulo: "Call of Duty: Modern Warfare recebe mapa inspirado em Paris",
-          link: "https://www.example.com/cod-modern-warfare-paris",
-          descricao: "Novo mapa adiciona uma atmosfera urbana e intensa para partidas multiplayer.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "Steam Deck recebe atualização com melhorias na bateria",
-          link: "https://www.example.com/steam-deck-bateria",
-          descricao: "Valve lança update que aumenta a autonomia do console portátil.",
-          plataforma: "Steam Deck"
-        },
-        {
-          titulo: "Hollow Knight: Silksong revela trailer oficial",
-          link: "https://www.example.com/hollow-knight-silksong-trailer",
-          descricao: "Sequência do aclamado Hollow Knight promete trazer novos desafios e cenários.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "Minecraft lança atualização com novos mobs e biomas",
-          link: "https://www.example.com/minecraft-atualizacao",
-          descricao: "Exploração fica ainda mais divertida com as novidades do update.",
-          plataforma: "PC, consoles, mobile"
-        },
-        {
-          titulo: "Valorant apresenta novo agente com habilidades únicas",
-          link: "https://www.example.com/valorant-novo-agente",
-          descricao: "Prepare-se para dominar o campo de batalha com o novo personagem.",
-          plataforma: "PC"
-        },
-        {
-          titulo: "Pokémon Scarlet e Violet ganham evento especial de verão",
-          link: "https://www.example.com/pokemon-evento-verao",
-          descricao: "Capturas exclusivas e recompensas disponíveis para os treinadores.",
-          plataforma: "Nintendo Switch"
-        },
-        {
-          titulo: "Rocket League adiciona veículos personalizados na nova temporada",
-          link: "https://www.example.com/rocket-league-veiculos",
-          descricao: "Personalize seu carro para dominar as partidas em campo.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "Final Fantasy XVI ganha data de lançamento para 2024",
-          link: "https://www.example.com/ff16-lancamento",
-          descricao: "Prepare-se para a nova aventura da famosa franquia JRPG.",
-          plataforma: "PS5"
-        },
-        {
-          titulo: "Among Us anuncia parceria com franquia popular de animes",
-          link: "https://www.example.com/among-us-anime",
-          descricao: "Personagens temáticos e skins chegam ao jogo em breve.",
-          plataforma: "PC, mobile"
-        },
-        {
-          titulo: "Overwatch 2 traz modo competitivo repaginado",
-          link: "https://www.example.com/overwatch2-competitivo",
-          descricao: "Novas regras e ranking para tornar as partidas mais desafiadoras.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "The Witcher 4 confirmado com nova engine gráfica",
-          link: "https://www.example.com/witcher4-nova-engine",
-          descricao: "CD Projekt Red promete revolução visual no próximo título.",
-          plataforma: "PC, consoles"
-        },
-        {
-          titulo: "League of Legends lança novo campeão com estilo único",
-          link: "https://www.example.com/lol-novo-campeao",
-          descricao: "Conheça as habilidades e estratégias do novo personagem.",
-          plataforma: "PC"
-        }
-      ];
-
-      let html = "<h2>🎮 Notícias Gamer</h2><ul>";
-
-      noticias.forEach(noticia => {
-        html += `
-          <li>
-            <strong><a href="${noticia.link}" target="_blank" rel="noopener noreferrer">${noticia.titulo}</a></strong>
-            <p>${noticia.descricao}</p>
-            <small>Plataforma: ${noticia.plataforma}</small>
-          </li>
-        `;
-      });
-
-      html += "</ul>";
-      return html;
+      // Resumido para foco em Kali Linux
+      return "<h2>🎮 Notícias Gamer</h2><p>Conteúdo não implementado aqui.</p>";
     }
 
-    // Função com 30 dicas de programação
     async function carregarDicasProgramacao() {
       const dicas = [
         "Use comentários claros para explicar o que o código faz.",
@@ -550,89 +255,100 @@
         html += `<li>${dica}</li>`;
       });
       html += "</ul>";
-
       return html;
     }
 
-    // Sistema de Clima aprimorado
-    async function mostrarClima() {
-      const statusEl = document.getElementById("wx-status");
-      const dataEl = document.getElementById("wx-data");
-      const btnTentar = document.getElementById("btn-tentar-novamente");
+    function carregarFerramentasKali() {
+      const ferramentas = [
+        {
+          nome: "Nmap",
+          descricao: "Scanner de rede para descobrir hosts e serviços."
+        },
+        {
+          nome: "Metasploit Framework",
+          descricao: "Plataforma para desenvolvimento e execução de exploits."
+        },
+        {
+          nome: "Wireshark",
+          descricao: "Analisador de protocolos de rede para capturar e inspecionar pacotes."
+        },
+        {
+          nome: "Aircrack-ng",
+          descricao: "Ferramenta para auditoria de redes Wi-Fi e cracking de senhas."
+        },
+        {
+          nome: "John the Ripper",
+          descricao: "Ferramenta de quebra de senhas (password cracking)."
+        },
+        {
+          nome: "Hydra",
+          descricao: "Ataques de força bruta a serviços remotos."
+        },
+        {
+          nome: "Burp Suite",
+          descricao: "Plataforma para testes de segurança em aplicações web."
+        },
+        {
+          nome: "Sqlmap",
+          descricao: "Ferramenta para detecção e exploração de SQL Injection."
+        },
+        {
+          nome: "Nikto",
+          descricao: "Scanner de vulnerabilidades para servidores web."
+        },
+        {
+          nome: "Maltego",
+          descricao: "Ferramenta para análise e mineração de dados de inteligência."
+        },
+        {
+          nome: "Hashcat",
+          descricao: "Ferramenta avançada para quebra de hashes."
+        },
+        {
+          nome: "Netcat",
+          descricao: "Utilitário para leitura e escrita em conexões de rede TCP/UDP."
+        },
+        {
+          nome: "Autopsy",
+          descricao: "Plataforma de análise forense digital."
+        },
+        {
+          nome: "Ettercap",
+          descricao: "Ferramenta para ataques Man-in-the-Middle em redes locais."
+        },
+        {
+          nome: "Responder",
+          descricao: "Ferramenta para ataques de spoofing e captura de hashes."
+        },
+        {
+          nome: "Fierce",
+          descricao: "Scanner de DNS para reconhecimento de rede."
+        },
+        {
+          nome: "Social Engineering Toolkit (SET)",
+          descricao: "Ferramenta para criação de ataques de engenharia social."
+        },
+        {
+          nome: "OpenVAS",
+          descricao: "Scanner de vulnerabilidades abrangente."
+        },
+        {
+          nome: "Crunch",
+          descricao: "Gerador de wordlists personalizadas para ataques de senha."
+        },
+        {
+          nome: "Hash-Identifier",
+          descricao: "Identifica tipos de hashes para facilitar ataques."
+        }
+      ];
 
-      statusEl.innerHTML =
-        '<span class="loading"></span> Obtendo localização...';
-      dataEl.innerHTML = "";
-      btnTentar.style.display = "none";
-
-      if (!navigator.geolocation) {
-        statusEl.innerHTML = "⚠️ Seu navegador não suporta geolocalização";
-        dataEl.innerHTML =
-          "<p>Use um navegador moderno como Chrome, Firefox ou Edge.</p>";
-        return;
-      }
-
-      try {
-        const position = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0,
-          });
-        });
-
-        const { latitude, longitude } = position.coords;
-        statusEl.innerHTML =
-          '<span class="loading"></span> Consultando dados meteorológicos...';
-
-        const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m&timezone=auto`
-        );
-
-        if (!response.ok) throw new Error("API não respondeu");
-
-        const data = await response.json();
-
-        statusEl.innerHTML = "🌦️ Clima na sua localização:";
-        dataEl.innerHTML = `
-      <div class="weather-row">
-        <span class="weather-icon">🌡️</span>
-        <span>Temperatura: <strong>${data.current_weather.temperature}°C</strong></span>
-      </div>
-      <div class="weather-row">
-        <span class="weather-icon">💨</span>
-        <span>Vento: <strong>${data.current_weather.windspeed} km/h</strong></span>
-      </div>
-      <div class="weather-row">
-        <span class="weather-icon">🔄</span>
-        <span>Atualizado: ${new Date().toLocaleTimeString()}</span>
-      </div>
-    `;
-
-      } catch (error) {
-        console.error("Erro ao obter clima:", error);
-        statusEl.innerHTML = "❌ Não foi possível obter os dados do clima";
-        dataEl.innerHTML = `
-      <p>Erro: ${error.message || "Erro desconhecido"}</p>
-      <p>Verifique sua conexão ou tente novamente mais tarde.</p>
-    `;
-        btnTentar.style.display = "block";
-      }
+      let html = "<h2>🐉 20 Melhores Ferramentas do Kali Linux</h2><ul>";
+      ferramentas.forEach(ferramenta => {
+        html += `<li><strong>${ferramenta.nome}:</strong> ${ferramenta.descricao}</li>`;
+      });
+      html += "</ul>";
+      return html;
     }
-
-    function tentarNovamenteClima() {
-      mostrarClima();
-    }
-
-    // Inicialização
-    document.addEventListener("DOMContentLoaded", () => {
-      // Verifica se já está logado (para desenvolvimento)
-      if (localStorage.getItem("dev-login")) {
-        loginDiv.style.display = "none";
-        menu.style.display = "block";
-        mostrar("gamer");
-      }
-    });
   </script>
 </body>
 </html>
