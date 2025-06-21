@@ -1,229 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portal Topzera</title>
-  <link
-    rel="icon"
-    href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
-    type="image/png"
-  />
-  <style>
-    :root {
-      --primary-color: #00cc66;
-      --primary-hover: #009944;
-      --bg-color: #1e1e1e;
-      --card-bg: #2e2e2e;
-      --text-color: #ffffff;
-      --border-color: #444;
-      --nav-bg: #333;
-      --error-color: #ff4444;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      padding: 20px;
-    }
-    h1 { text-align: center; margin-bottom: 20px; }
-    input, button {
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: none;
-      width: 100%;
-    }
-    input {
-      background: #444;
-      color: white;
-      border: 1px solid var(--border-color);
-    }
-    button {
-      background: var(--primary-color);
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    button:hover { background: var(--primary-hover); }
-    button.secondary {
-      background: var(--nav-bg);
-    }
-    button.secondary:hover { background: #555; }
-    #login {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
-    }
-    #menu {
-      display: none;
-      max-width: 800px;
-      margin: 20px auto;
-    }
-    .nav-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    #conteudo {
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    ul { list-style: none; padding: 0; }
-    li {
-      margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 10px;
-      border-radius: 5px;
-    }
-    a { color: var(--primary-color); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <h1>Portal Topzera</h1>
-
-  <div id="login">
+<div id="login">
+  <div class="input-group">
+    <!-- Ícone de usuário -->
+    <svg
+      class="icon-user"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="7" r="4"></circle>
+      <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
+    </svg>
     <input type="text" id="email" placeholder="Email" required />
-    <input type="password" id="senha" placeholder="Senha 🔒" required />
-    <button onclick="fazerLogin()">Entrar</button>
-    <div id="msg"></div>
   </div>
 
-  <nav id="menu">
-    <div class="nav-buttons">
-      <button class="secondary" onclick="mostrar('gamer')">🎮 Notícias Gamer</button>
-      <button class="secondary" onclick="mostrar('prog')">💻 Programação</button>
-      <button class="secondary" onclick="mostrar('hack')">🔒 Hacking</button>
-      <button class="secondary" onclick="mostrar('anime')">📺 Animes</button>
-      <button class="secondary" onclick="mostrar('memes')">😂 Memes</button>
-      <button class="secondary" onclick="mostrar('clima')">🌦️ Clima</button>
-    </div>
-    <div id="conteudo"></div>
-  </nav>
+  <div class="input-group">
+    <!-- Ícone de cadeado -->
+    <svg
+      class="icon-user"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect x="5" y="11" width="14" height="10" rx="2" ry="2"></rect>
+      <path d="M12 17v-4"></path>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+    </svg>
+    <input type="password" id="senha" placeholder="Senha" required />
+  </div>
 
-  <script>
-    const emailEl = document.getElementById("email");
-    const senhaEl = document.getElementById("senha");
-    const loginDiv = document.getElementById("login");
-    const menu = document.getElementById("menu");
-    const conteudo = document.getElementById("conteudo");
-    const msg = document.getElementById("msg");
-
-    function fazerLogin() {
-      const email = emailEl.value.trim();
-      const senha = senhaEl.value.trim();
-      if (!email || !senha) {
-        msg.textContent = "Por favor, preencha email e senha!";
-        return;
-      }
-      msg.innerHTML = 'Verificando...';
-      setTimeout(() => {
-        loginDiv.style.display = "none";
-        menu.style.display = "block";
-        msg.textContent = "";
-        mostrar("gamer");
-      }, 1000);
-    }
-
-    function mostrar(aba) {
-      let html = '';
-      switch (aba) {
-        case 'gamer':
-          html = `<h2>🎮 Últimas Notícias Gamer</h2><ul>
-            <li>Nova geração do PlayStation anunciada para 2025!</li>
-            <li>GTA VI terá mapa duas vezes maior que o anterior.</li>
-            <li>Steam inicia promoção de verão com descontos de até 90%.</li>
-            <li>Fortnite lança nova colaboração com Marvel.</li>
-            <li>Valve confirma CS2 com engine Source 2.</li>
-            <li>Nintendo revela gameplay de The Legend of Zelda: Echoes.</li>
-            <li>XBOX Game Pass adiciona 20 jogos AAA este mês.</li>
-            <li>Among Us ganha modo história single-player.</li>
-            <li>Ubisoft anuncia Assassin's Creed: Origins 2.</li>
-            <li>Minecraft atinge 300 milhões de cópias vendidas.</li>
-            <li>God of War: Ragnarok expande com novo DLC.</li>
-            <li>Cyberpunk 2077 2.0 revoluciona IA de NPCs.</li>
-            <li>EA Sports FC substitui FIFA definitivamente.</li>
-            <li>Overwatch 2 atinge 50 milhões de jogadores.</li>
-            <li>Rockstar divulga teaser misterioso de novo jogo.</li>
-            <li>Elden Ring recebe expansão "Shadow of Erdtree".</li>
-            <li>Fall Guys adiciona modo Battle Royale 100 jogadores.</li>
-            <li>GOG distribui jogos clássicos gratuitos este mês.</li>
-            <li>Hogwarts Legacy terá versão VR em 2025.</li>
-            <li>Capcom anuncia novo Resident Evil Reboot.</li>
-          </ul>`;
-          break;
-
-        case 'prog':
-          html = `<h2>💻 Dicas de Programação</h2><ul>
-            <li>Use Async/Await para código assíncrono limpo.</li>
-            <li>Faça commits pequenos e frequentes.</li>
-            <li>Evite código duplicado (DRY).</li>
-            <li>Prefira nomes de variáveis descritivos.</li>
-            <li>Comente código apenas quando necessário.</li>
-            <li>Use Lint para manter o padrão do código.</li>
-            <li>Separe funções com responsabilidade única.</li>
-            <li>Evite funções muito longas.</li>
-            <li>Documente suas APIs.</li>
-            <li>Teste antes de publicar.</li>
-          </ul>`;
-          break;
-
-        case 'hack':
-          html = `<h2>🔒 20 Melhores Ferramentas do Kali Linux</h2><ul>
-            <li><strong>Nmap:</strong> Scanner de rede.</li>
-            <li><strong>Metasploit Framework:</strong> Exploits profissionais.</li>
-            <li><strong>Wireshark:</strong> Analisador de pacotes.</li>
-            <li><strong>Aircrack-ng:</strong> Teste de segurança Wi-Fi.</li>
-            <li><strong>John the Ripper:</strong> Quebra de senhas.</li>
-            <li><strong>Hydra:</strong> Ataque de força bruta.</li>
-            <li><strong>Burp Suite:</strong> Teste de segurança Web.</li>
-            <li><strong>Sqlmap:</strong> SQL Injection automática.</li>
-            <li><strong>Nikto:</strong> Scan de vulnerabilidade Web.</li>
-            <li><strong>Maltego:</strong> OSINT e análise de dados.</li>
-            <li><strong>Hashcat:</strong> Cracking de senhas por GPU.</li>
-            <li><strong>Netcat:</strong> Ferramenta de rede versátil.</li>
-            <li><strong>Autopsy:</strong> Análise forense de disco.</li>
-            <li><strong>Ettercap:</strong> Ataques MITM.</li>
-            <li><strong>Responder:</strong> Captura de credenciais SMB.</li>
-            <li><strong>Fierce:</strong> Scanner DNS.</li>
-            <li><strong>SET:</strong> Toolkit de engenharia social.</li>
-            <li><strong>OpenVAS:</strong> Scanner de vulnerabilidades.</li>
-            <li><strong>Crunch:</strong> Gerador de wordlists.</li>
-            <li><strong>Hash-Identifier:</strong> Identificador de hash.</li>
-          </ul>`;
-          break;
-
-        case 'anime':
-          html = `<h2>📺 Animes Recomendados</h2><ul>
-            <li>Attack on Titan</li>
-            <li>One Piece</li>
-            <li>Demon Slayer</li>
-            <li>Fullmetal Alchemist</li>
-          </ul>`;
-          break;
-
-        case 'memes':
-          html = `<h2>😂 Memes de Programação</h2>
-            <p>Por que o programador foi ao médico? Porque ele estava com um loop infinito de sono!</p>`;
-          break;
-
-        case 'clima':
-          html = `<h2>🌦️ Clima</h2><p>Em breve dados do tempo atualizados aqui.</p>`;
-          break;
-
-        default:
-          html = "<h2>Seção não encontrada</h2>";
-      }
-      conteudo.innerHTML = html;
-    }
-  </script>
-</body>
-</html>
+  <button onclick="fazerLogin()">Entrar</button>
+  <div id="msg"></div>
+</div>
