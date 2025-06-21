@@ -20,42 +20,37 @@
       --nav-bg: #333;
       --error-color: #ff4444;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
-      line-height: 1.6;
       padding: 20px;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
+    h1 { text-align: center; margin-bottom: 20px; }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+    }
+    input {
+      background: #444;
+      color: white;
+      border: 1px solid var(--border-color);
     }
     button {
       background: var(--primary-color);
       cursor: pointer;
-      color: var(--text-color);
       font-weight: bold;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      margin: 5px 5px 15px 0;
       transition: background-color 0.3s ease;
     }
-    button:hover {
-      background: var(--primary-hover);
-    }
+    button:hover { background: var(--primary-hover); }
     button.secondary {
       background: var(--nav-bg);
     }
-    button.secondary:hover {
-      background: #555;
-    }
+    button.secondary:hover { background: #555; }
     #login {
       max-width: 400px;
       margin: 0 auto;
@@ -65,50 +60,31 @@
     }
     #menu {
       display: none;
-      max-width: 900px;
+      max-width: 800px;
       margin: 20px auto;
     }
     .nav-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 10px;
       margin-bottom: 20px;
     }
     #conteudo {
       padding: 20px;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
       background: var(--card-bg);
-      max-width: 900px;
+      border-radius: 10px;
+      max-width: 800px;
       margin: 0 auto;
-      overflow-wrap: break-word;
     }
-    ul {
-      list-style: none;
-      padding-left: 20px;
-    }
+    ul { list-style: none; padding: 0; }
     li {
-      margin-bottom: 15px;
-      padding: 10px;
+      margin-bottom: 10px;
       background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
       border-radius: 5px;
     }
-    li strong {
-      color: var(--primary-color);
-    }
-    a {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    #msg {
-      color: var(--error-color);
-      margin-top: 10px;
-      text-align: center;
-      min-height: 20px;
-    }
+    a { color: var(--primary-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -116,7 +92,7 @@
 
   <div id="login">
     <input type="text" id="email" placeholder="Email" required />
-    <input type="password" id="senha" placeholder="Senha" required style="margin-top:10px;"/>
+    <input type="password" id="senha" placeholder="Senha 🔒" required />
     <button onclick="fazerLogin()">Entrar</button>
     <div id="msg"></div>
   </div>
@@ -129,9 +105,7 @@
       <button class="secondary" onclick="mostrar('anime')">📺 Animes</button>
       <button class="secondary" onclick="mostrar('memes')">😂 Memes</button>
       <button class="secondary" onclick="mostrar('clima')">🌦️ Clima</button>
-      <button class="secondary" onclick="mostrar('kali')">🐉 Kali Linux</button>
     </div>
-
     <div id="conteudo"></div>
   </nav>
 
@@ -150,7 +124,7 @@
         msg.textContent = "Por favor, preencha email e senha!";
         return;
       }
-      msg.textContent = "Logando...";
+      msg.innerHTML = 'Verificando...';
       setTimeout(() => {
         loginDiv.style.display = "none";
         menu.style.display = "block";
@@ -160,194 +134,95 @@
     }
 
     function mostrar(aba) {
+      let html = '';
       switch (aba) {
-        case "gamer":
-          conteudo.innerHTML = carregarNoticiasGamer();
+        case 'gamer':
+          html = `<h2>🎮 Últimas Notícias Gamer</h2><ul>
+            <li>Nova geração do PlayStation anunciada para 2025!</li>
+            <li>GTA VI terá mapa duas vezes maior que o anterior.</li>
+            <li>Steam inicia promoção de verão com descontos de até 90%.</li>
+            <li>Fortnite lança nova colaboração com Marvel.</li>
+            <li>Valve confirma CS2 com engine Source 2.</li>
+            <li>Nintendo revela gameplay de The Legend of Zelda: Echoes.</li>
+            <li>XBOX Game Pass adiciona 20 jogos AAA este mês.</li>
+            <li>Among Us ganha modo história single-player.</li>
+            <li>Ubisoft anuncia Assassin's Creed: Origins 2.</li>
+            <li>Minecraft atinge 300 milhões de cópias vendidas.</li>
+            <li>God of War: Ragnarok expande com novo DLC.</li>
+            <li>Cyberpunk 2077 2.0 revoluciona IA de NPCs.</li>
+            <li>EA Sports FC substitui FIFA definitivamente.</li>
+            <li>Overwatch 2 atinge 50 milhões de jogadores.</li>
+            <li>Rockstar divulga teaser misterioso de novo jogo.</li>
+            <li>Elden Ring recebe expansão "Shadow of Erdtree".</li>
+            <li>Fall Guys adiciona modo Battle Royale 100 jogadores.</li>
+            <li>GOG distribui jogos clássicos gratuitos este mês.</li>
+            <li>Hogwarts Legacy terá versão VR em 2025.</li>
+            <li>Capcom anuncia novo Resident Evil Reboot.</li>
+          </ul>`;
           break;
-        case "prog":
-          carregarDicasProgramacao().then(html => conteudo.innerHTML = html);
+
+        case 'prog':
+          html = `<h2>💻 Dicas de Programação</h2><ul>
+            <li>Use Async/Await para código assíncrono limpo.</li>
+            <li>Faça commits pequenos e frequentes.</li>
+            <li>Evite código duplicado (DRY).</li>
+            <li>Prefira nomes de variáveis descritivos.</li>
+            <li>Comente código apenas quando necessário.</li>
+            <li>Use Lint para manter o padrão do código.</li>
+            <li>Separe funções com responsabilidade única.</li>
+            <li>Evite funções muito longas.</li>
+            <li>Documente suas APIs.</li>
+            <li>Teste antes de publicar.</li>
+          </ul>`;
           break;
-        case "hack":
-          conteudo.innerHTML = `
-            <h2>🔒 Dicas de Hacking Ético</h2>
-            <ul>
-              <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
-              <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
-              <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
-              <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
-            </ul>
-          `;
+
+        case 'hack':
+          html = `<h2>🔒 20 Melhores Ferramentas do Kali Linux</h2><ul>
+            <li><strong>Nmap:</strong> Scanner de rede.</li>
+            <li><strong>Metasploit Framework:</strong> Exploits profissionais.</li>
+            <li><strong>Wireshark:</strong> Analisador de pacotes.</li>
+            <li><strong>Aircrack-ng:</strong> Teste de segurança Wi-Fi.</li>
+            <li><strong>John the Ripper:</strong> Quebra de senhas.</li>
+            <li><strong>Hydra:</strong> Ataque de força bruta.</li>
+            <li><strong>Burp Suite:</strong> Teste de segurança Web.</li>
+            <li><strong>Sqlmap:</strong> SQL Injection automática.</li>
+            <li><strong>Nikto:</strong> Scan de vulnerabilidade Web.</li>
+            <li><strong>Maltego:</strong> OSINT e análise de dados.</li>
+            <li><strong>Hashcat:</strong> Cracking de senhas por GPU.</li>
+            <li><strong>Netcat:</strong> Ferramenta de rede versátil.</li>
+            <li><strong>Autopsy:</strong> Análise forense de disco.</li>
+            <li><strong>Ettercap:</strong> Ataques MITM.</li>
+            <li><strong>Responder:</strong> Captura de credenciais SMB.</li>
+            <li><strong>Fierce:</strong> Scanner DNS.</li>
+            <li><strong>SET:</strong> Toolkit de engenharia social.</li>
+            <li><strong>OpenVAS:</strong> Scanner de vulnerabilidades.</li>
+            <li><strong>Crunch:</strong> Gerador de wordlists.</li>
+            <li><strong>Hash-Identifier:</strong> Identificador de hash.</li>
+          </ul>`;
           break;
-        case "anime":
-          conteudo.innerHTML = `
-            <h2>📺 Animes Recomendados</h2>
-            <ul>
-              <li><strong>Attack on Titan</strong> - Ação e drama em mundo pós-apocalíptico</li>
-              <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
-              <li><strong>Death Note</strong> - Thriller psicológico</li>
-              <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
-            </ul>
-          `;
+
+        case 'anime':
+          html = `<h2>📺 Animes Recomendados</h2><ul>
+            <li>Attack on Titan</li>
+            <li>One Piece</li>
+            <li>Demon Slayer</li>
+            <li>Fullmetal Alchemist</li>
+          </ul>`;
           break;
-        case "memes":
-          conteudo.innerHTML = `
-            <h2>😂 Memes de Programação</h2>
-            <img src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" style="max-width:100%; border-radius:8px; margin-bottom:10px;">
-            <img src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" style="max-width:100%; border-radius:8px;">
-            <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>
-          `;
+
+        case 'memes':
+          html = `<h2>😂 Memes de Programação</h2>
+            <p>Por que o programador foi ao médico? Porque ele estava com um loop infinito de sono!</p>`;
           break;
-        case "clima":
-          conteudo.innerHTML = `
-            <h2>🌦️ Clima Atual</h2>
-            <p>Funcionalidade não implementada ainda.</p>
-          `;
+
+        case 'clima':
+          html = `<h2>🌦️ Clima</h2><p>Em breve dados do tempo atualizados aqui.</p>`;
           break;
-        case "kali":
-          conteudo.innerHTML = carregarFerramentasKali();
-          break;
+
         default:
-          conteudo.innerHTML = "<p>Seção não encontrada.</p>";
+          html = "<h2>Seção não encontrada</h2>";
       }
-    }
-
-    function carregarNoticiasGamer() {
-      // Resumido para foco em Kali Linux
-      return "<h2>🎮 Notícias Gamer</h2><p>Conteúdo não implementado aqui.</p>";
-    }
-
-    async function carregarDicasProgramacao() {
-      const dicas = [
-        "Use comentários claros para explicar o que o código faz.",
-        "Escolha nomes de variáveis e funções que façam sentido.",
-        "Evite duplicar código, crie funções reutilizáveis.",
-        "Prefira código simples e legível a soluções complexas.",
-        "Faça commits frequentes com mensagens descritivas no Git.",
-        "Use controle de versão para manter seu código seguro.",
-        "Teste seu código frequentemente para detectar erros cedo.",
-        "Escreva funções pequenas que façam apenas uma coisa.",
-        "Aprenda sobre estruturas de dados e algoritmos básicos.",
-        "Entenda os conceitos de programação orientada a objetos.",
-        "Mantenha seu código organizado em módulos ou arquivos separados.",
-        "Use ferramentas de linting para manter padrão e evitar erros.",
-        "Aprenda a usar depuradores (debuggers) para encontrar bugs.",
-        "Evite usar variáveis globais desnecessariamente.",
-        "Conheça os principais padrões de projeto (design patterns).",
-        "Documente seu código e APIs para facilitar manutenção.",
-        "Sempre valide entradas de usuário para evitar bugs e ataques.",
-        "Faça tratamento adequado de erros para melhorar a robustez.",
-        "Conheça o básico sobre segurança em desenvolvimento.",
-        "Automatize tarefas repetitivas com scripts ou ferramentas.",
-        "Acompanhe as novidades da linguagem e frameworks que usa.",
-        "Escreva testes automatizados para garantir qualidade.",
-        "Use ferramentas de integração contínua para facilitar deploy.",
-        "Aprenda sobre bancos de dados e faça consultas eficientes.",
-        "Prefira usar bibliotecas e frameworks confiáveis e atualizados.",
-        "Evite otimizar prematuramente, primeiro faça funcionar.",
-        "Leia código de outros programadores para aprender boas práticas.",
-        "Participe de comunidades para tirar dúvidas e trocar experiências.",
-        "Pratique bastante, pois programação é uma habilidade que melhora com o tempo.",
-        "Tenha paciência e persistência, erros fazem parte do processo."
-      ];
-
-      let html = "<h2>💻 30 Dicas de Programação</h2><ul>";
-      dicas.forEach(dica => {
-        html += `<li>${dica}</li>`;
-      });
-      html += "</ul>";
-      return html;
-    }
-
-    function carregarFerramentasKali() {
-      const ferramentas = [
-        {
-          nome: "Nmap",
-          descricao: "Scanner de rede para descobrir hosts e serviços."
-        },
-        {
-          nome: "Metasploit Framework",
-          descricao: "Plataforma para desenvolvimento e execução de exploits."
-        },
-        {
-          nome: "Wireshark",
-          descricao: "Analisador de protocolos de rede para capturar e inspecionar pacotes."
-        },
-        {
-          nome: "Aircrack-ng",
-          descricao: "Ferramenta para auditoria de redes Wi-Fi e cracking de senhas."
-        },
-        {
-          nome: "John the Ripper",
-          descricao: "Ferramenta de quebra de senhas (password cracking)."
-        },
-        {
-          nome: "Hydra",
-          descricao: "Ataques de força bruta a serviços remotos."
-        },
-        {
-          nome: "Burp Suite",
-          descricao: "Plataforma para testes de segurança em aplicações web."
-        },
-        {
-          nome: "Sqlmap",
-          descricao: "Ferramenta para detecção e exploração de SQL Injection."
-        },
-        {
-          nome: "Nikto",
-          descricao: "Scanner de vulnerabilidades para servidores web."
-        },
-        {
-          nome: "Maltego",
-          descricao: "Ferramenta para análise e mineração de dados de inteligência."
-        },
-        {
-          nome: "Hashcat",
-          descricao: "Ferramenta avançada para quebra de hashes."
-        },
-        {
-          nome: "Netcat",
-          descricao: "Utilitário para leitura e escrita em conexões de rede TCP/UDP."
-        },
-        {
-          nome: "Autopsy",
-          descricao: "Plataforma de análise forense digital."
-        },
-        {
-          nome: "Ettercap",
-          descricao: "Ferramenta para ataques Man-in-the-Middle em redes locais."
-        },
-        {
-          nome: "Responder",
-          descricao: "Ferramenta para ataques de spoofing e captura de hashes."
-        },
-        {
-          nome: "Fierce",
-          descricao: "Scanner de DNS para reconhecimento de rede."
-        },
-        {
-          nome: "Social Engineering Toolkit (SET)",
-          descricao: "Ferramenta para criação de ataques de engenharia social."
-        },
-        {
-          nome: "OpenVAS",
-          descricao: "Scanner de vulnerabilidades abrangente."
-        },
-        {
-          nome: "Crunch",
-          descricao: "Gerador de wordlists personalizadas para ataques de senha."
-        },
-        {
-          nome: "Hash-Identifier",
-          descricao: "Identifica tipos de hashes para facilitar ataques."
-        }
-      ];
-
-      let html = "<h2>🐉 20 Melhores Ferramentas do Kali Linux</h2><ul>";
-      ferramentas.forEach(ferramenta => {
-        html += `<li><strong>${ferramenta.nome}:</strong> ${ferramenta.descricao}</li>`;
-      });
-      html += "</ul>";
-      return html;
+      conteudo.innerHTML = html;
     }
   </script>
 </body>
