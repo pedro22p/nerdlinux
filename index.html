@@ -62,6 +62,35 @@
       border: 1px solid var(--border-color);
     }
 
+    button {
+      background: var(--primary-color);
+      cursor: pointer;
+      color: var(--text-color);
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--primary-hover);
+    }
+
+    button.secondary {
+      background: var(--nav-bg);
+      transition: background-color 0.3s ease;
+    }
+
+    button.secondary:hover {
+      background: #555;
+    }
+
+    #login {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+    }
+
     /* Input com ícone */
     .input-group {
       position: relative;
@@ -91,39 +120,6 @@
       pointer-events: none;
     }
 
-    #login {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
-    }
-
-    button {
-      background: var(--primary-color);
-      cursor: pointer;
-      color: var(--text-color);
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      border: none;
-      height: 40px;
-      font-size: 1rem;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background: var(--primary-hover);
-    }
-
-    button.secondary {
-      background: var(--nav-bg);
-      transition: background-color 0.3s ease;
-    }
-
-    button.secondary:hover {
-      background: #555;
-    }
-
     #menu {
       display: none;
       max-width: 800px;
@@ -148,6 +144,7 @@
 
     ul {
       list-style: none;
+      padding-left: 20px;
     }
 
     li {
@@ -164,6 +161,13 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    img.mem {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
     }
 
     #msg {
@@ -187,6 +191,22 @@
       to {
         transform: rotate(360deg);
       }
+    }
+
+    .weather-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .weather-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .weather-icon {
+      font-size: 1.5em;
     }
   </style>
 </head>
@@ -260,6 +280,7 @@
   </nav>
 
   <script>
+    // Elementos da página
     const emailEl = document.getElementById("email");
     const senhaEl = document.getElementById("senha");
     const loginDiv = document.getElementById("login");
@@ -267,6 +288,7 @@
     const conteudo = document.getElementById("conteudo");
     const msg = document.getElementById("msg");
 
+    // Função de login
     function fazerLogin() {
       const email = emailEl.value.trim();
       const senha = senhaEl.value.trim();
@@ -286,6 +308,7 @@
       }, 1000);
     }
 
+    // Função principal para mostrar conteúdo
     async function mostrar(aba) {
       conteudo.innerHTML =
         '<div style="text-align:center;"><span class="loading" style="width:40px;height:40px;"></span></div>';
@@ -294,45 +317,40 @@
         let html;
         switch (aba) {
           case "gamer":
-            html = await carregarNoticiasGamer();
+            html = carregarNoticiasGamer();
             break;
           case "prog":
-            html = `<h2>💻 Dicas de Programação</h2><ul>
-              <li><strong>Async/Await:</strong> Use para operações assíncronas</li>
-              <li><strong>Git:</strong> Commits atômicos com mensagens claras</li>
-              <li><strong>Debug:</strong> Use console.log apenas para debug rápido</li>
-              <li><strong>Clean Code:</strong> Código limpo e bem estruturado</li>
-            </ul>`;
+            html = await carregarDicasProgramacao();
             break;
           case "hack":
             html = `<h2>🔒 Dicas de Hacking Ético</h2><ul>
-              <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
-              <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
-              <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
-              <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
-            </ul>`;
+          <li><strong>Redes:</strong> Aprenda TCP/IP, DNS e HTTP</li>
+          <li><strong>OWASP:</strong> Conheça as 10 principais vulnerabilidades web</li>
+          <li><strong>Ferramentas:</strong> Nmap, Wireshark, Burp Suite</li>
+          <li><strong>Legalidade:</strong> Sempre obtenha permissão por escrito</li>
+        </ul>`;
             break;
           case "anime":
             html = `<h2>📺 Animes Recomendados</h2><ul>
-              <li><strong>Attack on Titan</strong> - Ação e drama em um mundo pós-apocalíptico</li>
-              <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
-              <li><strong>Death Note</strong> - Thriller psicológico</li>
-              <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
-            </ul>`;
+          <li><strong>Attack on Titan</strong> - Ação e drama em um mundo pós-apocalíptico</li>
+          <li><strong>Fullmetal Alchemist: Brotherhood</strong> - Aventura e alquimia</li>
+          <li><strong>Death Note</strong> - Thriller psicológico</li>
+          <li><strong>Demon Slayer</strong> - Animação espetacular e história emocionante</li>
+        </ul>`;
             break;
           case "memes":
             html = `<h2>😂 Memes de Programação</h2>
-              <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" loading="lazy">
-              <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" loading="lazy">
-              <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>`;
+          <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="Meme de programação" loading="lazy">
+          <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="Meme de debug" loading="lazy">
+          <p>Mais memes em <a href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank" rel="noopener noreferrer">r/ProgrammerHumor</a></p>`;
             break;
           case "clima":
             html = `<h2>🌦️ Clima Atual</h2>
-              <div class="weather-container">
-                <div id="wx-status">Preparando...</div>
-                <div id="wx-data"></div>
-                <button onclick="tentarNovamenteClima()" style="display:none;" id="btn-tentar-novamente">Tentar Novamente</button>
-              </div>`;
+          <div class="weather-container">
+            <div id="wx-status">Preparando...</div>
+            <div id="wx-data"></div>
+            <button onclick="tentarNovamenteClima()" style="display:none;" id="btn-tentar-novamente">Tentar Novamente</button>
+          </div>`;
             break;
           default:
             html = "<h2>Seção não encontrada</h2>";
@@ -345,129 +363,198 @@
         }
       } catch (e) {
         conteudo.innerHTML = `<div class="error">
-          <h2>Erro</h2>
-          <p>Não foi possível carregar o conteúdo: ${e.message}</p>
-        </div>`;
+      <h2>Erro</h2>
+      <p>Não foi possível carregar o conteúdo: ${e.message}</p>
+    </div>`;
       }
     }
 
-    async function carregarNoticiasGamer() {
+    // Notícias gamer estática (sem API) com 20 notícias
+    function carregarNoticiasGamer() {
       const noticias = [
         {
-          titulo: 'Novo "The Legend of Zelda: Tears of the Kingdom" impressiona fãs',
-          url: 'https://www.nintendolife.com/news/2023/05/the-legend-of-zelda-tears-of-the-kingdom-impresses-fans',
-          descricao: 'Lançamento do novo Zelda traz mundo aberto inovador e jogabilidade refinada.'
+          titulo: "Lançamento de Elden Ring: A aventura mais esperada do ano",
+          link: "https://www.example.com/elden-ring-lancamento",
+          descricao: "Elden Ring chega com um mundo aberto vasto e desafiador, conquistando fãs ao redor do mundo.",
+          plataforma: "PC, PS5, Xbox Series X"
         },
         {
-          titulo: 'FIFA 24 traz novas mecânicas e gráficos realistas',
-          url: 'https://www.ea.com/games/fifa/fifa-24',
-          descricao: 'EA Sports promete a melhor experiência para os fãs de futebol.'
+          titulo: "Novo DLC gratuito para Fortnite chega este mês",
+          link: "https://www.example.com/fortnite-dlc",
+          descricao: "Conteúdo novo e eventos exclusivos estão disponíveis para jogadores do Fortnite.",
+          plataforma: "PC, consoles, mobile"
         },
         {
-          titulo: 'Sony anuncia PlayStation VR2 com suporte para jogos AAA',
-          url: 'https://blog.playstation.com/2023/02/23/playstation-vr2-announcement/',
-          descricao: 'Novo headset VR promete imersão total para os jogadores.'
+          titulo: "Cyberpunk 2077 recebe atualização massiva corrigindo bugs",
+          link: "https://www.example.com/cyberpunk-atualizacao",
+          descricao: "A CD Projekt Red lança patch que melhora desempenho e resolve problemas relatados.",
+          plataforma: "PC, PS5, Xbox"
         },
         {
-          titulo: 'Steam Deck recebe atualização para melhorar desempenho',
-          url: 'https://www.steamdeck.com/news/update',
-          descricao: 'Melhorias no sistema otimizam jogos e bateria.'
+          titulo: "Steam anuncia descontos de verão com mais de 5 mil jogos em promoção",
+          link: "https://www.example.com/steam-descontos",
+          descricao: "Aproveite descontos incríveis em jogos indie e AAA até o final de julho.",
+          plataforma: "PC"
         },
         {
-          titulo: 'Torneio internacional de eSports com premiação milionária começa esta semana',
-          url: 'https://www.esports.com/events/international-tournament-2023',
-          descricao: 'Times do mundo inteiro competem pelo título e dinheiro.'
+          titulo: "Resident Evil Village ganha modo multiplayer cooperativo",
+          link: "https://www.example.com/resident-evil-multiplayer",
+          descricao: "Novo modo cooperativo permite que jogadores enfrentem horrores juntos.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Lançamento do game indie “Hollow Knight: Silksong” adiado',
-          url: 'https://www.kotaku.com/hollow-knight-silksong-delay',
-          descricao: 'Equipe promete entregar um jogo ainda melhor com mais tempo.'
+          titulo: "The Legend of Zelda: Breath of the Wild 2 confirmado para 2024",
+          link: "https://www.example.com/zelda-2-confirmado",
+          descricao: "Nintendo revela data aproximada e novidades do tão aguardado jogo.",
+          plataforma: "Nintendo Switch"
         },
         {
-          titulo: 'GTA 6 pode ser lançado em 2025, diz rumor',
-          url: 'https://www.ign.com/articles/gta-6-release-rumor-2025',
-          descricao: 'Fãs esperam ansiosos pelo retorno de Los Santos.'
+          titulo: "GTA 6 rumores indicam lançamento em 2025",
+          link: "https://www.example.com/gta6-rumores",
+          descricao: "Fontes internas sugerem que o próximo GTA já está em fase avançada de desenvolvimento.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Microsoft compra estúdio de jogos renomado',
-          url: 'https://www.microsoft.com/gaming/news',
-          descricao: 'Expansão da Xbox Game Studios reforça catálogo exclusivo.'
+          titulo: "Among Us lança modo solo para desafiar jogadores",
+          link: "https://www.example.com/among-us-modo-solo",
+          descricao: "Experimente jogar contra a IA neste novo modo de desafio.",
+          plataforma: "PC, mobile"
         },
         {
-          titulo: 'Novos consoles de próxima geração chegam no fim do ano',
-          url: 'https://www.gamespot.com/next-gen-consoles-2023',
-          descricao: 'Sony e Microsoft disputam mercado com novidades tecnológicas.'
+          titulo: "Call of Duty: Modern Warfare recebe mapa inspirado em Paris",
+          link: "https://www.example.com/cod-modern-warfare-paris",
+          descricao: "Novo mapa adiciona uma atmosfera urbana e intensa para partidas multiplayer.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Atualização gratuita adiciona novos mapas em “Call of Duty: Modern Warfare II”',
-          url: 'https://www.callofduty.com/news/updates',
-          descricao: 'Jogadores recebem conteúdo extra para multiplayer.'
+          titulo: "Steam Deck recebe atualização com melhorias na bateria",
+          link: "https://www.example.com/steam-deck-bateria",
+          descricao: "Valve lança update que aumenta a autonomia do console portátil.",
+          plataforma: "Steam Deck"
         },
         {
-          titulo: 'Mobile gaming cresce 20% em 2023 e domina mercado global',
-          url: 'https://www.statista.com/mobile-gaming-2023',
-          descricao: 'Jogos para celular ganham cada vez mais popularidade.'
+          titulo: "Hollow Knight: Silksong revela trailer oficial",
+          link: "https://www.example.com/hollow-knight-silksong-trailer",
+          descricao: "Sequência do aclamado Hollow Knight promete trazer novos desafios e cenários.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Cyberpunk 2077 recebe patch com melhorias significativas',
-          url: 'https://www.cyberpunk.net/patch-notes',
-          descricao: 'Correções de bugs e otimização de performance.'
+          titulo: "Minecraft lança atualização com novos mobs e biomas",
+          link: "https://www.example.com/minecraft-atualizacao",
+          descricao: "Exploração fica ainda mais divertida com as novidades do update.",
+          plataforma: "PC, consoles, mobile"
         },
         {
-          titulo: 'Assassins Creed: Mirage terá foco em furtividade e história',
-          url: 'https://www.ubisoft.com/assassins-creed-mirage',
-          descricao: 'Retorno às raízes da série com narrativa envolvente.'
+          titulo: "Valorant apresenta novo agente com habilidades únicas",
+          link: "https://www.example.com/valorant-novo-agente",
+          descricao: "Prepare-se para dominar o campo de batalha com o novo personagem.",
+          plataforma: "PC"
         },
         {
-          titulo: 'Indie game “Hades 2” promete expandir universo do original',
-          url: 'https://www.hadesgame.com/hades-2-announcement',
-          descricao: 'Continuação do sucesso de crítica e público.'
+          titulo: "Pokémon Scarlet e Violet ganham evento especial de verão",
+          link: "https://www.example.com/pokemon-evento-verao",
+          descricao: "Capturas exclusivas e recompensas disponíveis para os treinadores.",
+          plataforma: "Nintendo Switch"
         },
         {
-          titulo: 'Evento Summer Game Fest anuncia várias novidades',
-          url: 'https://www.summergamefest.com',
-          descricao: 'Lançamentos e trailers exclusivos serão revelados.'
+          titulo: "Rocket League adiciona veículos personalizados na nova temporada",
+          link: "https://www.example.com/rocket-league-veiculos",
+          descricao: "Personalize seu carro para dominar as partidas em campo.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Novos periféricos gamer com tecnologia avançada chegam ao mercado',
-          url: 'https://www.razer.com/news',
-          descricao: 'Teclados, mouses e headsets com alta performance.'
+          titulo: "Final Fantasy XVI ganha data de lançamento para 2024",
+          link: "https://www.example.com/ff16-lancamento",
+          descricao: "Prepare-se para a nova aventura da famosa franquia JRPG.",
+          plataforma: "PS5"
         },
         {
-          titulo: 'Blizzard revela expansão para World of Warcraft em 2024',
-          url: 'https://worldofwarcraft.com/news/expansion-2024',
-          descricao: 'Novas regiões e missões aguardam os jogadores.'
+          titulo: "Among Us anuncia parceria com franquia popular de animes",
+          link: "https://www.example.com/among-us-anime",
+          descricao: "Personagens temáticos e skins chegam ao jogo em breve.",
+          plataforma: "PC, mobile"
         },
         {
-          titulo: 'Jogos retrô voltam com força total em consoles modernos',
-          url: 'https://www.retrogaming.com/news',
-          descricao: 'Nostalgia e diversão garantidas para todas as idades.'
+          titulo: "Overwatch 2 traz modo competitivo repaginado",
+          link: "https://www.example.com/overwatch2-competitivo",
+          descricao: "Novas regras e ranking para tornar as partidas mais desafiadoras.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'League of Legends ganha novo campeão com habilidades únicas',
-          url: 'https://www.leagueoflegends.com/new-champion',
-          descricao: 'Jogadores exploram novas estratégias no campo de batalha.'
+          titulo: "The Witcher 4 confirmado com nova engine gráfica",
+          link: "https://www.example.com/witcher4-nova-engine",
+          descricao: "CD Projekt Red promete revolução visual no próximo título.",
+          plataforma: "PC, consoles"
         },
         {
-          titulo: 'Evento caridade gamer arrecada milhões para instituições',
-          url: 'https://www.twitch.tv/charityevent',
-          descricao: 'Comunidade unida para ajudar causas sociais.'
+          titulo: "League of Legends lança novo campeão com estilo único",
+          link: "https://www.example.com/lol-novo-campeao",
+          descricao: "Conheça as habilidades e estratégias do novo personagem.",
+          plataforma: "PC"
         }
       ];
 
-      let html = "<h2>🎮 Notícias Atualizadas do Mundo Gamer</h2><ul>";
+      let html = "<h2>🎮 Notícias Gamer</h2><ul>";
+
       noticias.forEach(noticia => {
         html += `
           <li>
-            <a href="${noticia.url}" target="_blank" rel="noopener noreferrer">${noticia.titulo}</a>
+            <strong><a href="${noticia.link}" target="_blank" rel="noopener noreferrer">${noticia.titulo}</a></strong>
             <p>${noticia.descricao}</p>
-          </li>`;
+            <small>Plataforma: ${noticia.plataforma}</small>
+          </li>
+        `;
+      });
+
+      html += "</ul>";
+      return html;
+    }
+
+    // Função com 30 dicas de programação
+    async function carregarDicasProgramacao() {
+      const dicas = [
+        "Use comentários claros para explicar o que o código faz.",
+        "Escolha nomes de variáveis e funções que façam sentido.",
+        "Evite duplicar código, crie funções reutilizáveis.",
+        "Prefira código simples e legível a soluções complexas.",
+        "Faça commits frequentes com mensagens descritivas no Git.",
+        "Use controle de versão para manter seu código seguro.",
+        "Teste seu código frequentemente para detectar erros cedo.",
+        "Escreva funções pequenas que façam apenas uma coisa.",
+        "Aprenda sobre estruturas de dados e algoritmos básicos.",
+        "Entenda os conceitos de programação orientada a objetos.",
+        "Mantenha seu código organizado em módulos ou arquivos separados.",
+        "Use ferramentas de linting para manter padrão e evitar erros.",
+        "Aprenda a usar depuradores (debuggers) para encontrar bugs.",
+        "Evite usar variáveis globais desnecessariamente.",
+        "Conheça os principais padrões de projeto (design patterns).",
+        "Documente seu código e APIs para facilitar manutenção.",
+        "Sempre valide entradas de usuário para evitar bugs e ataques.",
+        "Faça tratamento adequado de erros para melhorar a robustez.",
+        "Conheça o básico sobre segurança em desenvolvimento.",
+        "Automatize tarefas repetitivas com scripts ou ferramentas.",
+        "Acompanhe as novidades da linguagem e frameworks que usa.",
+        "Escreva testes automatizados para garantir qualidade.",
+        "Use ferramentas de integração contínua para facilitar deploy.",
+        "Aprenda sobre bancos de dados e faça consultas eficientes.",
+        "Prefira usar bibliotecas e frameworks confiáveis e atualizados.",
+        "Evite otimizar prematuramente, primeiro faça funcionar.",
+        "Leia código de outros programadores para aprender boas práticas.",
+        "Participe de comunidades para tirar dúvidas e trocar experiências.",
+        "Pratique bastante, pois programação é uma habilidade que melhora com o tempo.",
+        "Tenha paciência e persistência, erros fazem parte do processo."
+      ];
+
+      let html = "<h2>💻 30 Dicas de Programação</h2><ul>";
+      dicas.forEach(dica => {
+        html += `<li>${dica}</li>`;
       });
       html += "</ul>";
 
       return html;
     }
 
+    // Sistema de Clima aprimorado
     async function mostrarClima() {
       const statusEl = document.getElementById("wx-status");
       const dataEl = document.getElementById("wx-data");
@@ -508,27 +595,27 @@
 
         statusEl.innerHTML = "🌦️ Clima na sua localização:";
         dataEl.innerHTML = `
-          <div class="weather-row">
-            <span class="weather-icon">🌡️</span>
-            <span>Temperatura: <strong>${data.current_weather.temperature}°C</strong></span>
-          </div>
-          <div class="weather-row">
-            <span class="weather-icon">💨</span>
-            <span>Vento: <strong>${data.current_weather.windspeed} km/h</strong></span>
-          </div>
-          <div class="weather-row">
-            <span class="weather-icon">🔄</span>
-            <span>Atualizado: ${new Date().toLocaleTimeString()}</span>
-          </div>
-        `;
+      <div class="weather-row">
+        <span class="weather-icon">🌡️</span>
+        <span>Temperatura: <strong>${data.current_weather.temperature}°C</strong></span>
+      </div>
+      <div class="weather-row">
+        <span class="weather-icon">💨</span>
+        <span>Vento: <strong>${data.current_weather.windspeed} km/h</strong></span>
+      </div>
+      <div class="weather-row">
+        <span class="weather-icon">🔄</span>
+        <span>Atualizado: ${new Date().toLocaleTimeString()}</span>
+      </div>
+    `;
 
       } catch (error) {
         console.error("Erro ao obter clima:", error);
         statusEl.innerHTML = "❌ Não foi possível obter os dados do clima";
         dataEl.innerHTML = `
-          <p>Erro: ${error.message || "Erro desconhecido"}</p>
-          <p>Verifique sua conexão ou tente novamente mais tarde.</p>
-        `;
+      <p>Erro: ${error.message || "Erro desconhecido"}</p>
+      <p>Verifique sua conexão ou tente novamente mais tarde.</p>
+    `;
         btnTentar.style.display = "block";
       }
     }
@@ -537,7 +624,9 @@
       mostrarClima();
     }
 
+    // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
+      // Verifica se já está logado (para desenvolvimento)
       if (localStorage.getItem("dev-login")) {
         loginDiv.style.display = "none";
         menu.style.display = "block";
