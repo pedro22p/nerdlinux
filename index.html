@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portal Topzera</title>
-  <link
-    rel="icon"
-    href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
-    type="image/png"
-  />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary-color: #00cc66;
@@ -19,95 +16,232 @@
       --border-color: #444;
       --nav-bg: #333;
       --error-color: #ff4444;
+      --success-color: #4CAF50;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       padding: 20px;
+      line-height: 1.6;
     }
-    h1 { text-align: center; margin-bottom: 20px; }
-    input, button {
-      padding: 10px;
-      margin: 5px 0;
+    h1 { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(0, 204, 102, 0.3);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    input, button, select {
+      padding: 12px;
+      margin: 8px 0;
       border-radius: 5px;
       border: none;
       width: 100%;
+      font-size: 16px;
     }
     input {
       background: #444;
       color: white;
       border: 1px solid var(--border-color);
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px rgba(0, 204, 102, 0.5);
     }
     button {
       background: var(--primary-color);
+      color: white;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
-    button:hover { background: var(--primary-hover); }
+    button:hover { 
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
     button.secondary {
       background: var(--nav-bg);
     }
-    button.secondary:hover { background: #555; }
+    button.secondary:hover { 
+      background: #555;
+      transform: translateY(-2px);
+    }
     #login {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 450px;
+      margin: 50px auto;
+      padding: 30px;
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s ease;
+    }
+    #login:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
     #menu {
       display: none;
-      max-width: 800px;
-      margin: 20px auto;
+      max-width: 1200px;
+      margin: 30px auto;
     }
     .nav-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
     }
     #conteudo {
-      padding: 20px;
+      padding: 25px;
       background: var(--card-bg);
-      border-radius: 10px;
-      max-width: 800px;
-      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     ul { list-style: none; padding: 0; }
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       background: rgba(255, 255, 255, 0.05);
-      padding: 10px;
-      border-radius: 5px;
+      padding: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s, background 0.3s;
     }
-    a { color: var(--primary-color); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    li:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+    a { 
+      color: var(--primary-color); 
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover { 
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .weather-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .weather-card {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+    .weather-icon {
+      font-size: 50px;
+      margin: 10px 0;
+    }
+    .temp {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .error {
+      color: var(--error-color);
+      margin-top: 5px;
+    }
+    .success {
+      color: var(--success-color);
+      margin-top: 5px;
+    }
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .search-container {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .search-container input {
+      flex: 1;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    .category-icon {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
-  <h1>Portal Topzera</h1>
+  <div class="container">
+    <h1><i class="fas fa-globe"></i> Portal Topzera</h1>
 
-  <div id="login">
-    <input type="text" id="email" placeholder="Email" required />
-    <input type="password" id="senha" placeholder="Senha 🔒" required />
-    <button onclick="fazerLogin()">Entrar</button>
-    <div id="msg"></div>
-  </div>
-
-  <nav id="menu">
-    <div class="nav-buttons">
-      <button class="secondary" onclick="mostrar('gamer')">🎮 Notícias Gamer</button>
-      <button class="secondary" onclick="mostrar('prog')">💻 Programação</button>
-      <button class="secondary" onclick="mostrar('hack')">🔒 Hacking</button>
-      <button class="secondary" onclick="mostrar('anime')">📺 Animes</button>
-      <button class="secondary" onclick="mostrar('memes')">😂 Memes</button>
-      <button class="secondary" onclick="mostrar('clima')">🌦️ Clima</button>
+    <div id="login">
+      <h2 style="text-align: center; margin-bottom: 20px;">Acesse seu portal</h2>
+      <input type="text" id="email" placeholder="Email" required />
+      <input type="password" id="senha" placeholder="Senha 🔒" required />
+      <div class="search-container">
+        <button onclick="fazerLogin()"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+        <button class="secondary" onclick="demoLogin()"><i class="fas fa-magic"></i> Demo</button>
+      </div>
+      <div id="msg"></div>
     </div>
-    <div id="conteudo"></div>
-  </nav>
+
+    <nav id="menu">
+      <div class="nav-buttons">
+        <button class="secondary" onclick="mostrar('gamer')"><i class="fas fa-gamepad category-icon"></i> Notícias Gamer</button>
+        <button class="secondary" onclick="mostrar('prog')"><i class="fas fa-code category-icon"></i> Programação</button>
+        <button class="secondary" onclick="mostrar('hack')"><i class="fas fa-lock category-icon"></i> Hacking</button>
+        <button class="secondary" onclick="mostrar('anime')"><i class="fas fa-tv category-icon"></i> Animes</button>
+        <button class="secondary" onclick="mostrar('clima')"><i class="fas fa-cloud-sun category-icon"></i> Clima</button>
+      </div>
+      
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="filterContent()">
+        <button class="secondary" onclick="filterContent()"><i class="fas fa-search"></i></button>
+      </div>
+      
+      <div id="conteudo"></div>
+    </nav>
+  </div>
 
   <script>
     const emailEl = document.getElementById("email");
@@ -116,70 +250,384 @@
     const menu = document.getElementById("menu");
     const conteudo = document.getElementById("conteudo");
     const msg = document.getElementById("msg");
+    const searchInput = document.getElementById("searchInput");
+
+    // Dados do conteúdo
+    const contentData = {
+      gamer: {
+        title: "🎮 Últimas Notícias Gamer",
+        items: [
+          "Nova geração do PlayStation anunciada para 2025 com tecnologia de ray tracing em tempo real!",
+          "GTA VI terá mapa duas vezes maior que o anterior e sistema de inteligência artificial avançado para NPCs.",
+          "Steam inicia promoção de verão com descontos de até 90% em mais de 30.000 jogos.",
+          "Fortnite lança nova colaboração com Marvel introduzindo skins dos Vingadores e um modo de jogo especial.",
+          "Valve confirma CS2 com engine Source 2, gráficos melhorados e sistema de matchmaking redesenhado.",
+          "Nintendo revela gameplay de The Legend of Zelda: Echoes of the Kingdom, sequência direta de Breath of the Wild.",
+          "XBOX Game Pass adiciona 20 jogos AAA este mês incluindo Starfield e Forza Motorsport.",
+          "Among Us ganha modo história single-player com narrativa profunda e novos mapas.",
+          "Ubisoft anuncia Assassin's Creed: Origins 2 com foco no Egito Antigo e novo sistema de combate.",
+          "Minecraft atinge 300 milhões de cópias vendidas, se tornando o jogo mais vendido da história.",
+          "EA Sports FC 24 revela novo sistema de inteligência artificial para movimentação realista dos jogadores.",
+          "Call of Duty: Modern Warfare III terá todos os mapas clássicos do MW2 remasterizados.",
+          "Novo console portátil da ASUS, ROG Ally, supera Steam Deck em desempenho em testes iniciais.",
+          "Blizzard anuncia expansão para Diablo IV com novas classes e região inédita.",
+          "Genshin Impact ultrapassa US$ 4 bilhões em receita desde seu lançamento.",
+          "Novo jogo do Batman da Rocksteady promete ser o mais sombrio da série Arkham.",
+          "Microsoft adquire mais um estúdio de jogos para fortalecer o catálogo do Game Pass.",
+          "Sony anuncia novo fone de realidade virtual para PS5 com tecnologia de feedback tátil.",
+          "Nova geração de GPUs da NVIDIA promete rodar jogos em 8K a 120FPS.",
+          "Riot Games anuncia projeto ambicioso de MMORPG baseado no universo de League of Legends."
+        ]
+      },
+      prog: {
+        title: "💻 Dicas de Programação",
+        items: [
+          "Use Async/Await para código assíncrono limpo e legível em vez de callbacks aninhados.",
+          "Faça commits pequenos e frequentes com mensagens descritivas para um histórico de versionamento útil.",
+          "Evite código duplicado (princípio DRY - Don't Repeat Yourself) criando funções reutilizáveis.",
+          "Prefira nomes de variáveis e funções descritivos (ex: calculateTotalPrice em vez de calc).",
+          "Comente apenas o porquê, não o como - código bom deve ser autoexplicativo.",
+          "Aprenda a usar debuggers - eles economizam muito tempo comparado a console.log.",
+          "Domine o controle de versão (Git) - é essencial para qualquer desenvolvedor profissional.",
+          "Escreva testes unitários - eles salvam horas de depuração no futuro.",
+          "Aprenda padrões de design (Design Patterns) para resolver problemas comuns de forma elegante.",
+          "Mantenha seu código modular - componentes com responsabilidades únicas são mais fáceis de manter.",
+          "Documente suas APIs - ferramentas como Swagger podem ajudar bastante.",
+          "Aprenda conceitos de clean code - vai melhorar muito a qualidade do seu trabalho.",
+          "Use linters e formatters (ESLint, Prettier) para manter consistência no código.",
+          "Entenda os princípios SOLID - fundamentais para arquitetura de software robusta.",
+          "Aprenda algoritmos e estruturas de dados - essencial para resolver problemas complexos.",
+          "Faça code reviews - tanto receber quanto dar feedback melhora sua habilidade.",
+          "Automatize tarefas repetitivas - scripts podem economizar horas de trabalho.",
+          "Mantenha-se atualizado - a tecnologia evolui rápido, acompanhe as tendências.",
+          "Contribua para projetos open-source - é uma ótima maneira de aprender e construir portfólio.",
+          "Aprenda a dizer 'não' a más práticas - qualidade técnica é tão importante quanto entregar rápido."
+        ]
+      },
+      hack: {
+        title: "🔒 Ferramentas do Kali Linux para Hacking Ético",
+        items: [
+          "Nmap - Ferramenta essencial para mapeamento de rede e descoberta de hosts.",
+          "Metasploit Framework - O framework de exploração mais completo para testes de penetração.",
+          "Wireshark - Analisador de protocolos de rede para captura e análise de pacotes.",
+          "Aircrack-ng - Suite para testes de segurança em redes wireless e quebra de senhas WEP/WPA.",
+          "John the Ripper - Ferramenta poderosa para quebra de senhas por força bruta.",
+          "Burp Suite - Plataforma para testes de segurança em aplicações web.",
+          "Hydra - Ferramenta para ataques de força bruta contra vários protocolos.",
+          "Sqlmap - Automatiza exploração de injeção SQL e dominação de bancos de dados.",
+          "Maltego - Ferramenta de coleta de informações e análise de redes.",
+          "Social Engineering Toolkit (SET) - Para simular ataques de engenharia social.",
+          "BeEF - Framework para exploração de navegadores web.",
+          "OWASP ZAP - Scanner de vulnerabilidades em aplicações web.",
+          "Nikto - Scanner de servidores web para identificar arquivos e programas perigosos.",
+          "Hashcat - Ferramenta avançada para recuperação de senhas (CPU/GPU).",
+          "Dnsenum - Script para enumeração de DNS e coleta de informações.",
+          "Ettercap - Suite completa para ataques MITM (Man-in-the-Middle).",
+          "Sparta - Ferramenta GUI para escaneamento de rede e enumeração.",
+          "CrackMapExec - Poderosa ferramenta para testes em ambientes Active Directory.",
+          "Responder - Ferramenta para ataques LLMNR/NBT-NS poisoning.",
+          "Impacket - Coleção de classes Python para trabalhar com protocolos de rede."
+        ]
+      },
+      anime: {
+        title: "📺 Top 30 Animes Recomendados",
+        items: [
+          "Attack on Titan (Shingeki no Kyojin) - Ação, Drama, Fantasia Sombria",
+          "One Piece - Aventura, Fantasia, Comédia, Shounen",
+          "Fullmetal Alchemist: Brotherhood - Aventura, Drama, Fantasia",
+          "Death Note - Suspense Psicológico, Sobrenatural",
+          "Demon Slayer (Kimetsu no Yaiba) - Ação, Fantasia Sombria",
+          "Hunter x Hunter (2011) - Aventura, Ação, Fantasia",
+          "Steins;Gate - Ficção Científica, Suspense Psicológico",
+          "Cowboy Bebop - Ficção Científica, Ação, Noir",
+          "Neon Genesis Evangelion - Mecha, Psicológico, Drama",
+          "Code Geass - Mecha, Estratégia, Drama",
+          "My Hero Academia (Boku no Hero Academia) - Super-heróis, Ação",
+          "Jujutsu Kaisen - Ação, Fantasia Sombria, Sobrenatural",
+          "Vinland Saga - Ação, Histórico, Drama",
+          "Berserk (1997) - Fantasia Sombria, Ação, Drama",
+          "Parasyte - Horror, Ação, Psicológico",
+          "Monster - Suspense Psicológico, Drama, Mistério",
+          "Ghost in the Shell: Stand Alone Complex - Cyberpunk, Policial, Ficção Científica",
+          "Made in Abyss - Aventura, Fantasia Sombria, Mistério",
+          "Mob Psycho 100 - Ação, Comédia, Sobrenatural",
+          "Clannad & Clannad: After Story - Drama, Romance, Slice of Life",
+          "Violet Evergarden - Drama, Slice of Life, Fantasia",
+          "Haikyuu!! - Esportes, Comédia Dramática",
+          "The Promised Neverland (1ª temporada) - Suspense Psicológico, Mistério",
+          "Re:Zero - Starting Life in Another World - Fantasia Sombria, Drama Psicológico",
+          "Your Lie in April (Shigatsu wa Kimi no Uso) - Drama, Romance, Música",
+          "A Silent Voice (Koe no Katachi) - Drama, Romance, Slice of Life",
+          "Spirited Away (A Viagem de Chihiro) - Fantasia, Aventura",
+          "Perfect Blue - Psicológico, Suspense, Horror",
+          "Serial Experiments Lain - Cyberpunk, Psicológico, Experimental",
+          "Samurai Champloo - Ação, Aventura, Comédia"
+        ]
+      },
+      clima: {
+        title: "🌦️ Previsão do Tempo com Geolocalização",
+        items: []
+      }
+    };
 
     function fazerLogin() {
       const email = emailEl.value.trim();
       const senha = senhaEl.value.trim();
+      
       if (!email || !senha) {
-        msg.textContent = "Por favor, preencha email e senha!";
+        showMessage("Por favor, preencha email e senha!", "error");
         return;
       }
-      msg.innerHTML = 'Verificando...';
+      
+      if (!validateEmail(email)) {
+        showMessage("Por favor, insira um email válido!", "error");
+        return;
+      }
+      
+      showMessage('<span class="loading"></span> Verificando credenciais...', "loading");
+      
+      // Simulação de login (em um sistema real, seria uma chamada AJAX)
       setTimeout(() => {
         loginDiv.style.display = "none";
         menu.style.display = "block";
         msg.textContent = "";
         mostrar("gamer");
-      }, 1000);
+        getLocationAndWeather();
+      }, 1500);
+    }
+    
+    function demoLogin() {
+      emailEl.value = "usuario@demo.com";
+      senhaEl.value = "demopassword";
+      fazerLogin();
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+    
+    function showMessage(message, type) {
+      msg.innerHTML = message;
+      msg.className = type;
     }
 
     function mostrar(aba) {
-      let html = '';
-      switch (aba) {
-        case 'gamer':
-          html = `<h2>🎮 Últimas Notícias Gamer</h2><ul>
-            <li>Nova geração do PlayStation anunciada para 2025!</li>
-            <li>GTA VI terá mapa duas vezes maior que o anterior.</li>
-            <li>Steam inicia promoção de verão com descontos de até 90%.</li>
-            <li>Fortnite lança nova colaboração com Marvel.</li>
-            <li>Valve confirma CS2 com engine Source 2.</li>
-            <li>Nintendo revela gameplay de The Legend of Zelda: Echoes.</li>
-            <li>XBOX Game Pass adiciona 20 jogos AAA este mês.</li>
-            <li>Among Us ganha modo história single-player.</li>
-            <li>Ubisoft anuncia Assassin's Creed: Origins 2.</li>
-            <li>Minecraft atinge 300 milhões de cópias vendidas.</li>
-          </ul>`;
-          break;
-        case 'prog':
-          html = `<h2>💻 Dicas de Programação</h2><ul>
-            <li>Use Async/Await para código assíncrono limpo.</li>
-            <li>Faça commits pequenos e frequentes.</li>
-            <li>Evite código duplicado (DRY).</li>
-            <li>Prefira nomes de variáveis descritivos.</li>
-            <li>Comente código apenas quando necessário.</li>
-          </ul>`;
-          break;
-        case 'hack':
-          html = `<h2>🔒 Ferramentas do Kali Linux</h2><ul>
-            <li>Nmap, Metasploit, Wireshark, Aircrack-ng, John the Ripper...</li>
-          </ul>`;
-          break;
-        case 'anime':
-          html = `<h2>📺 Animes Recomendados</h2><ul>
-            <li>Attack on Titan</li>
-            <li>One Piece</li>
-          </ul>`;
-          break;
-        case 'memes':
-          html = `<h2>😂 Memes de Programação</h2>
-            <p>Por que o programador foi ao médico? Porque ele estava com um loop infinito de sono!</p>`;
-          break;
-        case 'clima':
-          html = `<h2>🌦️ Clima</h2><p>Em breve dados do tempo atualizados aqui.</p>`;
-          break;
-        default:
-          html = "<h2>Seção não encontrada</h2>";
+      const data = contentData[aba];
+      let html = `<h2>${data.title}</h2>`;
+      
+      if (aba === 'clima') {
+        html += `
+          <div class="card">
+            <p>Ative a localização para ver a previsão do tempo da sua região.</p>
+            <button onclick="getLocationAndWeather()"><i class="fas fa-sync-alt"></i> Atualizar</button>
+            <div id="weatherInfo" class="weather-container"></div>
+          </div>
+        `;
+      } else {
+        html += '<ul>';
+        data.items.forEach(item => {
+          html += `<li>${item}</li>`;
+        });
+        html += '</ul>';
       }
+      
+      conteudo.innerHTML = html;
+      
+      // Se for a aba de clima, tentar obter localização
+      if (aba === 'clima') {
+        getLocationAndWeather();
+      }
+    }
+    
+    function getLocationAndWeather() {
+      const weatherInfo = document.getElementById("weatherInfo");
+      
+      if (weatherInfo) {
+        weatherInfo.innerHTML = '<p><span class="loading"></span> Obtendo localização...</p>';
+      }
+      
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            fetchWeather(lat, lon);
+          },
+          error => {
+            if (weatherInfo) {
+              weatherInfo.innerHTML = `
+                <div class="weather-card">
+                  <p>Não foi possível obter sua localização automaticamente.</p>
+                  <p>Erro: ${error.message}</p>
+                  <p>Você pode pesquisar manualmente:</p>
+                  <div class="search-container">
+                    <input type="text" id="cityInput" placeholder="Nome da cidade">
+                    <button onclick="searchWeather()"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              `;
+            }
+          }
+        );
+      } else {
+        if (weatherInfo) {
+          weatherInfo.innerHTML = '<p>Geolocalização não é suportada pelo seu navegador.</p>';
+        }
+      }
+    }
+    
+    function searchWeather() {
+      const cityInput = document.getElementById("cityInput");
+      if (!cityInput || !cityInput.value.trim()) return;
+      
+      const weatherInfo = document.getElementById("weatherInfo");
+      weatherInfo.innerHTML = '<p><span class="loading"></span> Buscando dados meteorológicos...</p>';
+      
+      // Aqui você faria uma chamada à API de clima com o nome da cidade
+      // Como exemplo, vamos usar a API OpenWeatherMap (você precisará de uma chave API)
+      const city = cityInput.value.trim();
+      const apiKey = 'SUA_CHAVE_API_AQUI'; // Substitua por uma chave API real
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`;
+      
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error('Cidade não encontrada');
+          return response.json();
+        })
+        .then(data => {
+          displayWeather(data);
+        })
+        .catch(error => {
+          weatherInfo.innerHTML = `
+            <div class="weather-card">
+              <p>Erro ao buscar dados: ${error.message}</p>
+              <button onclick="getLocationAndWeather()">Tentar novamente</button>
+            </div>
+          `;
+        });
+    }
+    
+    function fetchWeather(lat, lon) {
+      const weatherInfo = document.getElementById("weatherInfo");
+      weatherInfo.innerHTML = '<p><span class="loading"></span> Buscando dados meteorológicos...</p>';
+      
+      // Simulação de chamada à API (em um sistema real, use uma API como OpenWeatherMap)
+      setTimeout(() => {
+        // Dados simulados - em produção, substitua por uma chamada real à API
+        const weatherData = {
+          name: "Sua Cidade",
+          main: {
+            temp: 25.5,
+            feels_like: 27,
+            humidity: 65
+          },
+          weather: [{
+            main: "Clear",
+            description: "céu limpo",
+            icon: "01d"
+          }],
+          wind: {
+            speed: 3.1
+          },
+          sys: {
+            country: "BR"
+          }
+        };
+        
+        displayWeather(weatherData);
+      }, 1000);
+    }
+    
+    function displayWeather(data) {
+      const weatherInfo = document.getElementById("weatherInfo");
+      if (!weatherInfo) return;
+      
+      const weatherIcon = getWeatherIcon(data.weather[0].icon);
+      const temp = Math.round(data.main.temp);
+      const feelsLike = Math.round(data.main.feels_like);
+      
+      weatherInfo.innerHTML = `
+        <div class="weather-card">
+          <h3>${data.name}, ${data.sys.country}</h3>
+          <div class="weather-icon">${weatherIcon}</div>
+          <div class="temp">${temp}°C</div>
+          <p>Sensação: ${feelsLike}°C</p>
+          <p>${capitalizeFirstLetter(data.weather[0].description)}</p>
+        </div>
+        <div class="weather-card">
+          <h4>Detalhes</h4>
+          <p><i class="fas fa-tint"></i> Umidade: ${data.main.humidity}%</p>
+          <p><i class="fas fa-wind"></i> Vento: ${data.wind.speed} km/h</p>
+          <p><i class="fas fa-temperature-low"></i> Mínima: ${Math.round(data.main.temp_min)}°C</p>
+          <p><i class="fas fa-temperature-high"></i> Máxima: ${Math.round(data.main.temp_max)}°C</p>
+        </div>
+        <div class="weather-card">
+          <h4>Previsão para as próximas horas</h4>
+          <p>🔵 18h: ${temp + 1}°C, parcialmente nublado</p>
+          <p>🌙 21h: ${temp - 2}°C, céu limpo</p>
+          <p>🌅 06h: ${temp - 4}°C, névoa matinal</p>
+          <button onclick="getLocationAndWeather()"><i class="fas fa-sync-alt"></i> Atualizar</button>
+        </div>
+      `;
+    }
+    
+    function getWeatherIcon(iconCode) {
+      const iconMap = {
+        '01d': '☀️', '01n': '🌙',  // clear sky
+        '02d': '⛅', '02n': '⛅',  // few clouds
+        '03d': '☁️', '03n': '☁️',  // scattered clouds
+        '04d': '☁️', '04n': '☁️',  // broken clouds
+        '09d': '🌧️', '09n': '🌧️', // shower rain
+        '10d': '🌦️', '10n': '🌦️', // rain
+        '11d': '⛈️', '11n': '⛈️',  // thunderstorm
+        '13d': '❄️', '13n': '❄️',  // snow
+        '50d': '🌫️', '50n': '🌫️'  // mist
+      };
+      return iconMap[iconCode] || '🌡️';
+    }
+    
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    function filterContent() {
+      const searchTerm = searchInput.value.toLowerCase();
+      if (!searchTerm) return;
+      
+      const currentContent = document.querySelector("#conteudo h2").textContent;
+      let currentCategory = 'gamer';
+      
+      // Determinar a categoria atual
+      for (const [key, value] of Object.entries(contentData)) {
+        if (value.title === currentContent) {
+          currentCategory = key;
+          break;
+        }
+      }
+      
+      const filteredItems = contentData[currentCategory].items.filter(item => 
+        item.toLowerCase().includes(searchTerm)
+      );
+      
+      let html = `<h2>${contentData[currentCategory].title}</h2>`;
+      html += `<p>Resultados para: <strong>${searchTerm}</strong> (${filteredItems.length} itens encontrados)</p>`;
+      
+      if (filteredItems.length > 0) {
+        html += '<ul>';
+        filteredItems.forEach(item => {
+          // Destacar o termo pesquisado
+          const highlightedItem = item.replace(
+            new RegExp(searchTerm, 'gi'), 
+            match => `<span style="background: yellow; color: black;">${match}</span>`
+          );
+          html += `<li>${highlightedItem}</li>`;
+        });
+        html += '</ul>';
+      } else {
+        html += '<p>Nenhum resultado encontrado.</p>';
+      }
+      
       conteudo.innerHTML = html;
     }
   </script>
