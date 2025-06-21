@@ -1,164 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Site Topzera DEVS!</title>
-    
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501" crossorigin="anonymous"></script>
-
-    <!-- AMP Script -->
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://e7.pngegg.com/pngimages/1019/619/png-clipart-blue-fire-fireball-cinnamon-whisky-computer-icons-flame-fireball-sphere-combustion.png" type="image/png">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #1e1e1e;
-            padding: 20px;
-        }
-        header img {
-            width: 100px;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline-block;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #0f0;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        nav ul li a:hover {
-            color: #ff0;
-        }
-        .page {
-            display: none;
-            padding: 20px;
-        }
-        .active {
-            display: block;
-        }
-        .botao-venda {
-            background-color: #00ff00;
-            color: #000;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .botao-venda:hover {
-            background-color: #ff0;
-            color: #000;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Portal Topzera</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" type="image/png">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial; background: #1e1e1e; color: #fff; text-align: center; padding: 20px; }
+    input, button { padding:10px; margin:5px; border-radius:5px; border:none; }
+    button { background:#00cc66; cursor:pointer; color:#fff; }
+    button:hover { background:#009944; }
+    nav { margin:20px 0; display:none; }
+    nav button { background:#444; }
+    nav button:hover { background:#666; }
+    #conteudo { margin-top:20px; padding:20px; border:1px solid #555; border-radius:10px; background:#2e2e2e; text-align:left; max-width:800px; margin-left:auto; margin-right:auto; }
+    #login, #menu, #conteudo { width:100%; max-width:400px; margin:auto; }
+    #login input { width: 90%; }
+    ul { list-style: none; padding-left:0; }
+    li { margin-bottom:8px; }
+    img.mem { max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0; }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="https://e7.pngegg.com/pngimages/1019/619/png-clipart-blue-fire-fireball-cinnamon-whisky-computer-icons-flame-fireball-sphere-combustion.png" alt="Logo do Site">
-        <h1>Bem-vindo ao Site Topzera DEVS!</h1>
-        <nav>
-            <ul>
-                <li><a onclick="showPage('mames')">Mames</a></li>
-                <li><a onclick="showPage('dicas')">Dicas de Programação</a></li>
-                <li><a onclick="showPage('jogos')">Jogos</a></li>
-                <li><a onclick="showPage('treinar')">Treinar</a></li>
-                <li><a onclick="showPage('animes')">Animes</a></li>
-                <li><a onclick="showPage('noticias')">Notícias Gamer</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Anúncio normal visível -->
-    <div style="margin: 20px 0;">
-        <ins class="adsbygoogle"
-            style="display:inline-block;width:728px;height:90px"
-            data-ad-client="ca-pub-4884573718974501"
-            data-ad-slot="9530211900"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+<h1>Portal Topzera</h1>
 
-    <!-- Anúncio AMP-AD -->
-    <div style="margin: 20px 0;">
-        <amp-ad
-            layout="fixed"
-            width="728"
-            height="90"
-            type="adsense"
-            data-ad-client="ca-pub-4884573718974501"
-            data-ad-slot="9530211900">
-        </amp-ad>
-    </div>
+<div id="login">
+  <input type="text" id="email" placeholder="Email"><br>
+  <input type="password" id="senha" placeholder="Senha"><br>
+  <button onclick="fazerLogin()">Entrar</button>
+  <h3 id="msg"></h3>
+</div>
 
-    <!-- Páginas do site -->
-    <div id="mames" class="page active">
-        <h2>Mames</h2>
-        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM1Qn1UjRmxKHbq6foANl-KnKcOaRUt2GL8A&s" alt="Imagem Mames" width="300"></p>
-    </div>
+<nav id="menu">
+  <button onclick="mostrar('gamer')">📰 Notícias Gamer</button>
+  <button onclick="mostrar('prog')">💻 Programação</button>
+  <button onclick="mostrar('hack')">🛡️ Hacking</button>
+  <button onclick="mostrar('anime')">📺 Animes</button>
+  <button onclick="mostrar('memes')">😂 Memes</button>
+  <button onclick="mostrar('clima')">🌦️ Clima</button>
+</nav>
 
-    <div id="dicas" class="page">
-        <h2>Dicas de Programação</h2>
-        <p>Aprenda as melhores dicas para programar como um pro!</p>
-    </div>
+<div id="conteudo"></div>
 
-    <div id="jogos" class="page">
-        <h2>Jogos</h2>
-        <p>Lista dos jogos mais jogados e tops da semana!</p>
-    </div>
+<script>
+function fazerLogin() {
+  const email = emailEl.value.trim(), senha = senhaEl.value.trim();
+  if (email && senha) {
+    loginDiv.style.display = 'none';
+    menu.style.display = 'block';
+    mostrar('gamer');
+  } else {
+    msg.innerText = 'Preencha email e senha!';
+  }
+}
 
-    <div id="treinar" class="page">
-        <h2>Treinar e Mudar de Vida!</h2>
-        <p>Quer transformar seu corpo e mente de verdade? 🚀 Comece o melhor programa de treino agora mesmo! 💪🔥</p>
-        <p>Resultados garantidos, aprovado por especialistas. Treinos para todos os níveis e objetivos!</p>
-        <a class="botao-venda" href="https://app.monetizze.com.br/r/ACV25395145" target="_blank">👉 QUERO COMEÇAR AGORA!</a>
-    </div>
+async function mostrar(aba) {
+  let html = '';
+  if (aba === 'gamer') {
+    html = '<h2>📰 Notícias Gamer</h2><ul>';
+    try {
+      const r = await fetch('https://api.allorigins.win/raw?url=https://www.thegamer.com/feed/');
+      const xml = await r.text();
+      const doc = new DOMParser().parseFromString(xml, 'application/xml');
+      [...doc.querySelectorAll('item')].slice(0,20).forEach(it => {
+        const t = it.querySelector('title').textContent;
+        const l = it.querySelector('link').textContent;
+        html += `<li><a href="${l}" target="_blank">${t}</a></li>`;
+      });
+      html += '</ul>';
+    } catch(e) {
+      html = '<p>Erro ao carregar notícias.</p>';
+    }
+  }
+  else if (aba === 'prog') {
+    html = `<h2>💻 Dicas de Programação</h2><ul>
+      <li>Use async/await para chamadas API.</li>
+      <li>Faça commits com mensagens claras.</li>
+      <li>Use console.log ou debugs.</li>
+      <li>Mantenha estilo consistente no código.</li>
+    </ul>`;
+  }
+  else if (aba === 'hack') {
+    html = `<h2>🛡️ Dicas de Hacking (Ethical)</h2><ul>
+      <li>Estude TCP/IP, DNS e redes.</li>
+      <li>Conheça OWASP Top 10.</li>
+      <li>Use Nmap e Wireshark.</li>
+    </ul>`;
+  }
+  else if (aba === 'anime') {
+    html = `<h2>📺 Animes Recomendados</h2><ul>
+      <li>Attack on Titan</li>
+      <li>Fullmetal Alchemist: Brotherhood</li>
+      <li>Jujutsu Kaisen</li>
+      <li>Demon Slayer</li>
+    </ul>`;
+  }
+  else if (aba === 'memes') {
+    html = `<h2>😂 Memes de Programação</h2>
+    <img class="mem" src="https://i.redd.it/cwffohb5lkr91.jpg" alt="meme1">
+    <img class="mem" src="https://i.redd.it/1t5yqy7x2xq91.jpg" alt="meme2">`;
+  }
+  else if (aba === 'clima') {
+    html = `<h2>🌦️ Clima Atual</h2><p id="wx">Pegando sua localização...</p>`;
+  }
+  conteudo.innerHTML = html;
+  if (aba === 'clima') mostrarClima();
+}
 
-    <div id="animes" class="page">
-        <h2>Animes</h2>
-        <p>Os animes mais assistidos pela galera do momento!</p>
-    </div>
+async function mostrarClima() {
+  const wx = document.getElementById('wx');
+  if (!navigator.geolocation) {
+    wx.innerText = 'Geolocalização não suportada.';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const { latitude, longitude } = pos.coords;
+    try {
+      const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+      const d = await resp.json();
+      wx.innerText = `🌡️ ${d.current_weather.temperature}°C  💨 ${d.current_weather.windspeed} km/h`;
+    } catch {
+      wx.innerText = 'Erro ao obter clima.';
+    }
+  }, () => {
+    wx.innerText = 'Permita localização para ver o clima.';
+  });
+}
 
-    <div id="noticias" class="page">
-        <h2>Notícias do Mundo Gamer</h2>
-        <p>As notícias mais quentes do universo gamer estão aqui!</p>
-    </div>
+/* shortcuts */
+const emailEl = document.getElementById('email');
+const senhaEl = document.getElementById('senha');
+const loginDiv = document.getElementById('login');
+const menu = document.getElementById('menu');
+const conteudo = document.getElementById('conteudo');
+const msg = document.getElementById('msg');
+</script>
 
-    <!-- Script JS para trocar abas -->
-    <script>
-        function showPage(pageId) {
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
 </body>
 </html>
