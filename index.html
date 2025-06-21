@@ -91,6 +91,35 @@
       border-radius: 10px;
     }
 
+    /* Novo CSS para input com ícone */
+    .input-group {
+      position: relative;
+      margin: 10px 0;
+      width: 100%;
+    }
+
+    .input-group input {
+      padding-left: 40px;
+      width: 100%;
+      background: #444;
+      color: white;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .icon-user {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      stroke: var(--primary-color);
+      pointer-events: none;
+    }
+
     #menu {
       display: none;
       max-width: 800px;
@@ -195,8 +224,40 @@
   </script>
 
   <div id="login">
-    <input type="text" id="email" placeholder="Email" required />
-    <input type="password" id="senha" placeholder="Senha" required />
+    <div class="input-group">
+      <svg
+        class="icon-user"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="7" r="4"></circle>
+        <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
+      </svg>
+      <input type="text" id="email" placeholder="Email" required />
+    </div>
+
+    <div class="input-group">
+      <svg
+        class="icon-user"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="7" r="4"></circle>
+        <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
+      </svg>
+      <input type="password" id="senha" placeholder="Senha" required />
+    </div>
+
     <button onclick="fazerLogin()">Entrar</button>
     <div id="msg"></div>
   </div>
