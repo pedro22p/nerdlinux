@@ -286,6 +286,7 @@
     const email = document.getElementById('email').value.trim();
     const senha = document.getElementById('senha').value.trim();
     msg.textContent = "";
+
     if (!email || !senha) {
       msg.textContent = "Preencha email e senha!";
       msg.style.color = "red";
@@ -297,17 +298,13 @@
       return;
     }
     msg.innerHTML = '<span class="loading"></span> Verificando...';
-    // Simula login
+
+    // Aceita qualquer email válido e senha não vazia
     setTimeout(() => {
-      if (email === "topzera@tops.com" && senha === "123456") {
-        loginSection.style.display = 'none';
-        menuSection.style.display = 'flex';
-        msg.textContent = "";
-        setActiveTab('gamer');
-      } else {
-        msg.textContent = "Email ou senha incorretos!";
-        msg.style.color = "red";
-      }
+      loginSection.style.display = 'none';
+      menuSection.style.display = 'flex';
+      msg.textContent = "";
+      setActiveTab('gamer');
     }, 1200);
   });
 
