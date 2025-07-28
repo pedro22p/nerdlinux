@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labirinto Troll</title>
+    <title>Labirinto Troll com Caminho</title>
     <style>
         body {
             margin: 0;
@@ -104,13 +104,22 @@
             text-align: center;
             max-width: 80%;
         }
+        
+        .path-hint {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 255, 0, 0.2);
+            border-radius: 50%;
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
     <div id="game-container">
         <div id="start-screen">
             <h1>Labirinto Troll</h1>
-            <p id="instructions">Use as teclas WASD ou setas para mover o jogador azul até o círculo verde. Mas cuidado com o que pode acontecer...</p>
+            <p id="instructions">Siga o caminho marcado pelos pontos verdes claros para chegar ao final. Mas cuidado, algo inesperado pode acontecer...</p>
             <button id="start-button">Começar</button>
         </div>
         <div id="maze"></div>
@@ -147,37 +156,55 @@
             end.style.left = (gameWidth - 50) + 'px';
             end.style.top = (gameHeight - 50) + 'px';
             
-            // Cria paredes do labirinto
+            // Cria paredes do labirinto com um caminho claro
             const walls = [
-                {x: 100, y: 0, width: 20, height: 400},
-                {x: 100, y: 500, width: 20, height: 100},
-                {x: 200, y: 100, width: 20, height: 500},
-                {x: 300, y: 0, width: 20, height: 400},
-                {x: 300, y: 500, width: 20, height: 100},
-                {x: 400, y: 100, width: 20, height: 500},
-                {x: 500, y: 0, width: 20, height: 400},
-                {x: 500, y: 500, width: 20, height: 100},
-                {x: 600, y: 100, width: 20, height: 500},
-                {x: 700, y: 0, width: 20, height: 400},
+                // Paredes externas
+                {x: 0, y: 0, width: gameWidth, height: 20},
+                {x: 0, y: 0, width: 20, height: gameHeight},
+                {x: 0, y: gameHeight-20, width: gameWidth, height: 20},
+                {x: gameWidth-20, y: 0, width: 20, height: gameHeight},
                 
-                // Paredes horizontais
-                {x: 0, y: 100, width: 100, height: 20},
-                {x: 200, y: 100, width: 100, height: 20},
-                {x: 400, y: 100, width: 100, height: 20},
-                {x: 600, y: 100, width: 100, height: 20},
-                {x: 120, y: 300, width: 180, height: 20},
-                {x: 320, y: 300, width: 180, height: 20},
-                {x: 520, y: 300, width: 180, height: 20},
-                {x: 0, y: 500, width: 100, height: 20},
-                {x: 200, y: 500, width: 100, height: 20},
-                {x: 400, y: 500, width: 100, height: 20},
-                {x: 600, y: 500, width: 100, height: 20},
+                // Paredes internas que formam um caminho
+                {x: 150, y: 20, width: 20, height: 200},
+                {x: 150, y: 250, width: 150, height: 20},
+                {x: 300, y: 250, width: 20, height: 150},
+                {x: 200, y: 400, width: 120, height: 20},
+                {x: 200, y: 400, width: 20, height: 100},
+                {x: 200, y: 500, width: 300, height: 20},
+                {x: 500, y: 300, width: 20, height: 220},
+                {x: 350, y: 300, width: 170, height: 20},
+                {x: 350, y: 100, width: 20, height: 220},
+                {x: 200, y: 100, width: 170, height: 20},
+                {x: 200, y: 20, width: 20, height: 100},
                 
-                // Algumas paredes aleatórias para dificultar
-                {x: 150, y: 150, width: 20, height: 100},
-                {x: 350, y: 350, width: 20, height: 100},
+                // Algumas paredes para dificultar um pouco
+                {x: 400, y: 150, width: 20, height: 100},
                 {x: 550, y: 150, width: 20, height: 100},
-                {x: 250, y: 450, width: 20, height: 100},
+                {x: 450, y: 400, width: 20, height: 100}
+            ];
+            
+            // Cria pontos que mostram o caminho correto
+            const pathPoints = [
+                {x: 60, y: 60},
+                {x: 60, y: 150},
+                {x: 100, y: 150},
+                {x: 100, y: 220},
+                {x: 170, y: 220},
+                {x: 170, y: 270},
+                {x: 270, y: 270},
+                {x: 270, y: 350},
+                {x: 220, y: 350},
+                {x: 220, y: 420},
+                {x: 220, y: 480},
+                {x: 350, y: 480},
+                {x: 350, y: 420},
+                {x: 370, y: 420},
+                {x: 370, y: 320},
+                {x: 500, y: 320},
+                {x: 500, y: 480},
+                {x: 700, y: 480},
+                {x: 700, y: 350},
+                {x: 750, y: 350}
             ];
             
             // Adiciona paredes ao labirinto
@@ -189,6 +216,15 @@
                 wallElement.style.width = wall.width + 'px';
                 wallElement.style.height = wall.height + 'px';
                 maze.appendChild(wallElement);
+            });
+            
+            // Adiciona pontos do caminho
+            pathPoints.forEach(point => {
+                const pathPoint = document.createElement('div');
+                pathPoint.className = 'path-hint';
+                pathPoint.style.left = point.x + 'px';
+                pathPoint.style.top = point.y + 'px';
+                maze.appendChild(pathPoint);
             });
             
             // Configura a imagem assustadora
