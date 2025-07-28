@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labirinto Troll com Caminho</title>
+    <title>Labirinto Troll com Grito</title>
     <style>
         body {
             margin: 0;
@@ -119,7 +119,7 @@
     <div id="game-container">
         <div id="start-screen">
             <h1>Labirinto Troll</h1>
-            <p id="instructions">Siga o caminho marcado pelos pontos verdes claros para chegar ao final. Mas cuidado, algo inesperado pode acontecer...</p>
+            <p id="instructions">Siga o caminho marcado pelos pontos verdes claros para chegar ao final. Mas cuidado com o que te espera...</p>
             <button id="start-button">Começar</button>
         </div>
         <div id="maze"></div>
@@ -128,8 +128,14 @@
         <div id="scary-image"></div>
     </div>
 
+    <!-- Áudio do grito assustador -->
     <audio id="scream" preload="auto">
-        <source src="https://cdn.pixabay.com/download/audio/2023/03/09/audio_3e1f0d2d1e.mp3" type="audio/mpeg">
+        <source src="Sound Effect by <a href="https://pixabay.com/pt/users/dragon-studio-38165424/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=320169">DRAGON-STUDIO</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=320169">Pixabay</a>" type="audio/mpeg">
+    </audio>
+
+    <!-- Áudio de fundo assustador -->
+    <audio id="background-sound" loop preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-creepy-horror-ambience-266.mp" type="audio/mpeg">
     </audio>
 
     <script>
@@ -139,6 +145,7 @@
             const end = document.getElementById('end');
             const scaryImage = document.getElementById('scary-image');
             const screamSound = document.getElementById('scream');
+            const backgroundSound = document.getElementById('background-sound');
             const startScreen = document.getElementById('start-screen');
             const startButton = document.getElementById('start-button');
             
@@ -284,10 +291,14 @@
             });
             
             function triggerScare() {
+                // Pausa o som de fundo
+                backgroundSound.pause();
+                
                 // Mostra a imagem assustadora
                 scaryImage.style.display = 'block';
                 
-                // Toca o som do grito
+                // Toca o som do grito (mais alto)
+                screamSound.volume = 0.8;
                 screamSound.currentTime = 0;
                 screamSound.play();
                 
@@ -310,12 +321,21 @@
                 
                 // Mostra a tela de início novamente
                 startScreen.style.display = 'flex';
+                
+                // Para qualquer som que esteja tocando
+                screamSound.pause();
+                backgroundSound.pause();
             }
             
             // Inicia o jogo
             startButton.addEventListener('click', function() {
                 startScreen.style.display = 'none';
                 gameStarted = true;
+                
+                // Toca o som ambiente assustador (mais baixo)
+                backgroundSound.volume = 0.3;
+                backgroundSound.currentTime = 0;
+                backgroundSound.play();
             });
         });
     </script>
