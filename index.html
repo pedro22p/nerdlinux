@@ -1,343 +1,163 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labirinto Troll com Grito</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #111;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-        
-        #game-container {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            background-color: #222;
-            border: 2px solid #444;
-        }
-        
-        #maze {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .wall {
-            position: absolute;
-            background-color: #555;
-        }
-        
-        #player {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #00f;
-            border-radius: 50%;
-            z-index: 10;
-            transition: all 0.1s ease;
-        }
-        
-        #end {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: #0f0;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            color: black;
-        }
-        
-        #scary-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            display: none;
-            z-index: 100;
-        }
-        
-        #start-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            z-index: 200;
-        }
-        
-        #start-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #00f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        #instructions {
-            margin-top: 20px;
-            text-align: center;
-            max-width: 80%;
-        }
-        
-        .path-hint {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: rgba(0, 255, 0, 0.2);
-            border-radius: 50%;
-            z-index: 5;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descubra o Linux</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1e293b;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    nav {
+      background: #334155;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #38bdf8;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    section h2 {
+      color: #38bdf8;
+    }
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 10px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .problema {
+      background: #1e293b;
+      padding: 15px;
+      border-left: 4px solid #f87171;
+      margin-bottom: 15px;
+    }
+    .solucao {
+      background: #14532d;
+      padding: 15px;
+      border-left: 4px solid #22c55e;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
-    <div id="game-container">
-        <div id="start-screen">
-            <h1>Labirinto Troll</h1>
-            <p id="instructions">Siga o caminho marcado pelos pontos verdes claros para chegar ao final. Mas cuidado com o que te espera...</p>
-            <button id="start-button">Começar</button>
-        </div>
-        <div id="maze"></div>
-        <div id="player"></div>
-        <div id="end">FIM</div>
-        <div id="scary-image"></div>
-    </div>
+  <header>
+    <h1>Descubra o Linux</h1>
+    <p>Liberdade, segurança e controle no seu sistema operacional.</p>
+  </header>
 
-    <!-- Áudio do grito assustador -->
-    <audio id="scream" preload="auto">
-        <source src="Sound Effect by <a href="https://pixabay.com/pt/users/dragon-studio-38165424/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=320169">DRAGON-STUDIO</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=320169">Pixabay</a>" type="audio/mpeg">
-    </audio>
+  <nav>
+    <a href="#oque">O que é Linux</a>
+    <a href="#vantagens">Vantagens</a>
+    <a href="#desafios">Desafios e Soluções</a>
+    <a href="#distros">Distribuições</a>
+  </nav>
 
-    <!-- Áudio de fundo assustador -->
-    <audio id="background-sound" loop preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-creepy-horror-ambience-266.mp" type="audio/mpeg">
-    </audio>
+  <main>
+    <section id="oque">
+      <h2>O que é Linux?</h2>
+      <p>Linux é um sistema operacional gratuito e de código aberto, usado por milhões de pessoas ao redor do mundo. Ele é rápido, seguro e personalizável.</p>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const maze = document.getElementById('maze');
-            const player = document.getElementById('player');
-            const end = document.getElementById('end');
-            const scaryImage = document.getElementById('scary-image');
-            const screamSound = document.getElementById('scream');
-            const backgroundSound = document.getElementById('background-sound');
-            const startScreen = document.getElementById('start-screen');
-            const startButton = document.getElementById('start-button');
-            
-            // Configurações do jogo
-            const gameWidth = 800;
-            const gameHeight = 600;
-            const playerSize = 20;
-            let playerX = 50;
-            let playerY = 50;
-            let gameStarted = false;
-            
-            // Posiciona o jogador e o fim
-            player.style.left = playerX + 'px';
-            player.style.top = playerY + 'px';
-            end.style.left = (gameWidth - 50) + 'px';
-            end.style.top = (gameHeight - 50) + 'px';
-            
-            // Cria paredes do labirinto com um caminho claro
-            const walls = [
-                // Paredes externas
-                {x: 0, y: 0, width: gameWidth, height: 20},
-                {x: 0, y: 0, width: 20, height: gameHeight},
-                {x: 0, y: gameHeight-20, width: gameWidth, height: 20},
-                {x: gameWidth-20, y: 0, width: 20, height: gameHeight},
-                
-                // Paredes internas que formam um caminho
-                {x: 150, y: 20, width: 20, height: 200},
-                {x: 150, y: 250, width: 150, height: 20},
-                {x: 300, y: 250, width: 20, height: 150},
-                {x: 200, y: 400, width: 120, height: 20},
-                {x: 200, y: 400, width: 20, height: 100},
-                {x: 200, y: 500, width: 300, height: 20},
-                {x: 500, y: 300, width: 20, height: 220},
-                {x: 350, y: 300, width: 170, height: 20},
-                {x: 350, y: 100, width: 20, height: 220},
-                {x: 200, y: 100, width: 170, height: 20},
-                {x: 200, y: 20, width: 20, height: 100},
-                
-                // Algumas paredes para dificultar um pouco
-                {x: 400, y: 150, width: 20, height: 100},
-                {x: 550, y: 150, width: 20, height: 100},
-                {x: 450, y: 400, width: 20, height: 100}
-            ];
-            
-            // Cria pontos que mostram o caminho correto
-            const pathPoints = [
-                {x: 60, y: 60},
-                {x: 60, y: 150},
-                {x: 100, y: 150},
-                {x: 100, y: 220},
-                {x: 170, y: 220},
-                {x: 170, y: 270},
-                {x: 270, y: 270},
-                {x: 270, y: 350},
-                {x: 220, y: 350},
-                {x: 220, y: 420},
-                {x: 220, y: 480},
-                {x: 350, y: 480},
-                {x: 350, y: 420},
-                {x: 370, y: 420},
-                {x: 370, y: 320},
-                {x: 500, y: 320},
-                {x: 500, y: 480},
-                {x: 700, y: 480},
-                {x: 700, y: 350},
-                {x: 750, y: 350}
-            ];
-            
-            // Adiciona paredes ao labirinto
-            walls.forEach(wall => {
-                const wallElement = document.createElement('div');
-                wallElement.className = 'wall';
-                wallElement.style.left = wall.x + 'px';
-                wallElement.style.top = wall.y + 'px';
-                wallElement.style.width = wall.width + 'px';
-                wallElement.style.height = wall.height + 'px';
-                maze.appendChild(wallElement);
-            });
-            
-            // Adiciona pontos do caminho
-            pathPoints.forEach(point => {
-                const pathPoint = document.createElement('div');
-                pathPoint.className = 'path-hint';
-                pathPoint.style.left = point.x + 'px';
-                pathPoint.style.top = point.y + 'px';
-                maze.appendChild(pathPoint);
-            });
-            
-            // Configura a imagem assustadora
-            scaryImage.style.backgroundImage = 'url(https://forbes.com.br/wp-content/uploads/2020/10/lista-filmesdeterror_311020_SunsetBoulevard-Colaborador_GettyImages-607435792-1024x683.jpg)';
-            
-            // Controles do jogador
-            document.addEventListener('keydown', function(e) {
-                if (!gameStarted) return;
-                
-                const key = e.key.toLowerCase();
-                let newX = playerX;
-                let newY = playerY;
-                const moveAmount = 10;
-                
-                if (key === 'w' || key === 'arrowup') newY -= moveAmount;
-                if (key === 's' || key === 'arrowdown') newY += moveAmount;
-                if (key === 'a' || key === 'arrowleft') newX -= moveAmount;
-                if (key === 'd' || key === 'arrowright') newX += moveAmount;
-                
-                // Verifica colisão com paredes
-                let canMove = true;
-                walls.forEach(wall => {
-                    if (
-                        newX + playerSize > wall.x &&
-                        newX < wall.x + wall.width &&
-                        newY + playerSize > wall.y &&
-                        newY < wall.y + wall.height
-                    ) {
-                        canMove = false;
-                    }
-                });
-                
-                // Verifica limites do jogo
-                if (newX < 0 || newX + playerSize > gameWidth || newY < 0 || newY + playerSize > gameHeight) {
-                    canMove = false;
-                }
-                
-                if (canMove) {
-                    playerX = newX;
-                    playerY = newY;
-                    player.style.left = playerX + 'px';
-                    player.style.top = playerY + 'px';
-                } else {
-                    // Colidiu com uma parede - ativa o susto!
-                    triggerScare();
-                }
-                
-                // Verifica se chegou ao final
-                if (
-                    playerX + playerSize > parseInt(end.style.left) &&
-                    playerX < parseInt(end.style.left) + 30 &&
-                    playerY + playerSize > parseInt(end.style.top) &&
-                    playerY < parseInt(end.style.top) + 30
-                ) {
-                    triggerScare();
-                }
-            });
-            
-            function triggerScare() {
-                // Pausa o som de fundo
-                backgroundSound.pause();
-                
-                // Mostra a imagem assustadora
-                scaryImage.style.display = 'block';
-                
-                // Toca o som do grito (mais alto)
-                screamSound.volume = 0.8;
-                screamSound.currentTime = 0;
-                screamSound.play();
-                
-                // Desativa os controles
-                gameStarted = false;
-                
-                // Esconde a imagem após 3 segundos
-                setTimeout(() => {
-                    scaryImage.style.display = 'none';
-                    resetGame();
-                }, 3000);
-            }
-            
-            function resetGame() {
-                // Reseta a posição do jogador
-                playerX = 50;
-                playerY = 50;
-                player.style.left = playerX + 'px';
-                player.style.top = playerY + 'px';
-                
-                // Mostra a tela de início novamente
-                startScreen.style.display = 'flex';
-                
-                // Para qualquer som que esteja tocando
-                screamSound.pause();
-                backgroundSound.pause();
-            }
-            
-            // Inicia o jogo
-            startButton.addEventListener('click', function() {
-                startScreen.style.display = 'none';
-                gameStarted = true;
-                
-                // Toca o som ambiente assustador (mais baixo)
-                backgroundSound.volume = 0.3;
-                backgroundSound.currentTime = 0;
-                backgroundSound.play();
-            });
-        });
-    </script>
+    <section id="vantagens">
+      <h2>Por que usar Linux?</h2>
+      <ul>
+        <li>✅ Gratuito e livre</li>
+        <li>🔐 Mais seguro que sistemas comerciais</li>
+        <li>💻 Roda em PCs antigos</li>
+        <li>🛠 Personalizável ao extremo</li>
+        <li>🌐 Comunidade ativa e colaborativa</li>
+      </ul>
+    </section>
+
+    <section id="desafios">
+      <h2>Desafios e Soluções</h2>
+
+      <div class="problema">
+        <strong>Problema:</strong> Nem todos os softwares e jogos populares possuem versão para Linux.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Use alternativas livres (como GIMP no lugar do Photoshop) ou ferramentas como <strong>Wine, Lutris e Proton</strong> para rodar programas do Windows no Linux.
+      </div>
+
+      <div class="problema">
+        <strong>Problema:</strong> Instalar drivers, principalmente de placas de vídeo, pode ser difícil.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Use distribuições que já detectam e instalam drivers automaticamente, como o <strong>Pop!_OS</strong> ou <strong>Linux Mint</strong>. Também é possível instalar drivers da NVIDIA e AMD com um simples comando no terminal.
+      </div>
+
+      <div class="problema">
+        <strong>Problema:</strong> A instalação de programas muitas vezes exige comandos no terminal.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Use gerenciadores de apps com interface gráfica como o <strong>Discover</strong>, <strong>Synaptic</strong> ou <strong>GNOME Software</strong>. Eles permitem instalar apps com apenas um clique.
+      </div>
+
+      <div class="problema">
+        <strong>Problema:</strong> A variedade de interfaces pode confundir usuários vindos do Windows.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Comece com interfaces mais familiares, como o <strong>Cinnamon (Linux Mint)</strong> ou <strong>KDE Plasma</strong>. Eles são parecidos com o Windows e fáceis de usar.
+      </div>
+
+      <div class="problema">
+        <strong>Problema:</strong> Algumas comunidades podem parecer pouco acolhedoras para iniciantes.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Procure fóruns e grupos mais amigáveis, como os do <strong>Linux Mint Brasil</strong> ou <strong>Ubuntu BR</strong>. Canais no YouTube também ajudam bastante na jornada.
+      </div>
+
+      <div class="problema">
+        <strong>Problema:</strong> Esperar que o Linux funcione exatamente como o Windows.
+      </div>
+      <div class="solucao">
+        <strong>Solução:</strong> Encare o Linux como um novo aprendizado. Ele tem um jeito diferente de fazer as coisas — e isso é bom! Com o tempo, você pode até preferir esse jeito.
+      </div>
+
+      <p><strong>Resumo:</strong> A transição para o Linux pode ser desafiadora, mas com paciência, boas fontes de informação e a mentalidade certa, a maioria dos obstáculos vira aprendizado.</p>
+    </section>
+
+    <section id="distros">
+      <h2>Distribuições Recomendadas</h2>
+      <ul>
+        <li>🐧 Ubuntu – Simples, direto e muito usado</li>
+        <li>🌿 Linux Mint – Ideal para quem vem do Windows</li>
+        <li>🛰 Pop!_OS – Perfeito para hardware moderno e jogos</li>
+        <li>🧱 Debian – Estável e seguro</li>
+        <li>⚡ Zorin OS – Visual parecido com o Windows</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito com ❤️ por alguém que ama liberdade digital.</p>
+  </footer>
 </body>
 </html>
