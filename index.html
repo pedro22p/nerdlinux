@@ -1,181 +1,612 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Descubra o Linux</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descubra o Linux - O sistema operacional livre e poderoso</title>
+  <meta name="description" content="Tudo sobre Linux: vantagens, distribuições, jogos e soluções para desafios comuns.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501"
      crossorigin="anonymous"></script>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: #f1f5f9;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: #1e293b;
-    padding: 20px;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-  }
-  nav {
-    background: #334155;
-    padding: 10px;
-    text-align: center;
-  }
-  nav a {
-    color: #38bdf8;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  main {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
-  section {
-    margin-bottom: 30px;
-    display: none;
-  }
-  section.active {
-    display: block;
-  }
-  section h2 {
-    color: #38bdf8;
-  }
-  footer {
-    background: #1e293b;
-    color: #94a3b8;
-    text-align: center;
-    padding: 10px;
-  }
-  ul {
-    padding-left: 20px;
-  }
-  .problema {
-    background: #1e293b;
-    padding: 15px;
-    border-left: 4px solid #f87171;
-    margin-bottom: 15px;
-  }
-  .solucao {
-    background: #14532d;
-    padding: 15px;
-    border-left: 4px solid #22c55e;
-    margin-bottom: 30px;
-  }
-  .categoria {
-    background: #1e293b;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 5px;
-  }
-  .categoria h3 {
-    color: #fbbf24;
-    margin-top: 0;
-  }
-  .dica {
-    background: #1e40af;
-    padding: 15px;
-    border-left: 4px solid #60a5fa;
-    margin-top: 20px;
-  }
-  .ad-container {
-    margin: 20px 0;
-    text-align: center;
-  }
-  .hotmart-banner {
-    display: block;
-    max-width: 320px;
-    margin: 20px auto;
-    text-align: center;
-  }
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #10b981;
+      --dark: #1e293b;
+      --darker: #0f172a;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #3b82f6;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      line-height: 1.6;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--dark), var(--darker));
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(99,102,241,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>') no-repeat bottom center;
+      background-size: cover;
+      z-index: 0;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    header p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    nav {
+      background: var(--dark);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    nav a {
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a:hover::before {
+      width: 100%;
+    }
+    
+    nav a.active-nav {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    nav a.active-nav::before {
+      width: 100%;
+    }
+    
+    main {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    section.active {
+      display: block;
+    }
+    
+    section h2 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .card {
+      background: var(--dark);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .problema {
+      background: rgba(239, 68, 68, 0.1);
+      padding: 1.5rem;
+      border-left: 4px solid var(--danger);
+      margin-bottom: 1rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    
+    .solucao {
+      background: rgba(16, 185, 129, 0.1);
+      padding: 1.5rem;
+      border-left: 4px solid var(--secondary);
+      margin-bottom: 2rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    
+    .categoria {
+      background: var(--dark);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .categoria h3 {
+      color: var(--warning);
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    
+    .dica {
+      background: rgba(59, 130, 246, 0.1);
+      padding: 1.5rem;
+      border-left: 4px solid var(--info);
+      margin: 1.5rem 0;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    
+    .dica h4 {
+      color: var(--info);
+      margin-bottom: 0.5rem;
+    }
+    
+    .ad-container {
+      margin: 2rem 0;
+      text-align: center;
+      background: var(--dark);
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    
+    .hotmart-banner {
+      display: block;
+      max-width: 100%;
+      margin: 2rem auto;
+      text-align: center;
+      background: var(--dark);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .hotmart-banner:hover {
+      transform: scale(1.02);
+    }
+    
+    .hotmart-banner img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .hotmart-banner p {
+      color: var(--warning);
+      font-weight: 600;
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+    }
+    
+    footer {
+      background: var(--dark);
+      color: var(--gray);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    
+    .icon {
+      display: inline-block;
+      margin-right: 0.5rem;
+      font-size: 1.2em;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .highlight {
+      background: rgba(99, 102, 241, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+      
+      section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <h1>Descubra o Linux</h1>
-  <p>Liberdade, segurança e controle no seu sistema operacional.</p>
+  <h1>Descubra o Poder do Linux</h1>
+  <p>Liberdade, segurança e desempenho em um sistema operacional de código aberto.</p>
 </header>
 
 <nav>
-  <a onclick="showSection('oque')">O que é Linux</a>
-  <a onclick="showSection('vantagens')">Vantagens</a>
-  <a onclick="showSection('desafios')">Desafios e Soluções</a>
-  <a onclick="showSection('distros')">Distribuições</a>
-  <a onclick="showSection('jogos')">Jogos Gratuitos</a>
+  <div class="nav-container">
+    <a class="active-nav" onclick="showSection('oque')">O que é Linux</a>
+    <a onclick="showSection('vantagens')">Vantagens</a>
+    <a onclick="showSection('desafios')">Desafios e Soluções</a>
+    <a onclick="showSection('distros')">Distribuições</a>
+    <a onclick="showSection('jogos')">Jogos Gratuitos</a>
+  </div>
 </nav>
 
 <main>
   <section id="oque" class="active">
     <h2>O que é Linux?</h2>
-    <p>Linux é um sistema operacional gratuito e de código aberto, usado por milhões de pessoas ao redor do mundo. Ele é rápido, seguro e personalizável.</p>
+    <p>O Linux é um sistema operacional <span class="highlight">gratuito, aberto e altamente personalizável</span>, baseado no núcleo Linux criado por Linus Torvalds em 1991. Diferente de sistemas proprietários, o Linux oferece liberdade total para modificar e distribuir.</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>🔄 Código Aberto</h3>
+        <p>Qualquer pessoa pode ver, modificar e distribuir o código fonte do Linux, garantindo transparência e segurança.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🌍 Multiplataforma</h3>
+        <p>Roda em diversos dispositivos, desde servidores até smartphones (Android é baseado no Linux).</p>
+      </div>
+      
+      <div class="card">
+        <h3>🛡️ Segurança</h3>
+        <p>Arquitetura robusta e atualizações frequentes tornam o Linux menos vulnerável a vírus e malware.</p>
+      </div>
+    </div>
+    
+    <div class="dica">
+      <h4>💡 Sabia que?</h4>
+      <p>O Linux é o sistema operacional mais usado no mundo para servidores web, supercomputadores e na nuvem, incluindo 90% da infraestrutura da Amazon Web Services.</p>
+    </div>
   </section>
 
   <section id="vantagens">
-    <h2>Por que usar Linux?</h2>
-    <ul>
-      <li>✅ Gratuito e livre</li>
-      <li>🔐 Mais seguro que sistemas comerciais</li>
-      <li>💻 Roda em PCs antigos</li>
-      <li>🛠 Personalizável ao extremo</li>
-      <li>🌐 Comunidade ativa e colaborativa</li>
-    </ul>
+    <h2>Por que migrar para o Linux?</h2>
+    <p>Conheça as principais vantagens que fazem do Linux a escolha ideal para desenvolvedores, empresas e usuários que valorizam privacidade:</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>🚀 Desempenho</h3>
+        <p>O Linux é extremamente eficiente, consumindo menos recursos que outros sistemas, ideal para PCs antigos.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🔓 Liberdade</h3>
+        <p>Não há restrições de licença - instale em quantos computadores quiser sem custos adicionais.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🛠️ Personalização</h3>
+        <p>Altere cada aspecto do sistema, desde a interface até o núcleo, para atender suas necessidades.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🔄 Atualizações</h3>
+        <p>Receba atualizações de segurança e software centralizadas, sem reinicializações forçadas.</p>
+      </div>
+      
+      <div class="card">
+        <h3>👥 Comunidade</h3>
+        <p>Acesso a uma comunidade global que oferece suporte gratuito e compartilha conhecimento.</p>
+      </div>
+      
+      <div class="card">
+        <h3>💰 Economia</h3>
+        <p>Economize milhares em licenças de software - a maioria dos aplicativos para Linux é gratuita.</p>
+      </div>
+    </div>
+    
+    <!-- Banner afiliado Hotmart -->
+    <div class="hotmart-banner">
+      <a href="https://aline-oliveiraalves086.hotmart.host/nova-pagina-e7e728ee-e881-41cb-ad1d-283111fd7523" target="_blank" rel="noopener noreferrer">
+        <img src="https://via.placeholder.com/600x200/1e293b/fbbf24?text=Curso+Completo+de+Linux" alt="Curso Linux Hotmart" />
+        <p>Domine o Linux do básico ao avançado - Torne-se um especialista!</p>
+      </a>
+    </div>
+    
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-4884573718974501"
+           data-ad-slot="7383820866"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </section>
-
-  <!-- Banner afiliado Hotmart -->
-  <div class="hotmart-banner">
-    <a href="https://aline-oliveiraalves086.hotmart.host/nova-pagina-e7e728ee-e881-41cb-ad1d-283111fd7523" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
-      <img src="https://via.placeholder.com/320x100?text=Confira+Esse+Curso+Linux+Hotmart" alt="Curso Linux Hotmart" style="max-width:100%; border-radius:8px;"/>
-      <p style="color:#fbbf24; font-weight:bold; margin-top: 8px;">Aprenda Linux do zero - Curso Hotmart</p>
-    </a>
-  </div>
-
-  <!-- Anúncio discreto entre vantagens e desafios -->
-  <div class="ad-container" style="max-width:320px; margin: 20px auto; text-align:center;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4884573718974501"
-         data-ad-slot="7383820866"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
 
   <section id="desafios">
-    <h2>Desafios e Soluções</h2>
-    <!-- Conteúdo das soluções omitido para brevidade, use o que você já tem -->
+    <h2>Desafios Comuns e Soluções</h2>
+    <p>A migração para o Linux pode apresentar alguns desafios, mas todos têm solução:</p>
+    
+    <div class="problema">
+      <h3>❌ "Meus programas do Windows não funcionam no Linux"</h3>
+      <p>Muitos usuários temem perder acesso a aplicativos essenciais ao migrar.</p>
+    </div>
+    
+    <div class="solucao">
+      <h3>✅ Solução: Alternativas e compatibilidade</h3>
+      <ul>
+        <li><strong>Wine/Proton:</strong> Execute muitos programas do Windows diretamente no Linux</li>
+        <li><strong>Alternativas nativas:</strong> LibreOffice (MS Office), GIMP (Photoshop), Inkscape (Illustrator)</li>
+        <li><strong>Máquinas virtuais:</strong> Rode o Windows dentro do Linux quando necessário</li>
+      </ul>
+    </div>
+    
+    <div class="problema">
+      <h3>❌ "Vou ter dificuldade com a linha de comando"</h3>
+      <p>A reputação do Linux como "sistema para hackers" assusta muitos iniciantes.</p>
+    </div>
+    
+    <div class="solucao">
+      <h3>✅ Solução: Interfaces gráficas modernas</h3>
+      <p>Distribuições como <strong>Ubuntu</strong>, <strong>Linux Mint</strong> e <strong>Zorin OS</strong> oferecem interfaces intuitivas que dispensam o terminal para tarefas cotidianas.</p>
+    </div>
+    
+    <div class="dica">
+      <h4>💡 Dica Profissional</h4>
+      <p>Aprender comandos básicos do terminal pode aumentar significativamente sua produtividade, mas não é obrigatório para uso diário.</p>
+    </div>
   </section>
 
-  <!-- Continue seu conteúdo normalmente -->
-  <!-- ... -->
+  <section id="distros">
+    <h2>Principais Distribuições Linux</h2>
+    <p>Escolha a distribuição que melhor atende suas necessidades:</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>🐧 Ubuntu</h3>
+        <p>Ideal para iniciantes, com amplo suporte e facilidade de uso. Ótimo para desktops.</p>
+        <a href="https://ubuntu.com/" target="_blank" class="btn">Site Oficial</a>
+      </div>
+      
+      <div class="card">
+        <h3>🖥️ Linux Mint</h3>
+        <p>Interface familiar para usuários do Windows, estável e com bom suporte a multimídia.</p>
+        <a href="https://linuxmint.com/" target="_blank" class="btn">Site Oficial</a>
+      </div>
+      
+      <div class="card">
+        <h3>🎨 Pop!_OS</h3>
+        <p>Focada em produtividade e criativos, com ótimo suporte a hardware NVIDIA.</p>
+        <a href="https://pop.system76.com/" target="_blank" class="btn">Site Oficial</a>
+      </div>
+      
+      <div class="card">
+        <h3>🔧 Fedora</h3>
+        <p>Distribuição de ponta com tecnologias mais recentes, patrocinada pela Red Hat.</p>
+        <a href="https://getfedora.org/" target="_blank" class="btn">Site Oficial</a>
+      </div>
+      
+      <div class="card">
+        <h3>🛡️ Debian</h3>
+        <p>Conhecida por sua estabilidade, base para muitas outras distribuições.</p>
+        <a href="https://www.debian.org/" target="_blank" class="btn">Site Oficial</a>
+      </div>
+      
+      <div class="card">
+        <h3>🎮 SteamOS</h3>
+        <p>Otimizada para jogos, desenvolvida pela Valve para o Steam Deck.</p>
+        <a href="https://store.steampowered.com/steamos" target="_blank" class="btn">Site Oficial</a>
+      </div>
+    </div>
+  </section>
 
+  <section id="jogos">
+    <h2>Jogos Gratuitos para Linux</h2>
+    <p>O Linux possui uma crescente biblioteca de jogos, muitos gratuitos:</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>🎮 0 A.D.</h3>
+        <p>RTS histórico de código aberto inspirado em Age of Empires.</p>
+      </div>
+      
+      <div class="card">
+        <h3>⚔️ SuperTuxKart</h3>
+        <p>Jogo de corrida divertido com personagens de software livre.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🌌 Endless Sky</h3>
+        <p>Jogo de exploração espacial no estilo clássico.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🏆 OpenTTD</h3>
+        <p>Clone do Transport Tycoon Deluxe com melhorias modernas.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🧙 Wesnoth</h3>
+        <p>RPG tático por turnos com campanhas ricas e multiplayer.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🚀 Warzone 2100</h3>
+        <p>RTS de combate futurista com unidades totalmente customizáveis.</p>
+      </div>
+    </div>
+    
+    <div class="dica">
+      <h4>🎲 Dica para Gamers</h4>
+      <p>Com o <strong>Proton</strong> da Steam, você pode jogar milhares de títulos do Windows no Linux sem configuração complexa. A compatibilidade melhora constantemente!</p>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <p>Feito com ❤️ por dark1989</p>
+  <p>© 2023 Descubra o Linux | Feito com ❤️ por dark1989</p>
+  <p style="margin-top: 0.5rem; font-size: 0.9rem;">Este site não está afiliado ao Linux ou a qualquer distribuição mencionada.</p>
 </footer>
 
 <script>
   function showSection(id) {
+    // Esconder todas as seções
     const sections = document.querySelectorAll('main section');
     sections.forEach(section => {
       section.classList.remove('active');
     });
+    
+    // Mostrar a seção selecionada
     document.getElementById(id).classList.add('active');
+    
+    // Atualizar navegação ativa
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.classList.remove('active-nav');
+      if (link.getAttribute('onclick').includes(id)) {
+        link.classList.add('active-nav');
+      }
+    });
+    
+    // Rolagem suave para o topo da seção
+    window.scrollTo({
+      top: document.getElementById(id).offsetTop - 100,
+      behavior: 'smooth'
+    });
   }
 </script>
 
