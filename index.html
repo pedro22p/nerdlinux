@@ -316,7 +316,7 @@
             color: #555;
         }
 
-        /* Newsletter */
+        /* Newsletter / Formspree */
         .newsletter {
             padding: 4rem 0;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -337,18 +337,20 @@
             max-width: 500px;
             margin: 0 auto;
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
 
-        .newsletter-form input {
-            flex: 1;
+        .newsletter-form input,
+        .newsletter-form textarea {
             padding: 0.8rem 1rem;
             border: none;
             border-radius: 4px;
             font-size: 1rem;
         }
 
-        .newsletter-form input:focus {
+        .newsletter-form input:focus,
+        .newsletter-form textarea:focus {
             outline: none;
         }
 
@@ -356,7 +358,7 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 0 1.5rem;
+            padding: 0.8rem;
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
@@ -610,18 +612,8 @@
                     </div>
                     <div class="distro-info">
                         <h3>Fedora</h3>
-                        <p>Distribuição patrocinada pela Red Hat, com tecnologias de ponta.</p>
+                        <p>Distribuição cutting-edge, ideal para desenvolvedores e entusiastas.</p>
                         <a href="https://getfedora.org" class="distro-link" target="_blank">Saiba mais</a>
-                    </div>
-                </div>
-                <div class="distro-card fade-in delay-3">
-                    <div class="distro-img">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Archlinux-icon-crystal-64.svg" alt="Arch Linux">
-                    </div>
-                    <div class="distro-info">
-                        <h3>Arch Linux</h3>
-                        <p>Distribuição minimalista e rolling release para usuários avançados.</p>
-                        <a href="https://archlinux.org" class="distro-link" target="_blank">Saiba mais</a>
                     </div>
                 </div>
             </div>
@@ -632,64 +624,40 @@
     <section class="commands" id="commands">
         <div class="container">
             <div class="section-title">
-                <h2>Comandos Essenciais</h2>
+                <h2>Comandos Úteis</h2>
             </div>
             <div class="command-search">
-                <input type="text" id="commandSearch" placeholder="Pesquisar comandos...">
+                <input type="text" placeholder="Pesquisar comando...">
             </div>
-            <div class="commands-list" id="commandsList">
-                <div class="command-item">
+            <div class="commands-list">
+                <div class="command-item fade-in">
                     <h3>Listar arquivos</h3>
-                    <code>ls [opções] [diretório]</code>
-                    <p>Lista os arquivos e diretórios. Opções comuns: -l (lista detalhada), -a (mostra arquivos ocultos).</p>
+                    <code>ls -la</code>
+                    <p>Mostra todos os arquivos e pastas do diretório atual, incluindo ocultos, com detalhes.</p>
                 </div>
-                <div class="command-item">
-                    <h3>Mudar de diretório</h3>
-                    <code>cd [diretório]</code>
-                    <p>Muda o diretório atual. "cd .." volta um nível, "cd ~" vai para o diretório home.</p>
+                <div class="command-item fade-in delay-1">
+                    <h3>Mudar diretório</h3>
+                    <code>cd /caminho/para/pasta</code>
+                    <p>Altera o diretório atual para o especificado.</p>
                 </div>
-                <div class="command-item">
-                    <h3>Criar diretório</h3>
-                    <code>mkdir [opções] [nome-do-diretório]</code>
-                    <p>Cria um novo diretório. Opção -p cria diretórios pais se não existirem.</p>
-                </div>
-                <div class="command-item">
-                    <h3>Copiar arquivos</h3>
-                    <code>cp [opções] [origem] [destino]</code>
-                    <p>Copia arquivos ou diretórios. Opção -r copia diretórios recursivamente.</p>
-                </div>
-                <div class="command-item">
-                    <h3>Mover/Renomear arquivos</h3>
-                    <code>mv [opções] [origem] [destino]</code>
-                    <p>Move ou renomeia arquivos e diretórios.</p>
-                </div>
-                <div class="command-item">
-                    <h3>Remover arquivos</h3>
-                    <code>rm [opções] [arquivo]</code>
-                    <p>Remove arquivos. Opção -r remove diretórios e seu conteúdo. CUIDADO: este comando é permanente.</p>
-                </div>
-                <div class="command-item">
-                    <h3>Visualizar processos</h3>
-                    <code>ps [opções]</code>
-                    <p>Mostra os processos em execução. Opção aux mostra todos os processos do usuário.</p>
-                </div>
-                <div class="command-item">
-                    <h3>Gerenciador de pacotes (Debian/Ubuntu)</h3>
-                    <code>apt [comando] [pacote]</code>
-                    <p>Gerenciador de pacotes para distribuições baseadas em Debian. Comandos comuns: install, remove, update, upgrade.</p>
+                <div class="command-item fade-in delay-2">
+                    <h3>Atualizar sistema</h3>
+                    <code>sudo apt update && sudo apt upgrade</code>
+                    <p>Atualiza os pacotes do sistema em distribuições baseadas em Debian.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
+    <!-- Newsletter / Formspree -->
     <section class="newsletter" id="contact">
         <div class="container">
-            <h2 class="fade-in">Assine nossa Newsletter</h2>
-            <p class="fade-in delay-1">Receba as últimas notícias, tutoriais e dicas sobre Linux diretamente no seu e-mail.</p>
-            <form class="newsletter-form fade-in delay-2">
-                <input type="email" placeholder="Seu melhor e-mail" required>
-                <button type="submit">Assinar</button>
+            <h2 class="fade-in">Entre em Contato</h2>
+            <p class="fade-in delay-1">Envie sua mensagem ou dúvidas sobre Linux. Responderemos o mais rápido possível!</p>
+            <form class="newsletter-form fade-in delay-2" action="https://formspree.io/f/myzpqnez" method="POST">
+                <input type="email" name="email" placeholder="Seu e-mail" required>
+                <textarea name="message" placeholder="Sua mensagem" rows="5"></textarea>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     </section>
@@ -699,17 +667,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>LinuxFlow</h3>
-                    <p>Seu guia completo para dominar o sistema operacional Linux.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
-                        <a href="#" aria-label="Facebook"><span>📘</span></a>
-                        <a href="#" aria-label="GitHub"><span>🐙</span></a>
-                        <a href="#" aria-label="YouTube"><span>📺</span></a>
-                    </div>
+                    <h3>Sobre LinuxFlow</h3>
+                    <p>LinuxFlow é um portal dedicado a trazer notícias, tutoriais e dicas sobre Linux, do básico ao avançado.</p>
                 </div>
                 <div class="footer-column">
-                    <h3>Links Rápidos</h3>
+                    <h3>Links Úteis</h3>
                     <ul>
                         <li><a href="#home">Início</a></li>
                         <li><a href="#features">Recursos</a></li>
@@ -719,118 +681,27 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Recursos</h3>
-                    <ul>
-                        <li><a href="#">Tutoriais</a></li>
-                        <li><a href="#">Fórum</a></li>
-                        <li><a href="#">Documentação</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Downloads</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contato</h3>
-                    <ul>
-                        <li>Email: contato@linuxflow.com</li>
-                        <li>Telefone: (00) 1234-5678</li>
-                        <li>Endereço: Rua do Linux, 123</li>
-                    </ul>
+                    <h3>Siga-nos</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank">🐦</a>
+                        <a href="#" target="_blank">📘</a>
+                        <a href="#" target="_blank">📸</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 LinuxFlow. Todos os direitos reservados.</p>
+                &copy; 2025 LinuxFlow. Todos os direitos reservados.
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu Mobile
+        // Menu móvel
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
 
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-        });
-
-        // Fechar menu ao clicar em um link
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                }
-            });
-        });
-
-        // Scroll suave para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Filtro de comandos
-        const commandSearch = document.getElementById('commandSearch');
-        const commandItems = document.querySelectorAll('.command-item');
-
-        commandSearch.addEventListener('input', () => {
-            const searchTerm = commandSearch.value.toLowerCase();
-            
-            commandItems.forEach(item => {
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                const description = item.querySelector('p').textContent.toLowerCase();
-                const code = item.querySelector('code').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm) || code.includes(searchTerm)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-
-        // Animação de scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const checkScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Verificar ao carregar
-        window.addEventListener('load', checkScroll);
-        // Verificar ao rolar
-        window.addEventListener('scroll', checkScroll);
-
-        // Formulário de newsletter
-        const newsletterForm = document.querySelector('.newsletter-form');
-        
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = newsletterForm.querySelector('input');
-            const email = emailInput.value;
-            
-            if (email) {
-                alert(`Obrigado por assinar nossa newsletter! Um e-mail de confirmação foi enviado para ${email}`);
-                emailInput.value = '';
-            }
         });
     </script>
 </body>
