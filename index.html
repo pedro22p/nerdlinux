@@ -1,108 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdLinux</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Roboto', sans-serif; background:#f4f4f9; color:#333; line-height:1.6; }
-        a { text-decoration:none; color:inherit; }
-        ul { list-style:none; padding:0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NerdLinux</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Roboto', sans-serif; background:#f4f4f9; color:#333; line-height:1.6; }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; padding:0; }
 
-        header { background:#1b1b2f; color:#fff; padding:20px 0; position: sticky; top:0; z-index:1000; }
-        header h1 { text-align:center; font-size:2.5rem; color:#00d1b2; margin-bottom:10px; }
-        nav { text-align:center; }
-        nav a { margin:0 15px; font-weight:500; padding:8px 12px; transition:all 0.3s; border-radius:4px; }
-        nav a:hover { background:#00d1b2; color:#fff; }
+header { background:#1b1b2f; color:#fff; padding:20px 0; position: sticky; top:0; z-index:1000; }
+header h1 { text-align:center; font-size:2.5rem; color:#00d1b2; margin-bottom:10px; }
+nav { text-align:center; }
+nav a { margin:0 15px; font-weight:500; padding:8px 12px; transition:all 0.3s; border-radius:4px; }
+nav a:hover { background:#00d1b2; color:#fff; }
 
-        section { max-width:1000px; margin:50px auto; padding:0 20px; }
-        h2 { font-size:2rem; color:#1b1b2f; margin-bottom:20px; position:relative; display:inline-block; }
-        h2::after { content:""; display:block; height:3px; background:#00d1b2; width:50%; margin-top:5px; border-radius:2px; }
+section { max-width:1000px; margin:50px auto; padding:0 20px; }
+h2 { font-size:2rem; color:#1b1b2f; margin-bottom:20px; position:relative; display:inline-block; }
+h2::after { content:""; display:block; height:3px; background:#00d1b2; width:50%; margin-top:5px; border-radius:2px; }
 
-        ul li { background:#fff; margin-bottom:15px; padding:15px 20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
-        ul li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+ul li { background:#fff; margin-bottom:15px; padding:15px 20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+ul li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
 
-        footer { text-align:center; padding:25px 0; background:#1b1b2f; color:#bbb; margin-top:50px; }
+.collapsible {
+  background-color:#00d1b2;
+  color:#fff;
+  cursor:pointer;
+  padding:15px 20px;
+  width:100%;
+  border:none;
+  text-align:left;
+  outline:none;
+  font-size:1.1rem;
+  border-radius:8px;
+  margin-bottom:10px;
+  transition: background 0.3s;
+}
+.collapsible:hover { background-color:#00b392; }
 
-        /* Responsividade */
-        @media(max-width:768px){ header h1{ font-size:2rem; } nav a{ display:block; margin:8px 0; } }
-    </style>
+.content {
+  padding:0 20px;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.3s ease-out;
+  background:#f0f0f0;
+  border-radius:0 0 8px 8px;
+  margin-bottom:15px;
+}
+
+footer { text-align:center; padding:25px 0; background:#1b1b2f; color:#bbb; margin-top:50px; }
+
+@media(max-width:768px){
+  header h1{ font-size:2rem; }
+  nav a{ display:block; margin:8px 0; }
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>NerdLinux</h1>
-        <nav>
-            <a href="#distribuicoes">Distribuições</a>
-            <a href="#comandos">Comandos</a>
-            <a href="#softwares">Softwares</a>
-            <a href="#dicas">Dicas</a>
-            <a href="#noticias">Notícias</a>
-        </nav>
-    </header>
+<header>
+<h1>NerdLinux</h1>
+<nav>
+  <a href="#distribuicoes">Distribuições</a>
+  <a href="#comandos">Comandos</a>
+  <a href="#softwares">Softwares</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#noticias">Notícias</a>
+</nav>
+</header>
 
-    <main>
-        <section id="distribuicoes">
-            <h2>Distribuições Populares</h2>
-            <ul>
-                <li>Ubuntu – Ideal para iniciantes, grande comunidade e suporte.</li>
-                <li>Debian – Estável e confiável, excelente para servidores.</li>
-                <li>Fedora – Sempre com tecnologias recentes.</li>
-                <li>Arch Linux – Minimalista, perfeito para quem quer customizar tudo.</li>
-                <li>Linux Mint – Interface amigável, ótimo para quem vem do Windows.</li>
-            </ul>
-        </section>
+<main>
+<section id="distribuicoes">
+<h2>Distribuições Populares</h2>
+<ul>
+  <li>Ubuntu – Ideal para iniciantes, grande comunidade e suporte.</li>
+  <li>Debian – Estável e confiável, excelente para servidores.</li>
+  <li>Fedora – Sempre com tecnologias recentes.</li>
+  <li>Arch Linux – Minimalista, perfeito para quem quer customizar tudo.</li>
+  <li>Linux Mint – Interface amigável, ótimo para quem vem do Windows.</li>
+</ul>
+</section>
 
-        <section id="comandos">
-            <h2>Comandos mais usados</h2>
-            <ul>
-                <li><strong>ls</strong> – Lista arquivos e diretórios.</li>
-                <li><strong>cd</strong> – Navega entre diretórios.</li>
-                <li><strong>sudo</strong> – Executa comandos com privilégios de administrador.</li>
-                <li><strong>apt / yum / pacman</strong> – Gerenciadores de pacotes.</li>
-                <li><strong>chmod / chown</strong> – Gerencia permissões de arquivos.</li>
-            </ul>
-        </section>
+<section id="comandos">
+<h2>Comandos mais usados</h2>
+<ul>
+  <li><strong>ls</strong> – Lista arquivos e diretórios.</li>
+  <li><strong>cd</strong> – Navega entre diretórios.</li>
+  <li><strong>sudo</strong> – Executa comandos com privilégios de administrador.</li>
+  <li><strong>apt / yum / pacman</strong> – Gerenciadores de pacotes.</li>
+  <li><strong>chmod / chown</strong> – Gerencia permissões de arquivos.</li>
+</ul>
+</section>
 
-        <section id="softwares">
-            <h2>Softwares Essenciais</h2>
-            <ul>
-                <li>GIMP – Editor de imagens completo e gratuito.</li>
-                <li>VS Code – Editor de código poderoso e personalizável.</li>
-                <li>LibreOffice – Pacote de escritório completo.</li>
-                <li>Firefox / Chromium – Navegadores modernos e seguros.</li>
-                <li>VLC – Reprodutor multimídia universal.</li>
-            </ul>
-        </section>
+<section id="softwares">
+<h2>Softwares Essenciais</h2>
+<ul>
+  <li>GIMP – Editor de imagens completo e gratuito.</li>
+  <li>VS Code – Editor de código poderoso e personalizável.</li>
+  <li>LibreOffice – Pacote de escritório completo.</li>
+  <li>Firefox / Chromium – Navegadores modernos e seguros.</li>
+  <li>VLC – Reprodutor multimídia universal.</li>
+</ul>
+</section>
 
-        <section id="dicas">
-            <h2>Dicas e Tutoriais</h2>
-            <ul>
-                <li>Instalação de programas via terminal de forma rápida.</li>
-                <li>Customização do desktop para produtividade máxima.</li>
-                <li>Configuração de firewall e permissões de segurança.</li>
-                <li>Automação de tarefas usando scripts Bash.</li>
-                <li>Virtualização com Docker e VirtualBox para testes e desenvolvimento.</li>
-            </ul>
-        </section>
+<section id="dicas">
+<h2>Dicas e Tutoriais</h2>
 
-        <section id="noticias">
-            <h2>Notícias do Mundo Linux</h2>
-            <ul>
-                <li><strong>Ubuntu 26.04 Lançado:</strong> Nova versão com melhorias de desempenho e interface.</li>
-                <li><strong>Linux Kernel 6.5:</strong> Suporte melhorado para hardware e novos drivers.</li>
-                <li><strong>Fedora Workstation 39:</strong> Atualizações de pacotes e novas funcionalidades de segurança.</li>
-                <li><strong>Popularidade do Arch Linux cresce:</strong> Mais usuários migrando para ambientes minimalistas.</li>
-                <li><strong>Open Source em alta:</strong> Grandes empresas adotam Linux e software livre em servidores e desktops.</li>
-            </ul>
-        </section>
-    </main>
+<button class="collapsible">Instalação de programas via terminal</button>
+<div class="content">
+<p>Use comandos como <strong>sudo apt install</strong> no Ubuntu/Debian ou <strong>sudo pacman -S</strong> no Arch para instalar programas rapidamente.</p>
+</div>
 
-    <footer>
-        &copy; 2025 NerdLinux | Todos os direitos reservados
-    </footer>
+<button class="collapsible">Customização do desktop</button>
+<div class="content">
+<p>Explore temas, ícones e extensões para melhorar sua produtividade e aparência do ambiente de trabalho.</p>
+</div>
+
+<button class="collapsible">Configuração de firewall</button>
+<div class="content">
+<p>Use <strong>ufw</strong> para gerenciar regras de firewall simples e manter o sistema seguro.</p>
+</div>
+
+<button class="collapsible">Automação com scripts Bash</button>
+<div class="content">
+<p>Crie scripts para tarefas repetitivas, como backups, atualizações automáticas e limpeza de arquivos temporários.</p>
+</div>
+
+<button class="collapsible">Virtualização com Docker e VirtualBox</button>
+<div class="content">
+<p>Use Docker para containers e VirtualBox para máquinas virtuais, permitindo testar sistemas e aplicativos isoladamente.</p>
+</div>
+</section>
+
+<section id="noticias">
+<h2>Notícias do Mundo Linux</h2>
+<ul>
+  <li><strong>Ubuntu 26.04 Lançado:</strong> Nova versão com melhorias de desempenho e interface.</li>
+  <li><strong>Linux Kernel 6.5:</strong> Suporte melhorado para hardware e novos drivers.</li>
+  <li><strong>Fedora Workstation 39:</strong> Atualizações de pacotes e novas funcionalidades de segurança.</li>
+  <li><strong>Popularidade do Arch Linux cresce:</strong> Mais usuários migrando para ambientes minimalistas.</li>
+  <li><strong>Open Source em alta:</strong> Grandes empresas adotam Linux e software livre em servidores e desktops.</li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+&copy; 2025 NerdLinux | Todos os direitos reservados
+</footer>
+
+<script>
+// Script para collapsible
+const coll = document.getElementsByClassName("collapsible");
+for (let i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    const content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 
 </body>
 </html>
