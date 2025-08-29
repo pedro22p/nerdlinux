@@ -1,535 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdLinux - Tudo sobre Linux e Tecnologia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            color: #e2e8f0;
-        }
-        
-        .firacode {
-            font-family: 'Fira Code', monospace;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-        }
-        
-        .card-glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-        }
-        
-        .sidebar-gradient {
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .terminal-window {
-            background: #1a1b26;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .terminal-header {
-            background: #414868;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-        
-        .terminal-body {
-            font-family: 'Fira Code', monospace;
-        }
-        
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid #7dcfff;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #7dcfff; }
-        }
-        
-        .glow-hover:hover {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-            transform: translateY(-2px);
-            transition: all 0.3s ease;
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NerdLinux - Tudo sobre Linux</title>
+  <meta name="description" content="Tutoriais, notícias e dicas de Linux e tecnologia">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0f172a; color: #e2e8f0; }
+    .terminal { background: #1e293b; border-radius: 10px; padding: 20px; font-family: monospace; position: relative; }
+    .typing { border-right: 2px solid #00ff88; white-space: nowrap; overflow: hidden; }
+    @keyframes blink { 50% { border-color: transparent; } }
+    .typing { animation: blink 0.7s infinite; }
+  </style>
 </head>
-<body class="min-h-screen">
-    <!-- Header -->
-    <header class="fixed w-full bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-700">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-terminal text-white text-xl"></i>
-                    </div>
-                    <h1 class="firacode text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                        NerdLinux
-                    </h1>
-                </div>
-                
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-slate-300 hover:text-white transition-colors">Home</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition-colors">Tutoriais</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition-colors">Distros</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition-colors">Comandos</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition-colors">Notícias</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-white transition-colors">
-                        <i class="fa-solid fa-user mr-2"></i>Login
-                    </button>
-                    <button class="md:hidden text-slate-300">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+<body class="flex flex-col min-h-screen">
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="mb-6">
-                        <span class="bg-indigo-600/20 text-indigo-300 px-4 py-2 rounded-full text-sm font-medium">
-                            <i class="fa-brands fa-linux mr-2"></i>Comunidade Linux
-                        </span>
-                    </div>
-                    
-                    <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                        Domine o Linux como um
-                        <span class="typewriter bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">verdadeiro nerd</span>
-                    </h2>
-                    
-                    <p class="text-xl text-slate-300 mb-8 leading-relaxed">
-                        Tutoriais, dicas e notícias sobre Linux, programação e tecnologia. 
-                        Aprenda com a comunidade e leve suas habilidades para o próximo nível.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-4">
-                        <button class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 px-8 py-4 rounded-lg text-white font-semibold transition-all transform hover:scale-105">
-                            <i class="fa-solid fa-rocket mr-2"></i>Começar Agora
-                        </button>
-                        <button class="border border-slate-600 hover:border-indigo-500 px-8 py-4 rounded-lg text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-book-open mr-2"></i>Ver Tutoriais
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="terminal-window">
-                        <div class="terminal-header px-4 py-3 flex items-center">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <div class="flex-1 text-center text-slate-300 text-sm">
-                                nerd@linux:~$
-                            </div>
-                        </div>
-                        <div class="terminal-body p-6 text-green-400">
-                            <div class="mb-4">
-                                <span class="text-blue-400">nerd@linux</span>:<span class="text-cyan-400">~</span>$ cat bemvindo.txt
-                            </div>
-                            <div class="text-white mb-4">
-                                🐧 Bem-vindo ao NerdLinux!<br>
-                                📚 Tutoriais e dicas diárias<br>
-                                💻 Comandos essenciais<br>
-                                🚀 Notícias de tecnologia<br>
-                                🎯 Comunidade ativa
-                            </div>
-                            <div>
-                                <span class="text-blue-400">nerd@linux</span>:<span class="text-cyan-400">~</span>$ <span class="cursor-blink">_</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full opacity-20 animate-pulse"></div>
-                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Header -->
+<header class="bg-slate-900/90 fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-400">NerdLinux</h1>
+    <nav class="hidden md:flex space-x-6 text-slate-300">
+      <a href="#home" class="hover:text-green-400">Home</a>
+      <a href="#tutorials" class="hover:text-green-400">Tutoriais</a>
+      <a href="#distros" class="hover:text-green-400">Distros</a>
+      <a href="#commands" class="hover:text-green-400">Comandos</a>
+      <a href="#news" class="hover:text-green-400">Notícias</a>
+    </nav>
+    <button id="menu-btn" class="md:hidden text-slate-300"><i class="fa-solid fa-bars text-2xl"></i></button>
+  </div>
+  <div id="mobile-menu" class="hidden flex-col bg-slate-900 border-t border-slate-700 md:hidden">
+    <a href="#home" class="px-4 py-3 text-slate-300 hover:text-green-400">Home</a>
+    <a href="#tutorials" class="px-4 py-3 text-slate-300 hover:text-green-400">Tutoriais</a>
+    <a href="#distros" class="px-4 py-3 text-slate-300 hover:text-green-400">Distros</a>
+    <a href="#commands" class="px-4 py-3 text-slate-300 hover:text-green-400">Comandos</a>
+    <a href="#news" class="px-4 py-3 text-slate-300 hover:text-green-400">Notícias</a>
+  </div>
+</header>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">O Que Você Encontra Aqui</h2>
-                <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-                    Recursos e conteúdo para desenvolvedores, sysadmins e entusiastas de Linux
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="w-16 h-16 bg-indigo-600 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-terminal text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Comandos Linux</h3>
-                    <p class="text-slate-300">
-                        Descubra comandos essenciais e avançados para dominar seu terminal.
-                    </p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-gears text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Configurações</h3>
-                    <p class="text-slate-300">
-                        Guias detalhados para configurar seu ambiente de desenvolvimento.
-                    </p>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="w-16 h-16 bg-pink-600 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-newspaper text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Notícias Tech</h3>
-                    <p class="text-slate-300">
-                        Fique por dentro das últimas novidades do mundo da tecnologia.
-                    </p>
-                </div>
-                
-                <!-- Card 4 -->
-                <div class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="w-16 h-16 bg-cyan-600 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-people-group text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Comunidade</h3>
-                    <p class="text-slate-300">
-                        Conecte-se com outros entusiastas e compartilhe conhecimento.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Hero -->
+<section id="home" class="flex flex-col items-center justify-center text-center pt-28 pb-16 px-6">
+  <h2 class="text-4xl md:text-6xl font-bold text-green-400 mb-4">Bem-vindo ao NerdLinux</h2>
+  <p class="text-lg md:text-xl text-slate-300 mb-6">Tutoriais, distros, comandos e notícias sobre Linux.</p>
+  <a href="#tutorials" class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg text-slate-900 font-bold">Explorar</a>
+</section>
 
-    <!-- Articles Section -->
-    <section class="py-16 px-4 bg-slate-800/50">
-        <div class="container mx-auto">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-4xl font-bold mb-4">Artigos em Destaque</h2>
-                    <p class="text-xl text-slate-300">
-                        Conteúdo selecionado para você aprender e se inspirar
-                    </p>
-                </div>
-                <a href="#" class="text-indigo-400 hover:text-indigo-300 hidden md:block">
-                    Ver todos <i class="fa-solid fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <article class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/81a390ae-37d9-4091-9305-d12db2b25fd3.png" alt="Tela de terminal Linux com comandos coloridos e interface moderna mostrando linhas de código e prompts" class="w-full h-48 object-cover rounded-lg" />
-                    </div>
-                    <span class="bg-indigo-600/20 text-indigo-300 px-3 py-1 rounded-full text-xs font-medium mb-3">
-                        Terminal
-                    </span>
-                    <h3 class="text-xl font-bold mb-3">20 Comandos Essenciais do Linux</h3>
-                    <p class="text-slate-300 mb-4">
-                        Domine os comandos fundamentais que todo usuário Linux precisa conhecer.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-slate-400 text-sm">5 min leitura</span>
-                        <a href="#" class="text-indigo-400 hover:text-indigo-300 text-sm">
-                            Ler mais <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </article>
-                
-                <!-- Article 2 -->
-                <article class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/836c21de-3cd8-4be0-be09-e2a6ff289011.png" alt="Comparação visual de diferentes distribuições Linux mostrando interfaces gráficas e logos do Ubuntu, Fedora e Arch Linux" class="w-full h-48 object-cover rounded-lg" />
-                    </div>
-                    <span class="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-xs font-medium mb-3">
-                        Distros
-                    </span>
-                    <h3 class="text-xl font-bold mb-3">Melhores Distros para 2024</h3>
-                    <p class="text-slate-300 mb-4">
-                        Análise das distribuições Linux mais promissoras para o próximo ano.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-slate-400 text-sm">8 min leitura</span>
-                        <a href="#" class="text-indigo-400 hover:text-indigo-300 text-sm">
-                            Ler mais <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </article>
-                
-                <!-- Article 3 -->
-                <article class="card-glass p-6 rounded-xl hover:glow-hover transition-all">
-                    <div class="mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/656f21da-80d8-4af7-bb0d-5bfe1a15104a.png" alt="Configuração avançada do Bash shell mostrando arquivo .bashrc com syntax highlighting e personalizações" class="w-full h-48 object-cover rounded-lg" />
-                    </div>
-                    <span class="bg-pink-600/20 text-pink-300 px-3 py-1 rounded-full text-xs font-medium mb-3">
-                        Bash
-                    </span>
-                    <h3 class="text-xl font-bold mb-3">Personalize Seu Shell</h3>
-                    <p class="text-slate-300 mb-4">
-                        Dicas avançadas para customizar e otimizar sua experiência no terminal.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-slate-400 text-sm">6 min leitura</span>
-                        <a href="#" class="text-indigo-400 hover:text-indigo-300 text-sm">
-                            Ler mais <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-            
-            <div class="text-center mt-12 md:hidden">
-                <a href="#" class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg text-white font-semibold transition-colors inline-block">
-                    Ver Todos os Artigos
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- Terminal -->
+<section class="max-w-4xl mx-auto px-6 pb-16">
+  <div class="terminal">
+    <div class="text-green-400">pedro@nerdlinux:~$ <span id="typed" class="typing"></span></div>
+  </div>
+</section>
 
-    <!-- Community Section -->
-    <section class="py-20 px-4">
-        <div class="container mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Junte-se à Comunidade</h2>
-                    <p class="text-xl text-slate-300 mb-8 leading-relaxed">
-                        Conecte-se com milhares de entusiastas de Linux, compartilhe conhecimento, 
-                        faça perguntas e aprenda com experts da comunidade.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa-solid fa-check text-white"></i>
-                            </div>
-                            <span>Tutoriais passo a passo</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa-solid fa-check text-white"></i>
-                            </div>
-                            <span>Fórum de discussão ativo</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa-solid fa-check text-white"></i>
-                            </div>
-                            <span>Eventos e meetups online</span>
-                        </div>
-                    </div>
-                    
-                    <button class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-8 py-4 rounded-lg text-white font-semibold mt-8 transition-all transform hover:scale-105">
-                        <i class="fa-solid fa-people-group mr-2"></i>Participar da Comunidade
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-4">
-                        <div class="card-glass p-4 rounded-lg text-center">
-                            <div class="text-3xl font-bold text-indigo-400 mb-2">5K+</div>
-                            <div class="text-slate-300">Membros</div>
-                        </div>
-                        <div class="card-glass p-4 rounded-lg text-center">
-                            <div class="text-3xl font-bold text-purple-400 mb-2">1.2K+</div>
-                            <div class="text-slate-300">Tutoriais</div>
-                        </div>
-                    </div>
-                    <div class="space-y-4 pt-8">
-                        <div class="card-glass p-4 rounded-lg text-center">
-                            <div class="text-3xl font-bold text-pink-400 mb-2">15K+</div>
-                            <div class="text-slate-300">Posts</div>
-                        </div>
-                        <div class="card-glass p-4 rounded-lg text-center">
-                            <div class="text-3xl font-bold text-cyan-400 mb-2">24/7</div>
-                            <div class="text-slate-300">Suporte</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Conteúdo -->
+<section id="tutorials" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6 pb-16">
+  <div class="bg-slate-800 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+    <h3 class="text-green-400 text-xl font-bold mb-2">🖥️ Tutoriais</h3>
+    <p class="text-slate-300">Aprenda comandos e truques de Linux passo a passo.</p>
+  </div>
+  <div class="bg-slate-800 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+    <h3 class="text-green-400 text-xl font-bold mb-2">🐧 Distros</h3>
+    <p class="text-slate-300">Conheça distribuições e descubra qual é a ideal para você.</p>
+  </div>
+  <div class="bg-slate-800 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+    <h3 class="text-green-400 text-xl font-bold mb-2">⚡ Comandos</h3>
+    <p class="text-slate-300">Domine o terminal e turbine sua produtividade.</p>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-700 py-12 px-4">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fa-solid fa-terminal text-white text-xl"></i>
-                        </div>
-                        <h3 class="firacode text-xl font-bold text-white">NerdLinux</h3>
-                    </div>
-                    <p class="text-slate-400 mb-4">
-                        Sua fonte confiável para tudo sobre Linux, programação e tecnologia.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-slate-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-github text-xl"></i>
-                        </a>
-                        <a href="#" class="text-slate-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-discord text-xl"></i>
-                        </a>
-                        <a href="#" class="text-slate-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-twitter text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Conteúdo</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Tutoriais</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Comandos</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Distribuições</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Notícias</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Comunidade</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Fórum</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Eventos</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Contribuir</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-                    <p class="text-slate-400 mb-4">
-                        Receba as melhores dicas e notícias diretamente no seu email.
-                    </p>
-                    <div class="flex">
-                        <input type="email" placeholder="Seu email" class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-l-lg text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 flex-1">
-                        <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-lg text-white transition-colors">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-slate-800 pt-8 text-center">
-                <p class="text-slate-500">
-                    © 2024 NerdLinux. Todos os direitos reservados. Feito com ❤️ para a comunidade Linux.
-                </p>
-            </div>
-        </div>
-    </footer>
+<!-- Footer -->
+<footer class="bg-slate-900 py-6 text-center mt-auto">
+  <p class="text-slate-400">&copy; 2025 NerdLinux - Feito com 💚 e Open Source</p>
+  <div class="flex justify-center space-x-4 mt-3">
+    <a href="https://github.com/pedro22p" target="_blank"><i class="fab fa-github text-2xl hover:text-green-400"></i></a>
+    <a href="#"><i class="fab fa-discord text-2xl hover:text-green-400"></i></a>
+    <a href="#"><i class="fab fa-twitter text-2xl hover:text-green-400"></i></a>
+  </div>
+</footer>
 
-    <script>
-        // Efeito de digitação para o terminal
-        document.addEventListener('DOMContentLoaded', function() {
-            const commands = [
-                'sudo apt-get update && sudo apt-get upgrade',
-                'ls -la',
-                'cd ~/projetos',
-                'git status',
-                'python3 script.py',
-                'docker ps -a',
-                'systemctl status nginx',
-                'journalctl -f',
-                'htop',
-                'vim ~/.bashrc'
-            ];
-            
-            let currentCommand = 0;
-            const cursor = document.querySelector('.cursor-blink');
-            
-            function typeNextCommand() {
-                if (cursor) {
-                    cursor.parentElement.textContent = 
-                        cursor.parentElement.textContent.replace('_', '') + 
-                        commands[currentCommand] + '_';
-                    
-                    currentCommand = (currentCommand + 1) % commands.length;
-                    
-                    setTimeout(() => {
-                        cursor.parentElement.textContent = 
-                            cursor.parentElement.textContent.replace(commands[currentCommand - 1] + '_', '_');
-                    }, 2000);
-                    
-                    setTimeout(typeNextCommand, 4000);
-                }
-            }
-            
-            if (cursor) {
-                setTimeout(typeNextCommand, 2000);
-            }
-            
-            // Animação de scroll suave
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+<script>
+  // Menu mobile
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  // Efeito de digitação terminal
+  const mensagens = [
+    "echo 'Bem-vindo ao NerdLinux!'",
+    "ls -la distros/",
+    "sudo apt install conhecimento",
+    "cat novidades.txt"
+  ];
+  let i=0, j=0, atual="", isDeleting=false;
+
+  function digitar() {
+    const terminal = document.getElementById("typed");
+    if(i < mensagens.length){
+      if(!isDeleting && j<=mensagens[i].length){
+        atual = mensagens[i].substring(0,j++);
+        terminal.textContent = atual;
+      } else if(isDeleting && j>0){
+        atual = mensagens[i].substring(0,j--);
+        terminal.textContent = atual;
+      }
+      if(!isDeleting && j===mensagens[i].length){
+        isDeleting=true;
+        setTimeout(digitar,1500);
+        return;
+      } else if(isDeleting && j===0){
+        isDeleting=false;
+        i++;
+      }
+      setTimeout(digitar,isDeleting?50:100);
+    } else { i=0; digitar(); }
+  }
+  digitar();
+</script>
+
 </body>
 </html>
-
