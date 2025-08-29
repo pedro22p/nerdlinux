@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body { font-family: 'Inter', sans-serif; }
+
+/* Terminal neon typing */
+.typing::after {
+  content: "_";
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Glow cards */
+.card-glow {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(255,0,255,0.5);
+}
+
+/* Neon text pulse */
+.animate-text {
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+@keyframes gradientShift {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
