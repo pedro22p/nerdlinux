@@ -13,7 +13,30 @@ const commands = [
   'git status',
   'python3 script.py',
   'htop',
-  'systemctl status nginx'
+  'systemctl status nginx',
+  'df -h',
+  'du -sh *',
+  'free -m',
+  'top',
+  'ps aux | grep python',
+  'chmod +x script.sh',
+  'chown user:user file.txt',
+  'ping -c 4 google.com',
+  'wget https://example.com/file.zip',
+  'curl -I https://example.com',
+  'tar -xzvf arquivo.tar.gz',
+  'nano arquivo.txt',
+  'vim arquivo.txt',
+  'find . -name "*.py"',
+  'locate arquivo.txt',
+  'service apache2 restart',
+  'journalctl -xe',
+  'netstat -tulnp',
+  'ifconfig',
+  'ip a',
+  'scp arquivo.txt user@host:/path',
+  'rsync -avz pasta/ user@host:/path',
+  'history | tail -20'
 ];
 let i = 0;
 const typedEl = document.getElementById('typed');
