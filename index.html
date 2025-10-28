@@ -1,60 +1,914 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NerdLinux - Neon Full</title>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #0a0a0a; /* fundo escuro */
-        margin: 0;
-    }
-    .logo-title {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .logo-title img {
-        width: 120px; /* tamanho do logo */
-        height: auto;
-        border-radius: 16px; /* cantos arredondados (ajuste ou remova, se preferir) */
-        background: transparent;
-        animation: glow 2s infinite alternate;
-    }
-    .logo-title span {
-        font-size: 2.5rem;
-        color: #0ff;
-        text-shadow:
-            0 0 5px #0ff,
-            0 0 10px #0ff,
-            0 0 20px #0ff,
-            0 0 40px #0ff;
-        animation: neonGlow 1.5s infinite alternate;
-    }
-
-    @keyframes neonGlow {
-        0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
-        50% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff; }
-        100% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
-    }
-
-    @keyframes glow {
-        0% { filter: drop-shadow(0 0 5px #0ff); }
-        50% { filter: drop-shadow(0 0 15px #0ff); }
-        100% { filter: drop-shadow(0 0 5px #0ff); }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux TOPZERA - O Sistema Operacional Livre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Importando fontes do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #00b4d8;
+            --secondary: #e63946;
+            --dark: #0a0a0a;
+            --dark-blue: #1a1a2e;
+            --darker-blue: #16213e;
+            --light: #e0e0e0;
+            --gray: #8a8a8a;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--darker-blue) 100%);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 180, 216, 0.7);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            margin-left: 5px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        
+        .social-header {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-header a {
+            color: var(--light);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-header a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Seção Hero */
+        .hero {
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Seções de conteúdo */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Distribuições */
+        .distros {
+            background-color: var(--dark-blue);
+        }
+        
+        .distro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .distro-card {
+            background-color: var(--darker-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .distro-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .distro-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .distro-content {
+            padding: 20px;
+        }
+        
+        .distro-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Comandos */
+        .commands-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .command-item {
+            background-color: var(--darker-blue);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .command-header {
+            background-color: var(--dark-blue);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .command-header:hover {
+            background-color: rgba(0, 180, 216, 0.1);
+        }
+        
+        .command-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .command-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .command-body {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .command-body.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .command-description {
+            margin-bottom: 15px;
+        }
+        
+        .command-example {
+            background-color: var(--dark);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary);
+            border-left: 3px solid var(--secondary);
+            overflow-x: auto;
+        }
+        
+        /* Por que Linux */
+        .why-linux {
+            background-color: var(--dark-blue);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--darker-blue);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--dark-blue);
+            padding: 60px 0 30px;
+            border-top: 3px solid var(--primary);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+        }
+        
+        .footer-about {
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            color: var(--primary);
+            width: 20px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .social-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--darker-blue);
+            color: var(--light);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-footer a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="logo-title">
-        <!-- Substitua "tux_logo.png" pelo nome real do arquivo da imagem no repositório -->
-        <img src="tux_logo.png" alt="Logo NerdLinux - Tux" width="120" height="120">
-        <span>NerdLinux - Neon Full</span>
-    </div>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-linux"></i>Linux<span>TOPZERA</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#distros">Distribuições</a></li>
+                        <li><a href="#commands">Comandos</a></li>
+                        <li><a href="#why">Por que Linux?</a></li>
+                    </ul>
+                </nav>
+                <div class="social-header">
+                    <a href="https://www.youtube.com/@TOPZERADEV" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/topzeradev/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/pedro22p" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Domine o Linux com a TOPZERA</h1>
+            <p>Aprenda a usar o sistema operacional mais poderoso e flexível do mundo com tutoriais e dicas práticas.</p>
+            <div>
+                <a href="#commands" class="btn">Ver Comandos</a>
+                <a href="https://www.youtube.com/@TOPZERADEV" target="_blank" class="btn btn-outline">Canal no YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Linux -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">O que é Linux?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Linux é um sistema operacional de código aberto baseado no Unix. Criado por Linus Torvalds em 1991, o Linux se tornou a base para milhares de sistemas operacionais, servidores, dispositivos embarcados e muito mais.</p>
+                    <p>Diferente de sistemas operacionais proprietários, o Linux é distribuído sob a Licença Pública Geral GNU (GPL), o que significa que os usuários têm a liberdade de executar, estudar, compartilhar e modificar o software.</p>
+                    <p>O Linux é conhecido por sua estabilidade, segurança e flexibilidade, sendo a escolha preferida para servidores, desenvolvedores e entusiastas de tecnologia em todo o mundo.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="#distros" class="btn">Ver Distribuições</a>
+                        <a href="https://github.com/pedro22p" target="_blank" class="btn btn-outline">Meu GitHub</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Terminal Linux">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distribuições -->
+    <section class="distros" id="distros">
+        <div class="container">
+            <h2 class="section-title">Distribuições Populares</h2>
+            <div class="distro-grid">
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Ubuntu</h3>
+                        <p>Uma das distribuições mais populares, conhecida por sua facilidade de uso e grande comunidade de suporte. Ideal para iniciantes.</p>
+                    </div>
+                </div>
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Fedora</h3>
+                        <p>Patrocinada pela Red Hat, o Fedora é conhecido por sua inovação e adoção precoce de novas tecnologias. Estável e atualizado.</p>
+                    </div>
+                </div>
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Arch Linux</h3>
+                        <p>Focada em simplicidade e customização, o Arch segue a filosofia KISS (Keep It Simple, Stupid). Para usuários avançados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comandos Básicos -->
+    <section id="commands">
+        <div class="container">
+            <h2 class="section-title">Comandos Essenciais do Linux</h2>
+            <div class="commands-content">
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">ls - Listar arquivos</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Lista os arquivos e diretórios no diretório atual.</p>
+                        <div class="command-example">$ ls -la</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">cd - Mudar diretório</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Altera o diretório de trabalho atual.</p>
+                        <div class="command-example">$ cd /home/usuario/documentos</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">mkdir - Criar diretório</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Cria um novo diretório.</p>
+                        <div class="command-example">$ mkdir novo_diretorio</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">cp - Copiar arquivos</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Copia arquivos e diretórios.</p>
+                        <div class="command-example">$ cp arquivo_origem arquivo_destino</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">rm - Remover arquivos</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Remove arquivos e diretórios.</p>
+                        <div class="command-example">$ rm arquivo</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">grep - Pesquisar texto</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Pesquisa por padrões em arquivos ou saída de comandos.</p>
+                        <div class="command-example">$ grep "palavra" arquivo.txt</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">chmod - Alterar permissões</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Altera as permissões de arquivos e diretórios.</p>
+                        <div class="command-example">$ chmod 755 script.sh</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">ps - Processos em execução</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Mostra os processos em execução no sistema.</p>
+                        <div class="command-example">$ ps aux</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">tar - Arquivos compactados</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Cria ou extrai arquivos compactados.</p>
+                        <div class="command-example">$ tar -xzf arquivo.tar.gz</div>
+                    </div>
+                </div>
+                
+                <div class="command-item">
+                    <div class="command-header">
+                        <h3 class="command-title">ssh - Conexão remota</h3>
+                        <span class="command-icon">+</span>
+                    </div>
+                    <div class="command-body">
+                        <p class="command-description">Conecta-se a um servidor remoto de forma segura.</p>
+                        <div class="command-example">$ ssh usuario@servidor.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Por que Linux -->
+    <section class="why-linux" id="why">
+        <div class="container">
+            <h2 class="section-title">Por que usar Linux?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Segurança</h3>
+                    <p>Linux é menos vulnerável a vírus e malware, sendo uma escolha segura para qualquer usuário.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Desempenho</h3>
+                    <p>O Linux é conhecido por seu alto desempenho, mesmo em hardware mais antigo ou limitado.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3 class="feature-title">Customização</h3>
+                    <p>Total liberdade para personalizar cada aspecto do sistema de acordo com suas necessidades.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="feature-title">Gratuito</h3>
+                    <p>Linux é de código aberto e gratuito, sem custos de licença ou atualizações pagas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fab fa-linux"></i>Linux<span>TOPZERA</span>
+                    </div>
+                    <p class="footer-about">Aprenda Linux de forma prática e divertida com tutoriais, dicas e muito conteúdo sobre o mundo do código aberto.</p>
+                    <div class="social-footer">
+                        <a href="https://www.youtube.com/@TOPZERADEV" target="_blank" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.instagram.com/topzeradev/" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/pedro22p" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Início</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Sobre o Linux</a></li>
+                        <li><a href="#distros"><i class="fas fa-chevron-right"></i> Distribuições</a></li>
+                        <li><a href="#commands"><i class="fas fa-chevron-right"></i> Comandos</a></li>
+                        <li><a href="#why"><i class="fas fa-chevron-right"></i> Por que Linux?</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Recursos Úteis</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.kernel.org/" target="_blank"><i class="fas fa-external-link-alt"></i> Kernel Linux</a></li>
+                        <li><a href="https://ubuntu.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Ubuntu</a></li>
+                        <li><a href="https://www.gnu.org/" target="_blank"><i class="fas fa-external-link-alt"></i> GNU Project</a></li>
+                        <li><a href="https://www.linuxfoundation.org/" target="_blank"><i class="fas fa-external-link-alt"></i> Linux Foundation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.youtube.com/@TOPZERADEV" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="https://www.instagram.com/topzeradev/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://github.com/pedro22p" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Linux TOPZERA. Todos os direitos reservados. | Desenvolvido por TOPZERA DEV</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para os acordeões de comandos
+        document.querySelectorAll('.command-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const body = header.nextElementSibling;
+                const icon = header.querySelector('.command-icon');
+                
+                // Fecha todos os outros
+                document.querySelectorAll('.command-body').forEach(item => {
+                    if (item !== body) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                document.querySelectorAll('.command-icon').forEach(item => {
+                    if (item !== icon) {
+                        item.textContent = '+';
+                    }
+                });
+                
+                // Abre/fecha o atual
+                body.classList.toggle('active');
+                icon.textContent = body.classList.contains('active') ? '-' : '+';
+            });
+        });
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
