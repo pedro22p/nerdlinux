@@ -6,7 +6,7 @@
 <title>Linux TOPZERA - O Sistema Operacional Livre</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
  --primary:#00b4d8;
@@ -50,9 +50,9 @@ section{padding:60px 0}
 .why-card i{font-size:2.2rem;color:var(--primary);margin-bottom:10px}
 .distros{background-color:var(--dark-blue)}
 .distro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.distro-card{background-color:var(--darker-blue);border-radius:10px;overflow:hidden;transition:transform .3s}
+.distro-card{background-color:var(--darker-blue);border-radius:10px;overflow:hidden;transition:transform .3s;box-shadow:0 5px 15px rgba(0,0,0,0.4)}
 .distro-card:hover{transform:translateY(-8px)}
-.distro-img{height:180px;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#0a0a0a}
+.distro-card img{width:100%;height:auto;display:block}
 .distro-content{padding:15px;text-align:center}
 .distro-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;color:var(--primary)}
 footer{background-color:var(--dark-blue);padding:40px 0 20px;border-top:3px solid var(--primary);text-align:center;color:var(--gray)}
@@ -85,8 +85,6 @@ footer{background-color:var(--dark-blue);padding:40px 0 20px;border-top:3px soli
     <li><a href="#about">Sobre</a></li>
     <li><a href="#why">Por que Linux</a></li>
     <li><a href="#distros">Distribuições</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="#terminal">Terminal</a></li>
    </ul>
   </nav>
   <div class="social-header">
@@ -136,17 +134,34 @@ footer{background-color:var(--dark-blue);padding:40px 0 20px;border-top:3px soli
  <div class="container">
   <h2 class="section-title">Distribuições Populares</h2>
   <div class="distro-grid">
-   <div class="distro-card"><div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Ubuntu_logo.svg');"></div><div class="distro-content"><h3 class="distro-title">Ubuntu</h3><p>Fácil de usar e ideal para iniciantes.</p></div></div>
-   <div class="distro-card"><div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Fedora_logo.svg');"></div><div class="distro-content"><h3 class="distro-title">Fedora</h3><p>Voltada para desenvolvedores.</p></div></div>
-   <div class="distro-card"><div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Debian_logo.svg');"></div><div class="distro-content"><h3 class="distro-title">Debian</h3><p>Base estável e confiável.</p></div></div>
+   <div class="distro-card">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Ubuntu_25.04_Plucky_Puffin_Desktop_English.png/330px-Ubuntu_25.04_Plucky_Puffin_Desktop_English.png" alt="Ubuntu 25.04">
+     <div class="distro-content">
+       <h3 class="distro-title">Ubuntu 25.04</h3>
+       <p>Última versão com ambiente moderno e visual limpo.</p>
+     </div>
+   </div>
+   <div class="distro-card">
+     <img src="https://www.edivaldobrito.com.br/wp-content/uploads/2025/07/fedora-43-traz-atualizacoes-de-ponta-ao-gnu-e-llvm-com-gcc-15-2-e-llvm-21-1.webp" alt="Fedora 43">
+     <div class="distro-content">
+       <h3 class="distro-title">Fedora 43</h3>
+       <p>Distribuição de ponta com as versões mais recentes de pacotes e tecnologia.</p>
+     </div>
+   </div>
+   <div class="distro-card">
+     <img src="https://e-tinet.com/wp-content/uploads/2019/11/debian-10-ambiente-grafico.jpg" alt="Debian 10">
+     <div class="distro-content">
+       <h3 class="distro-title">Debian 10</h3>
+       <p>Base estável e confiável usada por várias outras distribuições.</p>
+     </div>
+   </div>
   </div>
  </div>
 </section>
 
-<footer><p>&copy; 2025 Linux TOPZERA - Feito por Dark1927 🐧</p></footer>
+<footer><p>&copy; 2025 Linux TOPZERA - Feito por Pedro Padilha 🐧</p></footer>
 
 <script>
-// Menu mobile
 const menuBtn=document.getElementById('menu-btn');
 const menu=document.getElementById('menu');
 menuBtn.addEventListener('click',()=>menu.classList.toggle('active'));
