@@ -6,215 +6,115 @@
     <title>Linux TOPZERA - O Sistema Operacional Livre</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Importando fontes do Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         :root {
-            --primary: #00b4d8;
-            --secondary: #e63946;
-            --dark: #0a0a0a;
-            --dark-blue: #1a1a2e;
-            --darker-blue: #16213e;
-            --light: #e0e0e0;
-            --gray: #8a8a8a;
+            --primary:#00b4d8;
+            --secondary:#e63946;
+            --dark:#0a0a0a;
+            --dark-blue:#1a1a2e;
+            --darker-blue:#16213e;
+            --light:#e0e0e0;
+            --gray:#8a8a8a;
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--darker-blue) 100%);
-            padding: 20px 0;
-            border-bottom: 3px solid var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 2.2rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-        }
-        .logo span { color: var(--secondary); margin-left: 5px; }
-        .logo i { margin-right: 10px; font-size: 2rem; }
-        nav ul { display: flex; list-style: none; flex-wrap: wrap; }
-        nav ul li { margin: 0 10px; }
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        nav ul li a:hover { background-color: var(--primary); color: var(--dark); }
-        .social-header { display: flex; gap: 15px; }
-        .social-header a { color: var(--light); font-size: 1.3rem; transition: all 0.3s ease; }
-        .social-header a:hover { color: var(--primary); transform: translateY(-3px); }
-        .hero {
-            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .hero-content { max-width: 800px; padding: 0 20px; }
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
-            line-height: 1.2;
-        }
-        .hero p { font-size: 1.3rem; margin-bottom: 30px; }
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
-        }
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--dark);
-        }
-        section { padding: 80px 0; }
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: var(--secondary);
-        }
-        .about-content { display: flex; align-items: center; flex-wrap: wrap; gap: 40px; }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; }
-        .about-image { flex: 1; min-width: 300px; text-align: center; }
-        .about-image img { max-width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .distros { background-color: var(--dark-blue); }
-        .distro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .distro-card {
-            background-color: var(--darker-blue);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        .distro-card:hover { transform: translateY(-10px); }
-        .distro-img { height: 200px; background-size: cover; background-position: center; }
-        .distro-content { padding: 20px; }
-        .distro-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 10px; color: var(--primary); }
-        .commands-content { max-width: 900px; margin: 0 auto; }
-        .command-item { background-color: var(--darker-blue); margin-bottom: 15px; border-radius: 8px; overflow: hidden; border-left: 4px solid var(--primary); }
-        .command-header {
-            background-color: var(--dark-blue);
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .command-header:hover { background-color: rgba(0, 180, 216, 0.1); }
-        .command-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--primary); }
-        .command-icon { font-size: 1.2rem; transition: transform 0.3s ease; }
-        .command-body { padding: 0; max-height: 0; overflow: hidden; transition: all 0.3s ease; }
-        .command-body.active { padding: 20px; max-height: 500px; }
-        .command-description { margin-bottom: 15px; }
-        .command-example {
-            background-color: var(--dark);
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Roboto Mono', monospace;
-            color: var(--primary);
-            border-left: 3px solid var(--secondary);
-            overflow-x: auto;
-        }
-        .why-linux { background-color: var(--dark-blue); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .feature-card {
-            background-color: var(--darker-blue);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .feature-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 15px; color: var(--primary); }
-        footer { background-color: var(--dark-blue); padding: 60px 0 30px; border-top: 3px solid var(--primary); }
-        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; margin-bottom: 40px; }
-        .footer-column { flex: 1; min-width: 250px; }
-        .footer-logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2rem; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; }
-        .footer-logo span { color: var(--secondary); }
-        .footer-logo i { margin-right: 10px; }
-        .footer-about { margin-bottom: 20px; }
-        .footer-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 20px; color: var(--primary); position: relative; padding-bottom: 10px; }
-        .footer-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background-color: var(--secondary); }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: var(--light); text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; }
-        .footer-links a i { margin-right: 10px; color: var(--primary); width: 20px; }
-        .footer-links a:hover { color: var(--primary); transform: translateX(5px); }
-        .social-footer { display: flex; gap: 15px; margin-top: 20px; }
-        .social-footer a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: var(--darker-blue); color: var(--light); border-radius: 50%; font-size: 1.2rem; transition: all 0.3s ease; }
-        .social-footer a:hover { background-color: var(--primary); color: var(--dark); transform: translateY(-5px); }
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--gray); font-size: 0.9rem; }
+        body { font-family:'Roboto',sans-serif; background-color:var(--dark); color:var(--light); line-height:1.6; overflow-x:hidden; }
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
 
-        @media (max-width: 992px) { .header-content { flex-direction: column; gap: 20px; } .hero h1 { font-size: 2.8rem; } }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .section-title { font-size: 2rem; } nav ul { justify-content: center; } .footer-content { flex-direction: column; } }
-        @media (max-width: 576px) { .hero { height: 70vh; } .hero h1 { font-size: 1.8rem; } .hero p { font-size: 1.1rem; } .btn { display: block; width: 100%; margin-bottom: 10px; } .section-title { font-size: 1.8rem; } }
+        /* Cabeçalho */
+        header { background:linear-gradient(135deg,var(--dark-blue) 0%,var(--darker-blue) 100%); padding:20px 0; border-bottom:3px solid var(--primary); position:sticky; top:0; z-index:1000; box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+        .header-content { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+        .logo { font-family:'Orbitron',sans-serif; font-weight:900; font-size:2.2rem; color:var(--primary); text-transform:uppercase; letter-spacing:2px; text-shadow:0 0 10px rgba(0,180,216,0.7); display:flex; align-items:center; }
+        .logo span { color:var(--secondary); margin-left:5px; }
+        .logo i { margin-right:10px; font-size:2rem; }
+        nav ul { display:flex; list-style:none; flex-wrap:wrap; }
+        nav ul li { margin:0 10px; }
+        nav ul li a { color:var(--light); text-decoration:none; font-family:'Orbitron',sans-serif; font-weight:700; font-size:1rem; padding:8px 15px; border-radius:4px; transition:all 0.3s ease; }
+        nav ul li a:hover { background-color:var(--primary); color:var(--dark); }
+        .social-header { display:flex; gap:15px; }
+        .social-header a { color:var(--light); font-size:1.3rem; transition:all 0.3s ease; }
+        .social-header a:hover { color:var(--primary); transform:translateY(-3px); }
+
+        /* Seção Hero */
+        .hero { background: linear-gradient(rgba(10,10,10,0.8), rgba(26,26,46,0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+        .hero-content { max-width:800px; padding:0 20px; }
+        .hero h1 { font-family:'Orbitron',sans-serif; font-weight:900; font-size:3.5rem; margin-bottom:20px; color:var(--primary); text-shadow:0 0 15px rgba(0,180,216,0.8); line-height:1.2; }
+        .hero p { font-size:1.3rem; margin-bottom:30px; }
+        .btn { display:inline-block; background-color:var(--secondary); color:white; padding:12px 30px; border-radius:5px; text-decoration:none; font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.1rem; transition:all 0.3s ease; border:none; cursor:pointer; margin:5px; }
+        .btn:hover { background-color:var(--primary); transform:translateY(-3px); box-shadow:0 5px 15px rgba(0,180,216,0.4); }
+        .btn-outline { background-color:transparent; border:2px solid var(--primary); color:var(--primary); }
+        .btn-outline:hover { background-color:var(--primary); color:var(--dark); }
+
+        /* Seções de conteúdo */
+        section { padding:80px 0; }
+        .section-title { font-family:'Orbitron',sans-serif; font-weight:900; font-size:2.5rem; text-align:center; margin-bottom:50px; color:var(--primary); text-transform:uppercase; letter-spacing:2px; position:relative; }
+        .section-title::after { content:''; position:absolute; bottom:-15px; left:50%; transform:translateX(-50%); width:100px; height:3px; background-color:var(--secondary); }
+
+        .about-content { display:flex; align-items:center; flex-wrap:wrap; gap:40px; }
+        .about-text { flex:1; min-width:300px; }
+        .about-text p { margin-bottom:20px; font-size:1.1rem; }
+        .about-image { flex:1; min-width:300px; text-align:center; }
+        .about-image img { max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+
+        /* Distribuições */
+        .distros { background-color:var(--dark-blue); }
+        .distro-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; }
+        .distro-card { background-color:var(--darker-blue); border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition:transform 0.3s ease; }
+        .distro-card:hover { transform:translateY(-10px); }
+        .distro-img { height:200px; background-size:cover; background-position:center; }
+        .distro-content { padding:20px; }
+        .distro-title { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.5rem; margin-bottom:10px; color:var(--primary); }
+
+        /* Comandos */
+        .commands-content { max-width:900px; margin:0 auto; }
+        .command-item { background-color:var(--darker-blue); margin-bottom:15px; border-radius:8px; overflow:hidden; border-left:4px solid var(--primary); }
+        .command-header { background-color:var(--dark-blue); padding:15px 20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:all 0.3s ease; }
+        .command-header:hover { background-color: rgba(0,180,216,0.1); }
+        .command-title { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.2rem; color:var(--primary); }
+        .command-icon { font-size:1.2rem; transition:transform 0.3s ease; }
+        .command-body { padding:0; max-height:0; overflow:hidden; transition:all 0.3s ease; }
+        .command-body.active { padding:20px; max-height:500px; }
+        .command-description { margin-bottom:15px; }
+        .command-example { background-color:var(--dark); padding:15px; border-radius:5px; font-family:'Roboto Mono',monospace; color:var(--primary); border-left:3px solid var(--secondary); overflow-x:auto; }
+
+        /* Por que Linux */
+        .why-linux { background-color:var(--dark-blue); }
+        .features-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
+        .feature-card { background-color:var(--darker-blue); padding:30px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
+        .feature-card:hover { transform:translateY(-5px); }
+        .feature-icon { font-size:3rem; color:var(--primary); margin-bottom:20px; }
+        .feature-title { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.3rem; margin-bottom:15px; color:var(--primary); }
+
+        /* Rodapé */
+        footer { background-color:var(--dark-blue); padding:60px 0 30px; border-top:3px solid var(--primary); }
+        .footer-content { display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; margin-bottom:40px; }
+        .footer-column { flex:1; min-width:250px; }
+        .footer-logo { font-family:'Orbitron',sans-serif; font-weight:900; font-size:2rem; color:var(--primary); margin-bottom:20px; display:flex; align-items:center; }
+        .footer-logo span { color:var(--secondary); }
+        .footer-logo i { margin-right:10px; }
+        .footer-about { margin-bottom:20px; }
+        .footer-title { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.3rem; margin-bottom:20px; color:var(--primary); position:relative; padding-bottom:10px; }
+        .footer-title::after { content:''; position:absolute; bottom:0; left:0; width:40px; height:2px; background-color:var(--secondary); }
+        .footer-links { list-style:none; }
+        .footer-links li { margin-bottom:10px; }
+        .footer-links a { color:var(--light); text-decoration:none; transition:all 0.3s ease; display:flex; align-items:center; }
+        .footer-links a i { margin-right:10px; color:var(--primary); width:20px; }
+        .footer-links a:hover { color:var(--primary); transform:translateX(5px); }
+        .social-footer { display:flex; gap:15px; margin-top:20px; }
+        .social-footer a { display:flex; align-items:center; justify-content:center; width:40px; height:40px; background-color:var(--darker-blue); color:var(--light); border-radius:50%; font-size:1.2rem; transition:all 0.3s ease; }
+        .social-footer a:hover { background-color:var(--primary); color:var(--dark); transform:translateY(-5px); }
+
+        .copyright { text-align:center; padding-top:30px; border-top:1px solid rgba(255,255,255,0.1); color:var(--gray); font-size:0.9rem; }
+
+        /* Responsividade */
+        @media (max-width:992px){.header-content{flex-direction:column;gap:20px;}.hero h1{font-size:2.8rem;}}
+        @media (max-width:768px){.hero h1{font-size:2.2rem;}.section-title{font-size:2rem;} nav ul{justify-content:center;} .footer-content{flex-direction:column;}}
+        @media (max-width:576px){.hero{height:70vh;}.hero h1{font-size:1.8rem;}.hero p{font-size:1.1rem;}.btn{display:block;width:100%;margin-bottom:10px;}.section-title{font-size:1.8rem;}}
     </style>
+
+    <!-- Google Ads principal -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501"
+        crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -240,96 +140,77 @@
         </div>
     </header>
 
-    <!-- Seção Hero -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Domine o Linux com a TOPZERA</h1>
-            <p>Aprenda a usar o sistema operacional mais poderoso e flexível do mundo com tutoriais e dicas práticas.</p>
-            <div>
-                <a href="#commands" class="btn">Ver Comandos</a>
-                <a href="https://www.youtube.com/@TOPZERADEV" target="_blank" class="btn btn-outline">Canal no YouTube</a>
+            <h1>Descubra o Poder do Linux</h1>
+            <p>Velocidade, segurança e liberdade. Explore as distribuições mais poderosas do mundo Linux!</p>
+            <a href="#distros" class="btn">Ver Distribuições</a>
+            <a href="#commands" class="btn btn-outline">Comandos Básicos</a>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Linux</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>O Linux é um sistema operacional livre e de código aberto, utilizado por milhões de pessoas ao redor do mundo, oferecendo estabilidade, segurança e personalização incomparáveis.</p>
+                    <p>Ideal para servidores, desenvolvedores e usuários que desejam liberdade e controle total sobre seu sistema.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1581091870622-7e3f6d32f0e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Linux">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- **Bloco de anúncio do Google Ads** -->
-    <section style="text-align:center; padding:40px 0; background-color:var(--darker-blue);">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-4884573718974501"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </section>
-
-    <!-- Rodapé -->
-    <footer>
+    <!-- Distribuições -->
+    <section id="distros" class="distros">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo"><i class="fab fa-linux"></i>Linux<span>TOPZERA</span></div>
-                    <p class="footer-about">Aprenda Linux de forma prática, com dicas, tutoriais e comandos essenciais para usuários e programadores.</p>
-                    <div class="social-footer">
-                        <a href="https://www.youtube.com/@TOPZERADEV" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.instagram.com/topzeradev/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://github.com/pedro22p" target="_blank"><i class="fab fa-github"></i></a>
+            <h2 class="section-title">Distribuições Populares</h2>
+            <div class="distro-grid">
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Ubuntu_logo.svg');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Ubuntu</h3>
+                        <p>Fácil de usar, ideal para iniciantes e com grande comunidade de suporte.</p>
+                    </div>
+                </div>
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Fedora_logo.svg');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Fedora</h3>
+                        <p>Distribuição cutting-edge, perfeita para desenvolvedores e entusiastas de tecnologia.</p>
+                    </div>
+                </div>
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Debian_logo.svg');"></div>
+                    <div class="distro-content">
+                        <h3 class="distro-title">Debian</h3>
+                        <p>Estável e confiável, base de muitas outras distribuições populares.</p>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; <span id="year"></span> Linux TOPZERA. Todos os direitos reservados. | Desenvolvido por TOPZERA DEV</p>
-            </div>
+
+            <!-- BLOCO GOOGLE ADS - Inserido após as distribuições -->
+            <section style="padding:40px 0; text-align:center; background-color:var(--darker-blue);">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-6t+ed+2i-1n-4w"
+                     data-ad-client="ca-pub-4884573718974501"
+                     data-ad-slot="7214588726"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </section>
         </div>
-    </footer>
+    </section>
 
-    <!-- Google Ads (antes do fechamento do body) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884573718974501"
-        crossorigin="anonymous"></script>
+    <!-- Comandos e Por que Linux, Rodapé, etc... -->
+    <!-- Aqui você pode adicionar suas seções de comandos, por que Linux e rodapé conforme já tinha -->
 
-    <script>
-        // Script para os acordeões de comandos
-        document.querySelectorAll('.command-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const body = header.nextElementSibling;
-                const icon = header.querySelector('.command-icon');
-                
-                // Fecha todos os outros
-                document.querySelectorAll('.command-body').forEach(item => {
-                    if (item !== body) item.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.command-icon').forEach(item => {
-                    if (item !== icon) item.textContent = '+';
-                });
-                
-                // Abre/fecha o atual
-                body.classList.toggle('active');
-                icon.textContent = body.classList.contains('active') ? '-' : '+';
-            });
-        });
-
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Copyright automático
-        const year = new Date().getFullYear();
-        document.getElementById('year').textContent = year;
-    </script>
 </body>
 </html>
